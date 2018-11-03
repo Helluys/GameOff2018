@@ -49,10 +49,12 @@ public class BenTest : MonoBehaviour
     private void OnSuccess()
     {
         Debug.Log("Success");
+        display.SuccessAnimation();
     }
 
     private void OnFail()
     {
         Debug.Log("Fail");
+        display.FailAnimation();
     }
 }

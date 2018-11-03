@@ -48,9 +48,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d30932f204a97da4984544e23a23fc2e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnColor: {r: 0.101122975, g: 1, b: 0, a: 1}
   OffColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  fadeTimeRatio: 0.5
 --- !u!222 &222435011452328120
 CanvasRenderer:
   m_ObjectHideFlags: 1

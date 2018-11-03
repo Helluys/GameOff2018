@@ -10,6 +10,7 @@ public class SequenceDisplay : MonoBehaviour {
     [SerializeField] [Range(1.0f, 5.0f)] private float onOffRatio = 2;
     [Header("References")]
     [SerializeField] private SequenceDisplayElement[] displayElements;
+    [SerializeField] private RectTransform displayObject;
     public bool isRunning { get; private set;}
     private Coroutine cPlayDisplay;
     #endregion
@@ -61,6 +62,27 @@ public class SequenceDisplay : MonoBehaviour {
     public void TurnOn(int index,float time = 0.5f)
     {
         displayElements[index].TurnOn(time);
+    }
+
+    public void SuccessAnimation()
+    {
+       float originalSize = displayObject.sizeDelta.x;
+        LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 1.3f * originalSize, 0.5f).setOnComplete(
+           () => LeanTween.value(this.gameObject, UpdateDeltaSize,1.3f* originalSize, originalSize, 0.5f).setEaseOutBounce()) ;
+        LeanTween.rotateAround(displayObject, Vector3.forward, 360, 1.0f).setEaseOutSine();
+    }
+
+    public void FailAnimation()
+    {
+        float originalSize = displayObject.sizeDelta.x;
+        LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 0.7f * originalSize, 0.5f).setOnComplete(
+           () => LeanTween.value(this.gameObject, UpdateDeltaSize, 0.7f * originalSize, originalSize, 0.5f).setEaseOutBounce());
+        LeanTween.rotateAround(displayObject, Vector3.forward, -360, 1.0f).setEaseOutElastic();
+    }
+
+    private void UpdateDeltaSize(float val)
+    {
+        displayObject.sizeDelta = new Vector2(val,val);
     }
     #endregion
 }
