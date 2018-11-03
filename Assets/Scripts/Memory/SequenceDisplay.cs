@@ -53,8 +53,12 @@ public class SequenceDisplay : MonoBehaviour {
         }
         isRunning = false;
     }
-
-    public void SetDisplay(int index,float time = 0.5f)
+    /// <summary>
+    /// Turn on a given display element
+    /// </summary>
+    /// <param name="index">index of the element to turn on</param>
+    /// <param name="time">time the element should stay on before fading</param>
+    public void TurnOn(int index,float time = 0.5f)
     {
         displayElements[index].TurnOn(time);
     }

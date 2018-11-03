@@ -13,6 +13,7 @@ public class BenTest : MonoBehaviour
     {
         sequence = new Sequence(4);
         player.SetKeys(new KeyCode[] { KeyCode.Keypad0, KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3 });
+        player.OnKeyPress += OnKeyPress;
         player.OnValidKeyPress += OnValidKey;
         player.OnSuccess += OnSuccess;
         player.OnFail += OnFail; 
@@ -35,10 +36,14 @@ public class BenTest : MonoBehaviour
             player.StartSequencePlay(sequence);
     }
 
+    private void OnKeyPress(int index)
+    {
+        display.TurnOn(index);
+    }
+
     private void OnValidKey(int index)
     {
         Debug.Log("Valid");
-        display.SetDisplay(index);
     }
 
     private void OnSuccess()
