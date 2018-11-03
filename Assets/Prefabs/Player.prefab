@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33047242380235758}
   - component: {fileID: 23605998504695474}
   - component: {fileID: 136987927678872392}
-  - component: {fileID: 114771797056880640}
   - component: {fileID: 54270579681536288}
+  - component: {fileID: 114968753495155242}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &114771797056880640
+--- !u!114 &114968753495155242
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,11 +109,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865281731080606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e3426e7c13edf479e2efa817e5d619, type: 3}
+  m_Script: {fileID: 11500000, guid: 98172dc83f0e7484d976a3a752e52171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: 7a000000730000007100000064000000
-  acceleration: 250
+  statistics: {fileID: 11400000, guid: d3bd84479e3f2a044918b3b3c49f7563, type: 2}
+  movement:
+    keys: 7a000000730000007100000064000000
+    sharedStatistics: {fileID: 11400000, guid: d3bd84479e3f2a044918b3b3c49f7563, type: 2}
 --- !u!136 &136987927678872392
 CapsuleCollider:
   m_ObjectHideFlags: 1

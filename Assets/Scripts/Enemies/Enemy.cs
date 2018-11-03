@@ -10,22 +10,21 @@ public class Enemy : MonoBehaviour {
     private NavMeshAgent navMeshAgent;
     private Coroutine updatePositionCoroutine;
 
-    void Start () {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        updatePositionCoroutine = StartCoroutine(FollowTarget(trackedObject));
+    private void Start () {
+        this.navMeshAgent = GetComponent<NavMeshAgent>();
+        this.updatePositionCoroutine = StartCoroutine(FollowTarget(this.trackedObject));
     }
-    
+
     private IEnumerator FollowTarget (Transform target) {
         Vector3 previousTargetPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
 
         while (true) {
-            if (Vector3.SqrMagnitude(previousTargetPosition - target.position) > updateRange) {
-                navMeshAgent.SetDestination(target.position);
+            if (Vector3.SqrMagnitude(previousTargetPosition - target.position) > this.updateRange) {
+                this.navMeshAgent.SetDestination(target.position);
                 previousTargetPosition = target.position;
-                Debug.Log("update");
             }
 
-            yield return new WaitForSeconds(updateDelay);
+            yield return new WaitForSeconds(this.updateDelay);
         }
     }
 }
