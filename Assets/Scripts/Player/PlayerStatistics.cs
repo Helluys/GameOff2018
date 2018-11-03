@@ -6,7 +6,6 @@ public class PlayerStatistics : ScriptableObject {
     private const float MAX_ANGULAR_VELOCITY = 100f;
 
     public float maxHealth;
-    public float health;
 
     public float acceleration;
     public float drag;
@@ -16,6 +15,16 @@ public class PlayerStatistics : ScriptableObject {
     public float staticFriction;
     public float dynamicFriction;
     public float bounciness;
+
+    [System.Serializable]
+    public class Instance {
+
+        public float health;
+
+        public Instance (PlayerStatistics origin) {
+            this.health = origin.maxHealth;
+        }
+    }
 
     public void ApplyStatistics(Player player) {
         Rigidbody rigidbody = player.GetComponent<Rigidbody>();
