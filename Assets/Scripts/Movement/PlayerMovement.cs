@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour {
 
     public static class Direction {
@@ -14,11 +15,13 @@ public class PlayerMovement : MonoBehaviour {
     private readonly Quaternion INPUT_TO_WORLD = Quaternion.FromToRotation(Vector3.forward, (Vector3.forward + Vector3.left).normalized);
 
     [SerializeField] private KeyCode[] keys;
-    [SerializeField] private float speed;
+    [SerializeField] private float acceleration;
+
+    private new Rigidbody rigidbody;
 
     // Use this for initialization
     void Start () {
-
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -43,11 +46,10 @@ public class PlayerMovement : MonoBehaviour {
         if (inputDirection.magnitude > MIN_MOVEMENT_THRESHOLD) {
             inputDirection.Normalize();
         }
-
-        Debug.Log(inputDirection);
-
+        
         Vector3 movement = InputToMovement(inputDirection);
-        transform.position += speed * movement * Time.deltaTime;
+
+        rigidbody.AddForce (acceleration * movement, ForceMode.Acceleration);
         if (movement.magnitude > MIN_MOVEMENT_THRESHOLD) {
             transform.rotation = Quaternion.LookRotation(movement);
         }
