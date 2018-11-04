@@ -6,16 +6,16 @@ public class ObjectTracker : MonoBehaviour {
     private Vector3 positionDelta;
 
     // Use this for initialization
-    void Start () {
-        if (trackedObject == null) {
+    private void Start () {
+        if (this.trackedObject == null) {
             Destroy(this);
         } else {
-            positionDelta = transform.position - trackedObject.position;
+            this.positionDelta = this.transform.position - this.trackedObject.position;
         }
     }
 
     // Update is called once per frame
-    void Update () {
-        transform.position = trackedObject.position + positionDelta;
+    private void Update () {
+        this.transform.position = this.trackedObject.position + this.positionDelta;
     }
 }
