@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SequenceDisplay : MonoBehaviour {
 
@@ -8,19 +9,19 @@ public class SequenceDisplay : MonoBehaviour {
     [Header("Display Settings")]
     [SerializeField] [Range(0.1f, 2.0f)] private float displayTime = 0.5f;
     [SerializeField] [Range(1.0f, 5.0f)] private float onOffRatio = 2;
+    [SerializeField] private Color indicatorOnColor, indicatorOffColor;
     [Header("References")]
     [SerializeField] private SequenceDisplayElement[] displayElements;
     [SerializeField] private RectTransform displayObject;
-    public bool isRunning { get; private set;}
+    [SerializeField] private Image playIndicator;
+
+    // Whether or not the display is doing something, the state of this variable is always display on screen with the play indicator
+    private bool isRunning = false;
+    public bool IsRunning { get { return isRunning; } private set { isRunning = value;playIndicator.color = value ? indicatorOffColor : indicatorOnColor; }}
+
     private Coroutine cPlayDisplay;
     #endregion
     #region Methods
-    #region Unity
-    private void Start()
-    {
-        isRunning = false;
-    }
-    #endregion
     /// <summary>
     /// Display the sequence
     /// </summary>
@@ -42,7 +43,7 @@ public class SequenceDisplay : MonoBehaviour {
             yield break;
         }
 
-        isRunning = true;
+        IsRunning = true;
         int index = -1;
         List<int> list = sequence.GetList();
 
@@ -52,7 +53,7 @@ public class SequenceDisplay : MonoBehaviour {
             displayElements[index].TurnOn(displayTime);
             yield return new WaitForSeconds(displayTime+displayTime/onOffRatio);
         }
-        isRunning = false;
+        IsRunning = false;
     }
     /// <summary>
     /// Turn on a given display element
@@ -63,26 +64,40 @@ public class SequenceDisplay : MonoBehaviour {
     {
         displayElements[index].TurnOn(time);
     }
-
+    #region Animations
+    /// <summary>
+    /// Animation for a correct sequence
+    /// </summary>
     public void SuccessAnimation()
     {
+        IsRunning = true;
        float originalSize = displayObject.sizeDelta.x;
         LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 1.3f * originalSize, 0.5f).setOnComplete(
            () => LeanTween.value(this.gameObject, UpdateDeltaSize,1.3f* originalSize, originalSize, 0.5f).setEaseOutBounce()) ;
         LeanTween.rotateAround(displayObject, Vector3.forward, 360, 1.0f).setEaseOutSine();
+        LeanTween.delayedCall(1.5f, () => IsRunning = false);
     }
-
+    /// <summary>
+    /// Animation for a wrong sequence
+    /// </summary>
     public void FailAnimation()
     {
+        IsRunning = true;
         float originalSize = displayObject.sizeDelta.x;
         LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 0.7f * originalSize, 0.5f).setOnComplete(
            () => LeanTween.value(this.gameObject, UpdateDeltaSize, 0.7f * originalSize, originalSize, 0.5f).setEaseOutBounce());
-        LeanTween.rotateAround(displayObject, Vector3.forward, -360, 1.0f).setEaseOutElastic();
+        LeanTween.rotateAround(displayObject, Vector3.forward, 30, 0.5f).setOnComplete(
+            () => LeanTween.rotateAround(displayObject, Vector3.forward, -30, 0.5f).setEaseOutElastic());
+        LeanTween.delayedCall(1.5f, () => IsRunning = false);
     }
-
+    /// <summary>
+    /// Use to set the width and height of the rectTransform through leantween
+    /// </summary>
+    /// <param name="val"></param>
     private void UpdateDeltaSize(float val)
     {
         displayObject.sizeDelta = new Vector2(val,val);
     }
+    #endregion
     #endregion
 }
