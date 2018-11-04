@@ -19,14 +19,14 @@ public class PlayerCombat {
 
         player.GetComponent<SequencePlayer>().OnSuccess += SequencePlayer_OnSuccess;
 
-        this.waitForAttack = new WaitUntil(() => this.attack == true);
-        this.waitForAttackCooldown = new WaitForSeconds(this.player.sharedStatistics.attackCooldown);
+        waitForAttack = new WaitUntil(() => attack == true);
+        waitForAttackCooldown = new WaitForSeconds(this.player.sharedStatistics.attackCooldown);
 
-        this.combatCoroutine = player.StartCoroutine(CombatLoop());
+        combatCoroutine = player.StartCoroutine(CombatLoop());
     }
 
     private void SequencePlayer_OnSuccess () {
-        this.attack = true;
+        attack = true;
     }
 
     public void OnUpdate () {
@@ -35,14 +35,14 @@ public class PlayerCombat {
 
     private IEnumerator CombatLoop () {
         while (true) {
-            yield return this.waitForAttack;
+            yield return waitForAttack;
             Attack();
-            yield return this.waitForAttackCooldown;
+            yield return waitForAttackCooldown;
         }
     }
 
     private void Attack () {
-        this.attack = false;
+        attack = false;
         Object.Instantiate(attackPrefab, player.transform);
     }
 }

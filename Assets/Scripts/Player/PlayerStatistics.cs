@@ -24,22 +24,22 @@ public class PlayerStatistics : ScriptableObject {
         public float health;
 
         public Instance (PlayerStatistics origin) {
-            this.health = origin.maxHealth;
+            health = origin.maxHealth;
         }
     }
 
     public void ApplyStatistics (Player player) {
         Rigidbody rigidbody = player.GetComponent<Rigidbody>();
-        rigidbody.drag = this.drag;
-        rigidbody.angularDrag = this.angularDrag;
+        rigidbody.drag = drag;
+        rigidbody.angularDrag = angularDrag;
         rigidbody.maxAngularVelocity = MAX_ANGULAR_VELOCITY;
 
         player.GetComponent<Collider>().material = new PhysicMaterial {
-            staticFriction = this.staticFriction,
-            dynamicFriction = this.dynamicFriction,
-            bounciness = this.bounciness
+            staticFriction = staticFriction,
+            dynamicFriction = dynamicFriction,
+            bounciness = bounciness
         };
 
-        player.instanceStatistics.health = this.maxHealth;
+        player.instanceStatistics.health = maxHealth;
     }
 }

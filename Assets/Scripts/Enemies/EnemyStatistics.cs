@@ -23,15 +23,15 @@ public class EnemyStatistics : ScriptableObject {
         public float health;
 
         public Instance (PlayerStatistics origin) {
-            this.health = origin.maxHealth;
+            health = origin.maxHealth;
         }
     }
 
     public void ApplyStatistics (Enemy enemy) {
         NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
-        agent.acceleration = this.acceleration;
-        agent.speed = this.speed;
-        agent.angularSpeed = this.angularAcceleration;
-        agent.stoppingDistance = this.stoppingDistance;
+        agent.acceleration = acceleration;
+        agent.speed = speed;
+        agent.angularSpeed = angularAcceleration;
+        agent.stoppingDistance = stoppingDistance;
     }
 }

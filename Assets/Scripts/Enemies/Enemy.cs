@@ -4,8 +4,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour {
 
-    public EnemyStatistics sharedStatistics { get { return this._sharedStatistics; } }
-    public EnemyStatistics.Instance instanceStatistics { get { return this._instanceStatistics; } }
+    public EnemyStatistics sharedStatistics { get { return _sharedStatistics; } }
+    public EnemyStatistics.Instance instanceStatistics { get { return _instanceStatistics; } }
 
     [SerializeField] private EnemyBehaviour movementBehaviour = null;
     [SerializeField] private EnemyBehaviour combatBehaviour = null;
@@ -13,38 +13,42 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private EnemyStatistics _sharedStatistics = null;
     [SerializeField] private EnemyStatistics.Instance _instanceStatistics = null;
 
+    [SerializeField] private bool resetInstanceStatisticsOnStart = true;
+
     public event System.Action<Enemy> OnDeath;
 
     private Coroutine movementCoroutine = null;
     private Coroutine combatCoroutine = null;
 
     private void Start () {
-        this.sharedStatistics.ApplyStatistics(this);
+        if (resetInstanceStatisticsOnStart) {
+            sharedStatistics.ApplyStatistics(this);
+        }
 
-        this.movementBehaviour = Instantiate(this.movementBehaviour);
-        this.movementBehaviour.OnStart(this);
-        this.movementCoroutine = StartCoroutine(this.movementBehaviour.Run());
+        movementBehaviour = Instantiate(movementBehaviour);
+        movementBehaviour.OnStart(this);
+        movementCoroutine = StartCoroutine(movementBehaviour.Run());
 
-        this.combatBehaviour = Instantiate(this.combatBehaviour);
-        this.combatBehaviour.OnStart(this);
-        this.combatCoroutine = StartCoroutine(this.combatBehaviour.Run());
+        combatBehaviour = Instantiate(combatBehaviour);
+        combatBehaviour.OnStart(this);
+        combatCoroutine = StartCoroutine(combatBehaviour.Run());
 
-        this.OnDeath += Enemy_OnDeath;
+        OnDeath += Enemy_OnDeath;
     }
 
     public void Damage (float amount) {
-        if (amount > this.instanceStatistics.health && OnDeath != null) {
+        if (amount > instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }
 
-        this.instanceStatistics.health = Mathf.Max(this.instanceStatistics.health - amount, 0f);
+        instanceStatistics.health = Mathf.Max(instanceStatistics.health - amount, 0f);
     }
 
     public void Heal (float amount) {
-        this.instanceStatistics.health = Mathf.Min(this.instanceStatistics.health + amount, this.sharedStatistics.maxHealth);
+        instanceStatistics.health = Mathf.Min(instanceStatistics.health + amount, sharedStatistics.maxHealth);
     }
 
     private void Enemy_OnDeath (Enemy origin) {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

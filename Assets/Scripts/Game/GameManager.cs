@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
         instance = this;
     }
 
-    public Player GetPlayer() {
+    public Player GetPlayer () {
         return player;
     }
 }
