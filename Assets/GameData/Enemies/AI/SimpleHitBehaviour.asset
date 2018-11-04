@@ -11,6 +11,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6598833db679a0b43850abf3bdcd6066, type: 3}
   m_Name: SimpleHitBehaviour
   m_EditorClassIdentifier: 
-  attackCooldown: 1
-  damage: 1
-  attackRange: 1

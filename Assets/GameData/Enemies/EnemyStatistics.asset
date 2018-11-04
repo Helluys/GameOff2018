@@ -8,15 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68adda45a1f4166408d8a53d6dad4940, type: 3}
-  m_Name: PlayerStatistics
+  m_Script: {fileID: 11500000, guid: d2552db787ede014d80445cf2602a271, type: 3}
+  m_Name: EnemyStatistics
   m_EditorClassIdentifier: 
   maxHealth: 100
-  acceleration: 150
-  drag: 5
-  angularAcceleration: 10
-  angularDrag: 50
-  staticFriction: 0
-  dynamicFriction: 0
-  bounciness: 0
+  acceleration: 30
+  speed: 10
+  angularAcceleration: 360
+  stoppingDistance: 0
   attackCooldown: 1
+  attackDamage: 10
+  attackRange: 1

@@ -2,7 +2,7 @@
 
 public class GameManager : MonoBehaviour {
 
-    [SerializeField] private Player player;
+    [SerializeField] private Player player = null;
 
     public static GameManager instance { get; private set; }
 

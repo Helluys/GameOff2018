@@ -3,15 +3,16 @@ using System.Collections;
 using UnityEngine.AI;
 
 [CreateAssetMenu(fileName ="TrackerBehaviour", menuName ="Game data/AI/Movement/TrackerBehaviour")]
-public class TrackerBehaviour : AIBehaviour {
+public class TrackerBehaviour : EnemyBehaviour {
 
     [SerializeField] private float updateDelay = 0.1f;
     [SerializeField] private float updateRange = 0.1f;
-    private Transform trackedObject;
-    private NavMeshAgent navMeshAgent;
 
-    public override void OnStart (GameObject gameobject) {
-        this.navMeshAgent = gameobject.GetComponent<NavMeshAgent>();
+    private NavMeshAgent navMeshAgent;
+    private Transform trackedObject;
+
+    public override void OnStart (Enemy enemy) {
+        this.navMeshAgent = enemy.GetComponent<NavMeshAgent>();
         this.trackedObject = GameManager.instance.GetPlayer().transform;
     }
 

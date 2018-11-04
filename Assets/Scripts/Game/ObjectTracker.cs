@@ -2,12 +2,13 @@
 
 public class ObjectTracker : MonoBehaviour {
 
-    [SerializeField] private Transform trackedObject;
+    [SerializeField] private Transform trackedObject = null;
     private Vector3 positionDelta;
 
     // Use this for initialization
     private void Start () {
         if (this.trackedObject == null) {
+            Debug.Log("No tracked object: deleting component");
             Destroy(this);
         } else {
             this.positionDelta = this.transform.position - this.trackedObject.position;
