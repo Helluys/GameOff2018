@@ -17,11 +17,10 @@ public class BenTest : MonoBehaviour
         player.OnValidKeyPress += OnValidKey;
         player.OnSuccess += OnSuccess;
         player.OnFail += OnFail;
-        StartCoroutine(GamePhase(true));
     }
 
     private void Update()
-    {
+    {/*
         if (Input.GetKeyDown(KeyCode.N))
             sequence.StartNew();
         if (Input.GetKeyDown(KeyCode.C))
@@ -36,6 +35,9 @@ public class BenTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
             player.StartSequencePlay(sequence);
+            */
+        if (Input.GetKeyDown(KeyCode.P))
+            StartCoroutine(EGamePhase(true));
     }
 
     private void OnKeyPress(int index)
@@ -52,17 +54,17 @@ public class BenTest : MonoBehaviour
     {
         Debug.Log("Success");
         display.SuccessAnimation();
-        StartCoroutine(GamePhase());
+        StartCoroutine(EGamePhase());
     }
 
     private void OnFail()
     {
         Debug.Log("Fail");
         display.FailAnimation();
-        StartCoroutine(GamePhase(true));
+        StartCoroutine(EGamePhase(true));
     }
 
-    private IEnumerator GamePhase(bool first = false)
+    private IEnumerator EGamePhase(bool first = false)
     {
         yield return new WaitUntil(() => !display.IsRunning);
 
