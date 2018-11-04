@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[CreateAssetMenu(fileName = "TrackerBehaviour", menuName = "Game data/AI/Movement/TrackerBehaviour")]
+[CreateAssetMenu(fileName = "TrackerBehaviour", menuName = "Game data/AI/Movement/Tracker")]
 public class TrackerBehaviour : EnemyBehaviour {
 
     [SerializeField] private float updateDelay = 0.1f;
