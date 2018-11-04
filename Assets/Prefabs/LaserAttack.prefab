@@ -88,7 +88,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1d5a0a4fc04c0dc448bea7cb06f30089, type: 2}
+  - {fileID: 2100000, guid: 8b30ec00f4eb32343ad4cecb576e99c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,6 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.5
   damagePerSecond: 10
+  mat: {fileID: 2100000, guid: 8b30ec00f4eb32343ad4cecb576e99c8, type: 2}
+  collider: {fileID: 136634150126797400}
 --- !u!136 &136634150126797400
 CapsuleCollider:
   m_ObjectHideFlags: 1
