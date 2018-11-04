@@ -210,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140694347}
   - component: {fileID: 140694346}
+  - component: {fileID: 140694348}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -247,6 +248,21 @@ RectTransform:
   m_AnchoredPosition: {x: 277.5, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &140694348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 140694345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b220746f2c520458fdaadba39c0b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFactor: 0.8
+  directionFactor: 0.1
+  avoidanceFactor: 0.1
+  gamma: 2
 --- !u!1 &143050333
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +396,12 @@ Prefab:
       propertyPath: _sharedStatistics
       value: 
       objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
+        type: 2}
+    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
+        type: 2}
+      propertyPath: movementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: 312c5253e5a0baf478c901dc8be4c70c,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -699,6 +721,12 @@ Prefab:
       propertyPath: _sharedStatistics
       value: 
       objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
+        type: 2}
+    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
+        type: 2}
+      propertyPath: movementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: 312c5253e5a0baf478c901dc8be4c70c,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -1171,6 +1199,12 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
         type: 2}
+    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
+        type: 2}
+      propertyPath: movementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: 312c5253e5a0baf478c901dc8be4c70c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
   m_IsPrefabParent: 0
@@ -1222,6 +1256,12 @@ Prefab:
       propertyPath: _sharedStatistics
       value: 
       objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
+        type: 2}
+    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
+        type: 2}
+      propertyPath: movementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: 312c5253e5a0baf478c901dc8be4c70c,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
