@@ -7,7 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: BeamDissolve
+<<<<<<< HEAD
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  m_Shader: {fileID: 4800000, guid: 4a904d1048ebf5b41909735e28310fc5, type: 3}
+>>>>>>> 031b5f9b89f8fb3eaacdfd34e641abf1945a71bc
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -34,6 +38,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DissolveTex:
+        m_Texture: {fileID: 2800000, guid: 8e9c3d0106a1efa4f97e300ab144d1ab, type: 3}
+        m_Scale: {x: 1.25, y: 18.4}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -58,10 +66,13 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DissolveStrength: 0.03
+    - _DissolveValue: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Length: 100
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -72,5 +83,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Origin: {r: 31.71899, g: 1, b: -28.369358, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}
