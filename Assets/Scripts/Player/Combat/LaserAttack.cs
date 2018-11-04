@@ -7,13 +7,13 @@ public class LaserAttack : MonoBehaviour {
 
     // Use this for initialization
     private void Start () {
-        Destroy(this.gameObject, this.duration);
+        Destroy(gameObject, duration);
     }
 
     private void OnTriggerStay (Collider other) {
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy != null) {
-            enemy.Damage(this.damagePerSecond * Time.fixedDeltaTime);
+            enemy.Damage(damagePerSecond * Time.fixedDeltaTime);
         }
 
     }

@@ -7,16 +7,16 @@ public class ObjectTracker : MonoBehaviour {
 
     // Use this for initialization
     private void Start () {
-        if (this.trackedObject == null) {
+        if (trackedObject == null) {
             Debug.Log("No tracked object: deleting component");
             Destroy(this);
         } else {
-            this.positionDelta = this.transform.position - this.trackedObject.position;
+            positionDelta = transform.position - trackedObject.position;
         }
     }
 
     // Update is called once per frame
     private void Update () {
-        this.transform.position = this.trackedObject.position + this.positionDelta;
+        transform.position = trackedObject.position + positionDelta;
     }
 }

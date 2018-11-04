@@ -12,17 +12,17 @@ public class SimpleHitBehaviour : EnemyBehaviour {
 
     public override void OnStart (Enemy enemy) {
         this.enemy = enemy;
-        this.player = GameManager.instance.GetPlayer();
+        player = GameManager.instance.GetPlayer();
 
-        this.waitForCooldown = new WaitForSeconds(this.enemy.sharedStatistics.attackCooldown);
-        this.waitInRange = new WaitUntil(() => (this.enemy.transform.position - this.player.transform.position).magnitude < this.enemy.sharedStatistics.attackRange);
+        waitForCooldown = new WaitForSeconds(this.enemy.sharedStatistics.attackCooldown);
+        waitInRange = new WaitUntil(() => (this.enemy.transform.position - player.transform.position).magnitude < this.enemy.sharedStatistics.attackRange);
     }
 
     public override IEnumerator Run () {
         while (true) {
-            yield return this.waitInRange;
-            this.player.Damage(this.enemy.sharedStatistics.attackDamage);
-            yield return this.waitForCooldown;
+            yield return waitInRange;
+            player.Damage(enemy.sharedStatistics.attackDamage);
+            yield return waitForCooldown;
         }
     }
 }
