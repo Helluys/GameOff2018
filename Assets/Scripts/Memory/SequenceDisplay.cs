@@ -14,6 +14,7 @@ public class SequenceDisplay : MonoBehaviour {
     [SerializeField] private SequenceDisplayElement[] displayElements;
     [SerializeField] private RectTransform displayObject;
     [SerializeField] private Image playIndicator;
+    [SerializeField] private RectTransform SuccesEffect;
 
     // Whether or not the display is doing something, the state of this variable is always display on screen with the play indicator
     private bool isRunning = false;
@@ -76,6 +77,13 @@ public class SequenceDisplay : MonoBehaviour {
            () => LeanTween.value(this.gameObject, UpdateDeltaSize,1.3f* originalSize, originalSize, 0.5f).setEaseOutBounce()) ;
         LeanTween.rotateAround(displayObject, Vector3.forward, 360, 1.0f).setEaseOutSine();
         LeanTween.delayedCall(1.5f, () => IsRunning = false);
+
+        RectTransform rect = Instantiate(SuccesEffect, displayObject.position, Quaternion.identity);
+        rect.parent = displayObject;
+        rect.SetAsFirstSibling();
+        LeanTween.rotateAround(rect, Vector3.forward, 360, 2.0f).setEaseOutQuad();
+        LeanTween.alphaCanvas(rect.GetComponent<CanvasGroup>(), 0, 2.0f).setEaseOutQuad();
+        LeanTween.scale(rect, Vector3.one * 5.0f, 2.0f).setEaseOutQuad().setOnComplete(() => Destroy(rect.gameObject));
     }
     /// <summary>
     /// Animation for a wrong sequence
@@ -84,10 +92,10 @@ public class SequenceDisplay : MonoBehaviour {
     {
         IsRunning = true;
         float originalSize = displayObject.sizeDelta.x;
-        LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 0.7f * originalSize, 0.5f).setOnComplete(
-           () => LeanTween.value(this.gameObject, UpdateDeltaSize, 0.7f * originalSize, originalSize, 0.5f).setEaseOutBounce());
-        LeanTween.rotateAround(displayObject, Vector3.forward, 30, 0.5f).setOnComplete(
-            () => LeanTween.rotateAround(displayObject, Vector3.forward, -30, 0.5f).setEaseOutElastic());
+        LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 0.78f * originalSize, .5f).setOnComplete(
+           () => LeanTween.value(this.gameObject, UpdateDeltaSize, 0.78f * originalSize, originalSize, .5f).setEaseOutBounce());
+       LeanTween.rotateAround(displayObject, Vector3.forward, 45, .5f).setOnComplete(
+            () => LeanTween.rotateAround(displayObject, Vector3.forward, -45, .5f).setEaseOutElastic());
         LeanTween.delayedCall(1.5f, () => IsRunning = false);
     }
     /// <summary>
