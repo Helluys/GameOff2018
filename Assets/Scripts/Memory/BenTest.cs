@@ -9,6 +9,8 @@ public class BenTest : MonoBehaviour
     public SequenceDisplay display;
     public SequencePlayer player;
 
+    public GameObject prefab;
+
     private void Start()
     {
         sequence = new Sequence(4);
@@ -38,11 +40,18 @@ public class BenTest : MonoBehaviour
             */
         if (Input.GetKeyDown(KeyCode.P))
             StartCoroutine(EGamePhase(true));
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            GameObject go = Instantiate(prefab, transform.position, Quaternion.identity);
+            go.transform.parent = transform.parent;
+            go.transform.localScale = Vector3.one;
+        }
     }
 
     private void OnKeyPress(int index)
     {
-        display.TurnOn(index,0.3f);
+        display.TurnOn(index,true,0.3f);
     }
 
     private void OnValidKey(int index)
@@ -55,6 +64,7 @@ public class BenTest : MonoBehaviour
         Debug.Log("Success");
         display.SuccessAnimation();
         StartCoroutine(EGamePhase());
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
     }
 
     private void OnFail()
@@ -62,6 +72,7 @@ public class BenTest : MonoBehaviour
         Debug.Log("Fail");
         display.FailAnimation();
         StartCoroutine(EGamePhase(true));
+        SoundController.Instance.PlaySound(SoundName.sequenceFail);
     }
 
     private IEnumerator EGamePhase(bool first = false)

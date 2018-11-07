@@ -18,7 +18,24 @@ public class SequenceDisplay : MonoBehaviour {
 
     // Whether or not the display is doing something, the state of this variable is always display on screen with the play indicator
     private bool isRunning = false;
-    public bool IsRunning { get { return isRunning; } private set { isRunning = value;playIndicator.color = value ? indicatorOffColor : indicatorOnColor; }}
+    public bool IsRunning { get { return isRunning; }
+        private set {
+            isRunning = value;
+            if (value)
+            {
+                playIndicator.color = indicatorOffColor;
+                LeanTween.cancel(playIndicator.rectTransform);
+                playIndicator.rectTransform.localScale = Vector3.one;
+
+            }
+            else
+            {
+                playIndicator.color = indicatorOnColor;
+                playIndicator.rectTransform.localScale = Vector3.one * 0.8f;
+                LeanTween.scale(playIndicator.rectTransform, Vector3.one * 1.1f, 0.5f).setEaseOutExpo().setLoopPingPong();
+            }
+        }
+    }
 
     private Coroutine cPlayDisplay;
     #endregion
@@ -51,7 +68,7 @@ public class SequenceDisplay : MonoBehaviour {
         for(int i = 0; i < list.Count; i++)
         {
             index = list[i];
-            displayElements[index].TurnOn(displayTime);
+            TurnOn(index,true,displayTime);
             yield return new WaitForSeconds(displayTime+displayTime/onOffRatio);
         }
         IsRunning = false;
@@ -61,9 +78,11 @@ public class SequenceDisplay : MonoBehaviour {
     /// </summary>
     /// <param name="index">index of the element to turn on</param>
     /// <param name="time">time the element should stay on before fading</param>
-    public void TurnOn(int index,float time = 0.5f)
+    public void TurnOn(int index,bool sound = true,float time = 0.5f)
     {
         displayElements[index].TurnOn(time);
+        if(sound)
+        SoundController.Instance.PlaySound((SoundName)index);
     }
     #region Animations
     /// <summary>
@@ -72,7 +91,12 @@ public class SequenceDisplay : MonoBehaviour {
     public void SuccessAnimation()
     {
         IsRunning = true;
-       float originalSize = displayObject.sizeDelta.x;
+
+        for (int i = 0; i < displayElements.Length; i++)
+            TurnOn(i,false);
+
+
+        float originalSize = displayObject.sizeDelta.x;
         LeanTween.value(this.gameObject, UpdateDeltaSize, originalSize, 1.3f * originalSize, 0.5f).setOnComplete(
            () => LeanTween.value(this.gameObject, UpdateDeltaSize,1.3f* originalSize, originalSize, 0.5f).setEaseOutBounce()) ;
         LeanTween.rotateAround(displayObject, Vector3.forward, 360, 1.0f).setEaseOutSine();
