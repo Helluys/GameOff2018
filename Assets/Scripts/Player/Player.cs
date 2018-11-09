@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerMovement movement = null;
     [SerializeField] private PlayerCombat combat = null;
 
+
     public event System.Action<Player> OnDeath;
 
     private void Start () {
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour {
 
     private void Update () {
         movement.OnUpdate();
-        combat.OnUpdate();
+        //combat.OnUpdate();
     }
 
     public void Damage (float amount) {
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Player_OnDeath (Player origin) {
-        Debug.Log("LOL u ded, rrrrise againnn!");
+        Debug.Log("Omae wa mou SHINDEIRU!!!");
         instanceStatistics.health = sharedStatistics.maxHealth;
     }
 }

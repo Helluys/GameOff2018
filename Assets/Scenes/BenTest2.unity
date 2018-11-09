@@ -405,7 +405,11 @@ Prefab:
         type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -676,7 +680,11 @@ Prefab:
         type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -738,7 +746,11 @@ Prefab:
         type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -1223,12 +1235,12 @@ Prefab:
     - target: {fileID: 224137721231417350, guid: 0bce491d07e2fc24cbb8ebaf4fedd4c9,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 224137721231417350, guid: 0bce491d07e2fc24cbb8ebaf4fedd4c9,
         type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 224137721231417350, guid: 0bce491d07e2fc24cbb8ebaf4fedd4c9,
         type: 2}
@@ -1304,6 +1316,11 @@ Prefab:
         type: 2}
       propertyPath: OnColor.a
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224137721231417350, guid: 0bce491d07e2fc24cbb8ebaf4fedd4c9,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0bce491d07e2fc24cbb8ebaf4fedd4c9, type: 2}
@@ -1493,7 +1510,11 @@ Prefab:
         type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -1555,7 +1576,11 @@ Prefab:
         type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -1935,6 +1960,27 @@ Prefab:
       value: 
       objectReference: {fileID: 1562292393862226, guid: ad885f9271ba9b34ca16e5fab4ef0a9d,
         type: 2}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.defaultWeakAttack
+      value: 
+      objectReference: {fileID: 114480237878259554, guid: 81d25a0071d7a074a9c204d10bddc3fc,
+        type: 2}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.defaultStrongAttack
+      value: 
+      objectReference: {fileID: 1157516765848812, guid: 88142a3d80494de47ba774487bc62604,
+        type: 2}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.aimBot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865281731080606, guid: a3544fffdbbc5264cbd322b38f459c67, type: 2}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3544fffdbbc5264cbd322b38f459c67, type: 2}
   m_IsPrefabParent: 0

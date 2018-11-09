@@ -14,7 +14,7 @@ public class BenTest : MonoBehaviour
     private void Start()
     {
         sequence = new Sequence(4);
-        player.SetKeys(new KeyCode[] { KeyCode.Keypad0, KeyCode.Keypad1, KeyCode.Keypad2, KeyCode.Keypad3 });
+        player.SetKeys(new KeyCode[] { KeyCode.Keypad8, KeyCode.Keypad6, KeyCode.Keypad4, KeyCode.Keypad2 });
         player.OnKeyPress += OnKeyPress;
         player.OnValidKeyPress += OnValidKey;
         player.OnSuccess += OnSuccess;
@@ -22,7 +22,8 @@ public class BenTest : MonoBehaviour
     }
 
     private void Update()
-    {/*
+    {
+        /*
         if (Input.GetKeyDown(KeyCode.N))
             sequence.StartNew();
         if (Input.GetKeyDown(KeyCode.C))
@@ -49,19 +50,18 @@ public class BenTest : MonoBehaviour
         }
     }
 
-    private void OnKeyPress(int index)
+    private void OnKeyPress(int index,bool last)
     {
         display.TurnOn(index,true,0.3f);
     }
 
-    private void OnValidKey(int index)
+    private void OnValidKey(int index,bool last)
     {
-        Debug.Log("Valid");
+
     }
 
     private void OnSuccess()
     {
-        Debug.Log("Success");
         display.SuccessAnimation();
         StartCoroutine(EGamePhase());
         SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
@@ -69,7 +69,6 @@ public class BenTest : MonoBehaviour
 
     private void OnFail()
     {
-        Debug.Log("Fail");
         display.FailAnimation();
         StartCoroutine(EGamePhase(true));
         SoundController.Instance.PlaySound(SoundName.sequenceFail);

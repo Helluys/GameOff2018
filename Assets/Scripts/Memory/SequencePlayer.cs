@@ -9,7 +9,7 @@ public class SequencePlayer : MonoBehaviour {
     private Coroutine cSequenceplay;
 
     // Events
-    public delegate void Del_KeyPressEvent(int index);
+    public delegate void Del_KeyPressEvent(int index,bool last = false);
     public Del_KeyPressEvent OnValidKeyPress;
     public Del_KeyPressEvent OnKeyPress;
     public delegate void Del_SequenceEvent();
@@ -74,7 +74,6 @@ public class SequencePlayer : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator ESequencePlay(Sequence sequence)
     {
-        Debug.Log("Start sequence playing");
         int val = -1;
         List<int> list = sequence.GetList();
         for (int i = 0; i < list.Count; i++)
@@ -87,7 +86,10 @@ public class SequencePlayer : MonoBehaviour {
                 yield break;
             }
             if (OnValidKeyPress != null)
-                OnValidKeyPress(val);
+            {
+                bool last = i == list.Count - 1;
+                OnValidKeyPress(val, last);
+            }
             yield return new WaitForEndOfFrame();
         }
         if (OnSuccess != null)

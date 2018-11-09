@@ -7,11 +7,13 @@ public class Enemy : MonoBehaviour {
     public EnemyStatistics sharedStatistics { get { return _sharedStatistics; } }
     public EnemyStatistics.Instance instanceStatistics { get { return _instanceStatistics; } }
 
-    [SerializeField] private EnemyBehaviour movementBehaviour = null;
+    [SerializeField]  EnemyBehaviour movementBehaviour = null;
     [SerializeField] private EnemyBehaviour combatBehaviour = null;
 
     [SerializeField] private EnemyStatistics _sharedStatistics = null;
     [SerializeField] private EnemyStatistics.Instance _instanceStatistics = null;
+
+    public NavMeshAgent agent { get; private set; }
 
     [SerializeField] private bool resetInstanceStatisticsOnStart = true;
 
@@ -24,6 +26,7 @@ public class Enemy : MonoBehaviour {
         if (resetInstanceStatisticsOnStart) {
             sharedStatistics.ApplyStatistics(this);
         }
+        agent = GetComponent<NavMeshAgent>();
 
         movementBehaviour = Instantiate(movementBehaviour);
         movementBehaviour.OnStart(this);
