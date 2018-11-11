@@ -2044,56 +2044,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 23605998504695474, guid: a3544fffdbbc5264cbd322b38f459c67,
+    - target: {fileID: 114918671635585494, guid: a3544fffdbbc5264cbd322b38f459c67,
         type: 2}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: display
       value: 
-      objectReference: {fileID: 2100000, guid: 23c913aa79b5c3b44abef4aa9ffcf88c, type: 2}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: _sharedStatistics
-      value: 
-      objectReference: {fileID: 11400000, guid: d3bd84479e3f2a044918b3b3c49f7563,
-        type: 2}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: combat.attackPrefab
-      value: 
-      objectReference: {fileID: 1562292393862226, guid: ad885f9271ba9b34ca16e5fab4ef0a9d,
-        type: 2}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: combat.defaultWeakAttack
-      value: 
-      objectReference: {fileID: 114480237878259554, guid: 81d25a0071d7a074a9c204d10bddc3fc,
-        type: 2}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: combat.defaultStrongAttack
-      value: 
-      objectReference: {fileID: 1157516765848812, guid: 88142a3d80494de47ba774487bc62604,
-        type: 2}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: combat.aimBot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1865281731080606, guid: a3544fffdbbc5264cbd322b38f459c67, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: combat.weakAttack
-      value: 
-      objectReference: {fileID: 114480237878259554, guid: 81d25a0071d7a074a9c204d10bddc3fc,
-        type: 2}
-    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
-        type: 2}
-      propertyPath: combat.strongAttack
-      value: 
-      objectReference: {fileID: 114765119124829374, guid: 88142a3d80494de47ba774487bc62604,
-        type: 2}
+      objectReference: {fileID: 1174248545}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3544fffdbbc5264cbd322b38f459c67, type: 2}
   m_IsPrefabParent: 0
@@ -2182,36 +2137,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1974640440}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1984653986 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1865281731080606, guid: a3544fffdbbc5264cbd322b38f459c67,
-    type: 2}
-  m_PrefabInternal: {fileID: 1761714120}
---- !u!114 &1984653991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1984653986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f63e13c002c44b43ba0c507dfb8316d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  display: {fileID: 1174248545}
-  player: {fileID: 1984653992}
-  prefab: {fileID: 1157516765848812, guid: 88142a3d80494de47ba774487bc62604, type: 2}
---- !u!114 &1984653992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1984653986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5cc5422a1cdfa04f8e19c4687036339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2010741331
 GameObject:
   m_ObjectHideFlags: 0

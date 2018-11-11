@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 96473756439094514}
   - component: {fileID: 54770200920466264}
   m_Layer: 10
-  m_Name: weakAttack
+  m_Name: WeakAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
