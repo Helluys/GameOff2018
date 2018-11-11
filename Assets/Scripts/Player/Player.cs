@@ -5,6 +5,8 @@ public class Player : MonoBehaviour {
 
     public PlayerStatistics sharedStatistics { get { return _sharedStatistics; } }
     public PlayerStatistics.Instance instanceStatistics { get { return _instanceStatistics; } }
+    public Animator animator { get; private set; }
+    public PlayerState state { get; private set; }
 
     [SerializeField] private PlayerStatistics _sharedStatistics = null;
     [SerializeField] private PlayerStatistics.Instance _instanceStatistics = null;
@@ -12,10 +14,12 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerMovement movement = null;
     [SerializeField] private PlayerCombat combat = null;
 
-
     public event System.Action<Player> OnDeath;
 
     private void Start () {
+        animator = transform.Find("Graphics").GetComponent<Animator>();
+        state = new PlayerState();
+
         sharedStatistics.ApplyStatistics(this);
 
         movement.OnStart(this);
@@ -26,7 +30,6 @@ public class Player : MonoBehaviour {
 
     private void Update () {
         movement.OnUpdate();
-        //combat.OnUpdate();
     }
 
     public void Damage (float amount) {

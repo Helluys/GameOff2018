@@ -15,7 +15,7 @@ public class SimpleHitBehaviour : EnemyBehaviour {
         player = GameManager.instance.GetPlayer();
 
         waitForCooldown = new WaitForSeconds(this.enemy.sharedStatistics.attackCooldown);
-        waitInRange = new WaitUntil(() => (this.enemy.transform.position - player.transform.position).magnitude < this.enemy.sharedStatistics.attackRange);
+        waitInRange = new WaitUntil(() => (this.enemy.transform.position - player.transform.position).magnitude < this.enemy.sharedStatistics.attackRange && !player.state.isRolling);
     }
 
     public override IEnumerator Run () {

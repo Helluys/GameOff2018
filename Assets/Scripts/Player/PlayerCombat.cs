@@ -20,11 +20,11 @@ public class PlayerCombat {
         sequencePlayer.OnValidKeyPress += OnValidKeyPress;
     }
 
-    private void OnValidKeyPress (int keyIndex,bool last) {
+    private void OnValidKeyPress (int keyIndex, bool last) {
         if (last)
             return;
 
-        WeakAttack wa = WeakAttack.Instantiate(weakAttack,player.transform.position,Quaternion.identity);
+        WeakAttack wa = Object.Instantiate(weakAttack,player.transform.position,Quaternion.identity);
         Vector3 direction = Vector3.zero;
         switch (keyIndex)
         {
@@ -47,7 +47,7 @@ public class PlayerCombat {
 
     private void OnSequenceSuccess()
     {
-        StrongAttack sa = StrongAttack.Instantiate(strongAttack, player.transform.position, Quaternion.identity);
+        StrongAttack sa = Object.Instantiate(strongAttack, player.transform.position, Quaternion.identity);
     }
 
 }

@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerMovement {
 
     private const float MIN_MOVEMENT_THRESHOLD = 0.1f;
 
-    [SerializeField] private KeyCode[] keys = null;
+    [SerializeField] private KeyCode[] directionKeys = new KeyCode[] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
+    [SerializeField] private KeyCode rollKey = KeyCode.LeftShift;
+    [SerializeField] private float rollStrength;
+
     private Player player;
     private Rigidbody rigidbody;
 
@@ -23,23 +27,36 @@ public class PlayerMovement {
             float deltaAngle = Vector3.SignedAngle(rigidbody.gameObject.transform.forward, inputDirection, Vector3.up);
             rigidbody.AddTorque(Vector3.up * deltaAngle * player.sharedStatistics.angularAcceleration);
         }
+
+        if (!player.state.isRolling && Input.GetKeyDown(rollKey)) {
+            rigidbody.AddForce(rollStrength * inputDirection, ForceMode.VelocityChange);
+            player.animator.SetTrigger("roll");
+            player.state.isRolling = true;
+            player.StartCoroutine(DetectRollEnd());
+        }
+
+        player.animator.SetFloat("speed", rigidbody.velocity.magnitude);
+    }
+
+    public void SetKey (int direction, KeyCode key) {
+        directionKeys[direction] = key;
     }
 
     private Vector3 GetInputDirection () {
         Vector3 inputDirection = Vector3.zero;
-        if (Input.GetKey(keys[Direction.UP])) {
+        if (Input.GetKey(directionKeys[Direction.UP])) {
             inputDirection += Vector3.forward;
         }
 
-        if (Input.GetKey(keys[Direction.DOWN])) {
+        if (Input.GetKey(directionKeys[Direction.DOWN])) {
             inputDirection += Vector3.back;
         }
 
-        if (Input.GetKey(keys[Direction.LEFT])) {
+        if (Input.GetKey(directionKeys[Direction.LEFT])) {
             inputDirection += Vector3.left;
         }
 
-        if (Input.GetKey(keys[Direction.RIGHT])) {
+        if (Input.GetKey(directionKeys[Direction.RIGHT])) {
             inputDirection += Vector3.right;
         }
 
@@ -50,7 +67,8 @@ public class PlayerMovement {
         return inputDirection;
     }
 
-    public void SetKey (int direction, KeyCode key) {
-        keys[direction] = key;
+    private IEnumerator DetectRollEnd () {
+        yield return new WaitUntil(() => !System.Array.Exists(player.animator.GetCurrentAnimatorClipInfo(0), c => c.clip.name.Equals("Roll")));
+        player.state.isRolling = false;
     }
 }
