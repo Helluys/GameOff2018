@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 23297945921411956}
   - component: {fileID: 135920193632820772}
   - component: {fileID: 114765119124829374}
-  - component: {fileID: 54894339844858316}
+  - component: {fileID: 54947265825410152}
   m_Layer: 10
   m_Name: StrongAttack
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157516765848812}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54894339844858316
+--- !u!54 &54947265825410152
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,12 +113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereMat: {fileID: 2100000, guid: 404bffd43a9d50d428a25a0a1565ec49, type: 2}
-  effectTime: 1
+  effectTime: 0.5
   dissolveTime: 2
   effectSize: 20
-  dissolveSize: 40
+  dissolveSize: 30
   damageAmount: 50
-  knockbackStrength: 5
+  knockbackStrength: 15
 --- !u!135 &135920193632820772
 SphereCollider:
   m_ObjectHideFlags: 1

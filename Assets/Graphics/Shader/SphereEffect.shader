@@ -86,7 +86,8 @@
 
 		fixed4 frag(v2f i) : SV_Target
 		{
-
+			if (i.worldPos.y < 0)
+			clip(-1);
 			// Texture
 			float2 newUV = TRANSFORM_TEX(i.uv,_Tex);
 			fixed4 col = tex2D(_Tex, newUV)*_Color;

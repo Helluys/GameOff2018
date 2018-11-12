@@ -70,7 +70,8 @@ public class BenTest : MonoBehaviour
     private void OnFail()
     {
         display.FailAnimation();
-        StartCoroutine(EGamePhase(true));
+        sequence.UnComplexify();
+        StartCoroutine(EGamePhase());
         SoundController.Instance.PlaySound(SoundName.sequenceFail);
     }
 

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeakAttack : MonoBehaviour {
+public class WeakAttack : Attack {
 
     [SerializeField] private new BoxCollider collider;
     [SerializeField] private float detectionRadius = 20;
     [SerializeField] private float speed = 30;
     [SerializeField] private LayerMask mask;
-    [SerializeField] private int damageAmount = 20;
 
     private Transform ennemyTarget;
     private Vector3 direction;
@@ -20,7 +19,7 @@ public class WeakAttack : MonoBehaviour {
 	// Use this for initialization
 	public void Init (bool aimBot, Vector3 direction) {
 
-        Destroy(gameObject, 10);
+        Destroy(gameObject, lifeTime);
         this.aimBot = aimBot;
         if (aimBot)
         {
@@ -40,24 +39,12 @@ public class WeakAttack : MonoBehaviour {
     void Update () {
         if (!init)
             return;
-        // Tête chercheuse ?
-        /*if (aimBot)
-          {
-              if (ennemyTarget != null)
-                  direction = (ennemyTarget.position - transform.position).normalized;  
-          }
-        */
         transform.position += direction * Time.deltaTime * speed;
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    public override void OnEnter(Enemy enemy)
     {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Damage(damageAmount);
-        }
-        
+        base.OnEnter(enemy);
         Destroy(gameObject);
     }
 

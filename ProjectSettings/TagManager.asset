@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Floor
+  - Attack
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - Ennemy
   - Attack
   - Player
-  - 
+  - Terrain
   - 
   - 
   - 
