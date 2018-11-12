@@ -99,7 +99,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.2
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -107,7 +107,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetFactor: 0.8
   directionFactor: 0.1
-  avoidanceFactor: 0.1
+  avoidanceFactor: 0.2
   gamma: 2
 --- !u!1 &143050333
 GameObject:
@@ -391,44 +391,9 @@ Prefab:
       propertyPath: m_Name
       value: Bad guy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _sharedStatistics
-      value: 
-      objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
-        type: 2}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: movementBehaviour
-      value: 
-      objectReference: {fileID: 11400000, guid: 5595db193f3838a41b2fbaa79e8d9115,
-        type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _instanceStatistics.health
-      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -691,45 +656,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _sharedStatistics
-      value: 
-      objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
-        type: 2}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: movementBehaviour
-      value: 
-      objectReference: {fileID: 11400000, guid: 5595db193f3838a41b2fbaa79e8d9115,
-        type: 2}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _instanceStatistics.health
-      value: 99
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
   m_IsPrefabParent: 0
@@ -776,44 +702,9 @@ Prefab:
       propertyPath: m_Name
       value: Bad guy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _sharedStatistics
-      value: 
-      objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
-        type: 2}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: movementBehaviour
-      value: 
-      objectReference: {fileID: 11400000, guid: 5595db193f3838a41b2fbaa79e8d9115,
-        type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _instanceStatistics.health
-      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -1559,44 +1450,9 @@ Prefab:
       propertyPath: m_Name
       value: Bad guy (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _sharedStatistics
-      value: 
-      objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
-        type: 2}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: movementBehaviour
-      value: 
-      objectReference: {fileID: 11400000, guid: 5595db193f3838a41b2fbaa79e8d9115,
-        type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _instanceStatistics.health
-      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
@@ -1644,44 +1500,9 @@ Prefab:
       propertyPath: m_Name
       value: Bad guy (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _sharedStatistics
-      value: 
-      objectReference: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1,
-        type: 2}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: movementBehaviour
-      value: 
-      objectReference: {fileID: 11400000, guid: 5595db193f3838a41b2fbaa79e8d9115,
-        type: 2}
     - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195315001668301970, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114410494743909538, guid: 01d68712f54d06b4da7617efa4f521c5,
-        type: 2}
-      propertyPath: _instanceStatistics.health
-      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}

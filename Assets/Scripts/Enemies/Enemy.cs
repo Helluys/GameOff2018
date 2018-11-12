@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private EnemyStatistics.Instance _instanceStatistics = null;
 
     public NavMeshAgent agent { get; private set; }
+    public Animator animator { get; private set; }
+    public AnimatorTrigger triggerAnimator { get; private set; }
 
     [SerializeField] private bool resetInstanceStatisticsOnStart = true;
 
@@ -27,6 +29,8 @@ public class Enemy : MonoBehaviour {
             sharedStatistics.ApplyStatistics(this);
         }
         agent = GetComponent<NavMeshAgent>();
+        animator = transform.Find("Graphics").GetComponent<Animator>();
+        triggerAnimator = transform.Find("Graphics").GetComponent<AnimatorTrigger>();
 
         movementBehaviour = Instantiate(movementBehaviour);
         movementBehaviour.OnStart(this);

@@ -13,7 +13,7 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
     private Transform trackedObject;
-    private Coroutine updateAgentCoroutine;
+    private Coroutine updateCoroutine;
 
     public override void OnStart (Enemy enemy) {
         this.enemy = enemy;
@@ -31,7 +31,7 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
         swarm.AddAgent(navMeshAgent);
         enemy.OnDeath += Enemy_OnDeath;
 
-        updateAgentCoroutine = enemy.StartCoroutine(UpdateAgentPosition());
+        updateCoroutine = enemy.StartCoroutine(UpdateCoroutine ());
     }
 
     public override IEnumerator Run () {
@@ -47,15 +47,20 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
         }
     }
 
-    private IEnumerator UpdateAgentPosition () {
+    private IEnumerator UpdateCoroutine () {
         while (true) {
             swarm.UpdateNextPosition(navMeshAgent);
+            if (navMeshAgent.velocity.magnitude > 0.1f) {
+                enemy.transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
+            }
+            enemy.animator.SetFloat("speed", navMeshAgent.velocity.magnitude);
+
             yield return null;
         }
     }
 
     private void Enemy_OnDeath (Enemy obj) {
         swarm.RemoveAgent(navMeshAgent);
-        enemy.StopCoroutine(updateAgentCoroutine);
+        enemy.StopCoroutine(updateCoroutine);
     }
 }

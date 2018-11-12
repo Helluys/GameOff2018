@@ -7,22 +7,40 @@ public class SimpleHitBehaviour : EnemyBehaviour {
     private Enemy enemy;
     private Player player;
 
-    private WaitForSeconds waitForCooldown;
-    private WaitUntil waitInRange;
+    private WaitUntil waitForCooldown;
+    private WaitUntil waitAttack;
+
+    private bool isAttacking;
 
     public override void OnStart (Enemy enemy) {
         this.enemy = enemy;
         player = GameManager.instance.GetPlayer();
 
-        waitForCooldown = new WaitForSeconds(this.enemy.sharedStatistics.attackCooldown);
-        waitInRange = new WaitUntil(() => (this.enemy.transform.position - player.transform.position).magnitude < this.enemy.sharedStatistics.attackRange && !player.state.isRolling);
+        waitForCooldown = new WaitUntil(() => !isAttacking);
+        waitAttack = new WaitUntil(() => !isAttacking && IsPlayerInRange());
+
+        enemy.triggerAnimator.OnAnimationEvent += AttackListener;
     }
 
     public override IEnumerator Run () {
         while (true) {
-            yield return waitInRange;
-            player.Damage(enemy.sharedStatistics.attackDamage);
+            yield return waitAttack;
+            isAttacking = true;
+            enemy.animator.SetTrigger("attack");
             yield return waitForCooldown;
         }
+    }
+
+    private void AttackListener (string eventName) {
+        if (eventName.Equals("attackEvent")) {
+            isAttacking = false;
+            if (!player.state.isRolling && IsPlayerInRange()) {
+                player.Damage(enemy.sharedStatistics.attackDamage);
+            }
+        }
+    }
+
+    private bool IsPlayerInRange () {
+        return (enemy.transform.position - player.transform.position).magnitude < enemy.sharedStatistics.attackRange;
     }
 }
