@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Name: PlayerStatistics
   m_EditorClassIdentifier: 
   maxHealth: 100
-  acceleration: 150
+  acceleration: 100
   drag: 5
   angularAcceleration: 10
   angularDrag: 50
+  rollStrength: 0
   staticFriction: 0
   dynamicFriction: 0
   bounciness: 0

@@ -19,7 +19,7 @@ public class SimpleHitBehaviour : EnemyBehaviour {
         waitForCooldown = new WaitUntil(() => !isAttacking);
         waitAttack = new WaitUntil(() => !isAttacking && IsPlayerInRange());
 
-        enemy.triggerAnimator.OnAnimationEvent += AttackListener;
+        enemy.animationEventDetector.OnAnimationEvent += AnimationListener;
     }
 
     public override IEnumerator Run () {
@@ -31,7 +31,7 @@ public class SimpleHitBehaviour : EnemyBehaviour {
         }
     }
 
-    private void AttackListener (string eventName) {
+    private void AnimationListener (string eventName) {
         if (eventName.Equals("attackEvent")) {
             isAttacking = false;
             if (!player.state.isRolling && IsPlayerInRange()) {

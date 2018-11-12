@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeakAttack : Attack {
 
@@ -15,47 +13,38 @@ public class WeakAttack : Attack {
     private bool aimBot = true;
     private float lifeTime = 10;
 
-
-	// Use this for initialization
-	public void Init (bool aimBot, Vector3 direction) {
-
+    public void Init (bool aimBot, Vector3 direction) {
         Destroy(gameObject, lifeTime);
         this.aimBot = aimBot;
-        if (aimBot)
-        {
+        if (aimBot) {
             ennemyTarget = GetClosestEnnemy();
-            if (ennemyTarget != null)
-            {
+            if (ennemyTarget == null) {
+                init = true;
+                this.direction = direction;
+                aimBot = false;
+            } else {
                 init = true;
                 this.direction = (ennemyTarget.position - transform.position).normalized;
-                return;
             }
-            aimBot = false;
         }
-        this.direction = direction;
-        init = true;
-	}
+    }
 
-    void Update () {
-        if (!init)
-            return;
-        transform.position += direction * Time.deltaTime * speed;
-	}
+    private void Update () {
+        if (init)
+            transform.position += direction * Time.deltaTime * speed;
+    }
 
-    public override void OnEnter(Enemy enemy)
-    {
+    public override void OnEnter (Enemy enemy) {
         base.OnEnter(enemy);
         Destroy(gameObject);
     }
 
-    private Transform GetClosestEnnemy()
-    {
+    private Transform GetClosestEnnemy () {
         float radius = 1;
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius,mask);
-        while (colliders.Length < 1 && radius < detectionRadius)
-        {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, mask);
+        while (colliders.Length < 1 && radius < detectionRadius) {
             radius++;
-            colliders = Physics.OverlapSphere(transform.position, radius,mask);
+            colliders = Physics.OverlapSphere(transform.position, radius, mask);
         }
 
         if (colliders.Length < 1)
@@ -64,20 +53,18 @@ public class WeakAttack : Attack {
         float minDist = Mathf.Infinity;
         int index = -1;
 
-        for (int i= 0;i < colliders.Length;i++)
-        {
+        for (int i = 0; i < colliders.Length; i++) {
             float dist = Vector3.Distance(transform.position, colliders[i].transform.position);
-            if ( dist < minDist)
-            {
+            if (dist < minDist) {
                 minDist = dist;
                 index = i;
             }
         }
+
         return colliders[index].transform;
     }
 
-    private void OnSelectedDrawGizmos()
-    {
+    private void OnSelectedDrawGizmos () {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }

@@ -11,6 +11,7 @@ public class PlayerStatistics : ScriptableObject {
     public float drag;
     public float angularAcceleration;
     public float angularDrag;
+    public float rollStrength;
 
     public float staticFriction;
     public float dynamicFriction;

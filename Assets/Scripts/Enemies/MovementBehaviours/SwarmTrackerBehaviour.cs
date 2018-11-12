@@ -31,17 +31,15 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
         swarm.AddAgent(navMeshAgent);
         enemy.OnDeath += Enemy_OnDeath;
 
-        updateCoroutine = enemy.StartCoroutine(UpdateCoroutine ());
+        updateCoroutine = enemy.StartCoroutine(UpdateCoroutine());
     }
 
     public override IEnumerator Run () {
         Vector3 previousTargetPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
 
         while (true) {
-            if (navMeshAgent.enabled)
-            {
-                if (Vector3.SqrMagnitude(previousTargetPosition - trackedObject.position) > updateRange)
-                {
+            if (navMeshAgent.enabled) {
+                if (Vector3.SqrMagnitude(previousTargetPosition - trackedObject.position) > updateRange) {
                     navMeshAgent.SetDestination(trackedObject.position);
                     previousTargetPosition = trackedObject.position;
                 }

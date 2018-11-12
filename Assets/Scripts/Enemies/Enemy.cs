@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     public EnemyStatistics sharedStatistics { get { return _sharedStatistics; } }
     public EnemyStatistics.Instance instanceStatistics { get { return _instanceStatistics; } }
 
-    [SerializeField]  EnemyBehaviour movementBehaviour = null;
+    [SerializeField] private EnemyBehaviour movementBehaviour = null;
     [SerializeField] private EnemyBehaviour combatBehaviour = null;
 
     [SerializeField] private EnemyStatistics _sharedStatistics = null;
@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour {
     public NavMeshAgent agent { get; private set; }
     public new Rigidbody rigidbody { get; private set; }
     public Animator animator { get; private set; }
-    public AnimatorTrigger triggerAnimator { get; private set; }
-    public LayerMask mask;
+    public AnimationEventDetector animationEventDetector { get; private set; }
+    public LayerMask terrainMask;
 
     [SerializeField] private bool resetInstanceStatisticsOnStart = true;
 
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
         animator = transform.Find("Graphics").GetComponent<Animator>();
-        triggerAnimator = transform.Find("Graphics").GetComponent<AnimatorTrigger>();
+        animationEventDetector = transform.Find("Graphics").GetComponent<AnimationEventDetector>();
 
         movementBehaviour = Instantiate(movementBehaviour);
         movementBehaviour.OnStart(this);
@@ -47,42 +47,28 @@ public class Enemy : MonoBehaviour {
         OnDeath += Enemy_OnDeath;
     }
 
-    private void Update()
-    {
-        if (agent.enabled)
-            return;
-
-        if (IsGrounded())
-        {
+    private void Update () {
+        if (!agent.enabled && IsGrounded()) {
             rigidbody.velocity = Vector3.zero;
             rigidbody.isKinematic = true;
             agent.enabled = true;
         }
     }
 
-    private bool IsGrounded()
-    {
+    private bool IsGrounded () {
         RaycastHit info;
-        if (Physics.Raycast(transform.position, Vector3.down, out info, 5, mask))
-        {
-            if (info.distance < 1)
-                return true;
-            return false;
+        if (Physics.Raycast(transform.position, Vector3.down, out info, 5, terrainMask)) {
+            return info.distance < 1;
         }
         return false;
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Attack")
-        {
+    private void OnTriggerEnter (Collider other) {
+        if (other.gameObject.tag == "Attack") {
             other.gameObject.GetComponent<Attack>().OnEnter(this);
             hitEffect.Play(true);
         }
     }
-
-
 
     public void Damage (float amount) {
         if (amount > instanceStatistics.health && OnDeath != null) {

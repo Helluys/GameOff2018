@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class PlayerMovement {
@@ -8,7 +7,6 @@ public class PlayerMovement {
 
     [SerializeField] private KeyCode[] directionKeys = new KeyCode[] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
     [SerializeField] private KeyCode rollKey = KeyCode.LeftShift;
-    [SerializeField] private float rollStrength;
 
     private Player player;
     private Rigidbody rigidbody;
@@ -16,6 +14,10 @@ public class PlayerMovement {
     public void OnStart (Player player) {
         this.player = player;
         rigidbody = player.GetComponent<Rigidbody>();
+
+        AnimatorTrigger animatorTrigger = player.animator.GetBehaviour<AnimatorTrigger>();
+        animatorTrigger.OnEnter += AnimatorTrigger_OnEnter;
+        animatorTrigger.OnExit += AnimatorTrigger_OnExit;
     }
 
     public void OnUpdate () {
@@ -29,10 +31,8 @@ public class PlayerMovement {
         }
 
         if (!player.state.isRolling && Input.GetKeyDown(rollKey)) {
-            rigidbody.AddForce(rollStrength * inputDirection, ForceMode.VelocityChange);
+            rigidbody.AddForce(player.sharedStatistics.rollStrength * inputDirection, ForceMode.VelocityChange);
             player.animator.SetTrigger("roll");
-            player.state.isRolling = true;
-            player.StartCoroutine(DetectRollEnd());
         }
 
         player.animator.SetFloat("speed", rigidbody.velocity.magnitude);
@@ -67,8 +67,13 @@ public class PlayerMovement {
         return inputDirection;
     }
 
-    private IEnumerator DetectRollEnd () {
-        yield return new WaitUntil(() => !System.Array.Exists(player.animator.GetCurrentAnimatorClipInfo(0), c => c.clip.name.Equals("Roll")));
-        player.state.isRolling = false;
+    private void AnimatorTrigger_OnEnter (string eventName) {
+        if (eventName.Equals("Roll"))
+            player.state.isRolling = true;
+    }
+
+    private void AnimatorTrigger_OnExit (string eventName) {
+        if (eventName.Equals("Roll"))
+            player.state.isRolling = false;
     }
 }

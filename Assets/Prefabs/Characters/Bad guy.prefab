@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4714049761130528}
   - component: {fileID: 95738643579115204}
-  - component: {fileID: 114340439536136508}
+  - component: {fileID: 114301813425233484}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -210,7 +210,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &95738643579115204
 Animator:
@@ -230,7 +230,7 @@ Animator:
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114340439536136508
+--- !u!114 &114301813425233484
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -238,9 +238,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072798659806790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec2f50289818fb64dbc251164fde8622, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ecb3e0f31914674cbf5e1b7076227c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventNamesFilter:
+  - attackEvent
 --- !u!114 &114410494743909538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +260,7 @@ MonoBehaviour:
   _instanceStatistics:
     health: 99
   hitEffect: {fileID: 198468731938594044}
-  mask:
+  terrainMask:
     serializedVersion: 2
     m_Bits: 4096
   resetInstanceStatisticsOnStart: 1

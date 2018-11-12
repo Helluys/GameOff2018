@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class PlayerCombat {
@@ -13,22 +12,20 @@ public class PlayerCombat {
     private SequencePlayer sequencePlayer;
 
     public void OnStart (Player player) {
-
         this.player = player;
         sequencePlayer = player.GetComponent<SequencePlayer>();
         sequencePlayer.OnSuccess += OnSequenceSuccess;
         sequencePlayer.OnValidKeyPress += OnValidKeyPress;
     }
 
-    
+
     private void OnValidKeyPress (int keyIndex, bool last) {
         if (last)
             return;
 
-        WeakAttack wa = Object.Instantiate(weakAttack,player.transform.position,Quaternion.identity);
+        WeakAttack wa = Object.Instantiate(weakAttack, player.transform.position, Quaternion.identity);
         Vector3 direction = Vector3.zero;
-        switch (keyIndex)
-        {
+        switch (keyIndex) {
             case 0:
                 direction = Vector3.forward;
                 break;
@@ -46,8 +43,7 @@ public class PlayerCombat {
         wa.Init(aimBot, direction);
     }
 
-    private void OnSequenceSuccess()
-    {
+    private void OnSequenceSuccess () {
         StrongAttack sa = Object.Instantiate(strongAttack, player.transform.position, Quaternion.identity);
     }
 
