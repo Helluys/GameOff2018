@@ -38,9 +38,13 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
         Vector3 previousTargetPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
 
         while (true) {
-            if (Vector3.SqrMagnitude(previousTargetPosition - trackedObject.position) > updateRange) {
-                navMeshAgent.SetDestination(trackedObject.position);
-                previousTargetPosition = trackedObject.position;
+            if (navMeshAgent.enabled)
+            {
+                if (Vector3.SqrMagnitude(previousTargetPosition - trackedObject.position) > updateRange)
+                {
+                    navMeshAgent.SetDestination(trackedObject.position);
+                    previousTargetPosition = trackedObject.position;
+                }
             }
 
             yield return new WaitForSeconds(updateDelay);
