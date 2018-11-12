@@ -51,7 +51,7 @@
 				{
 					clip(1 - (i.vertex.x % _Clip));
 				clip(1 - (i.vertex.y % _Clip));
-				fixed4 col = tex2D(_MainTex, i.uv)*_SeeThroughColor;
+				fixed4 col = _SeeThroughColor;
 				return col;
 				}
 				ENDCG
