@@ -13,7 +13,6 @@ public class EnemyStatistics : ScriptableObject {
     public float angularAcceleration;
     public float stoppingDistance;
 
-    public float attackCooldown;
     public float attackDamage;
     public float attackRange;
 

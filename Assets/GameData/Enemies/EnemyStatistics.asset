@@ -16,6 +16,5 @@ MonoBehaviour:
   speed: 10
   angularAcceleration: 360
   stoppingDistance: 0
-  attackCooldown: 1
   attackDamage: 10
-  attackRange: 1
+  attackRange: 2
