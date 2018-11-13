@@ -16,8 +16,7 @@ public class Enemy : MonoBehaviour {
 
     public NavMeshAgent agent { get; private set; }
     public new Rigidbody rigidbody { get; private set; }
-    public Animator animator { get; private set; }
-    public AnimationEventDetector animationEventDetector { get; private set; }
+    public AnimationManager animationManager { get; private set; }
     public LayerMask terrainMask;
 
     [SerializeField] private bool resetInstanceStatisticsOnStart = true;
@@ -33,8 +32,7 @@ public class Enemy : MonoBehaviour {
         }
         agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
-        animator = transform.Find("Graphics").GetComponent<Animator>();
-        animationEventDetector = transform.Find("Graphics").GetComponent<AnimationEventDetector>();
+        animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
 
         movementBehaviour = Instantiate(movementBehaviour);
         movementBehaviour.OnStart(this);

@@ -19,14 +19,14 @@ public class SimpleHitBehaviour : EnemyBehaviour {
         waitForCooldown = new WaitUntil(() => !isAttacking);
         waitAttack = new WaitUntil(() => !isAttacking && IsPlayerInRange());
 
-        enemy.animationEventDetector.OnAnimationEvent += AnimationListener;
+        enemy.animationManager.OnAnimationEvent += AnimationListener;
     }
 
     public override IEnumerator Run () {
         while (true) {
             yield return waitAttack;
             isAttacking = true;
-            enemy.animator.SetTrigger("attack");
+            enemy.animationManager.animator.SetTrigger("attack");
             yield return waitForCooldown;
         }
     }

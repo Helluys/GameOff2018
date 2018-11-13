@@ -55,7 +55,7 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
             if (navMeshAgent.velocity.magnitude > 0.1f) {
                 enemy.transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
             }
-            enemy.animator.SetFloat("speed", navMeshAgent.velocity.magnitude);
+            enemy.animationManager.animator.SetFloat("speed", navMeshAgent.velocity.magnitude);
 
             yield return null;
         }

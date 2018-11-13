@@ -103,7 +103,7 @@ public class SequenceDisplay : MonoBehaviour {
         LeanTween.delayedCall(1.5f, () => IsRunning = false);
 
         RectTransform rect = Instantiate(SuccesEffect, displayObject.position, Quaternion.identity);
-        rect.parent = displayObject;
+        rect.SetParent (displayObject);
         rect.SetAsFirstSibling();
         LeanTween.rotateAround(rect, Vector3.forward, 360, 2.0f).setEaseOutQuad();
         LeanTween.alphaCanvas(rect.GetComponent<CanvasGroup>(), 0, 2.0f).setEaseOutQuad();

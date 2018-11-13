@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 
     public PlayerStatistics sharedStatistics { get { return _sharedStatistics; } }
     public PlayerStatistics.Instance instanceStatistics { get { return _instanceStatistics; } }
-    public Animator animator { get; private set; }
+    public AnimationManager animationManager { get; private set; }
     public PlayerState state { get; private set; }
 
     [SerializeField] private PlayerStatistics _sharedStatistics = null;
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     public event System.Action<Player> OnDeath;
 
     private void Start () {
-        animator = transform.Find("Graphics").GetComponent<Animator>();
+        animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
         state = new PlayerState();
 
         sharedStatistics.ApplyStatistics(this);

@@ -14,10 +14,8 @@ public class PlayerMovement {
     public void OnStart (Player player) {
         this.player = player;
         rigidbody = player.GetComponent<Rigidbody>();
-
-        AnimatorTrigger animatorTrigger = player.animator.GetBehaviour<AnimatorTrigger>();
-        animatorTrigger.OnEnter += AnimatorTrigger_OnEnter;
-        animatorTrigger.OnExit += AnimatorTrigger_OnExit;
+        player.animationManager.OnEnter += AnimationManager_OnEnter;
+        player.animationManager.OnExit += AnimatorManager_OnExit;
     }
 
     public void OnUpdate () {
@@ -32,10 +30,10 @@ public class PlayerMovement {
 
         if (!player.state.isRolling && Input.GetKeyDown(rollKey)) {
             rigidbody.AddForce(player.sharedStatistics.rollStrength * inputDirection, ForceMode.VelocityChange);
-            player.animator.SetTrigger("roll");
+            player.animationManager.animator.SetTrigger("roll");
         }
 
-        player.animator.SetFloat("speed", rigidbody.velocity.magnitude);
+        player.animationManager.animator.SetFloat("speed", rigidbody.velocity.magnitude);
     }
 
     public void SetKey (int direction, KeyCode key) {
@@ -67,12 +65,12 @@ public class PlayerMovement {
         return inputDirection;
     }
 
-    private void AnimatorTrigger_OnEnter (string eventName) {
+    private void AnimationManager_OnEnter (string eventName) {
         if (eventName.Equals("Roll"))
             player.state.isRolling = true;
     }
 
-    private void AnimatorTrigger_OnExit (string eventName) {
+    private void AnimatorManager_OnExit (string eventName) {
         if (eventName.Equals("Roll"))
             player.state.isRolling = false;
     }
