@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerMovement {
@@ -7,6 +8,12 @@ public class PlayerMovement {
 
     [SerializeField] private KeyCode[] directionKeys = new KeyCode[] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
     [SerializeField] private KeyCode rollKey = KeyCode.LeftShift;
+    private Dictionary<int, Vector3> directionVectors = new Dictionary<int, Vector3>() {
+        {Direction.UP, (Vector3.forward + Vector3.right).normalized},
+        {Direction.DOWN, (Vector3.back + Vector3.left).normalized},
+        {Direction.LEFT, (Vector3.left + Vector3.forward).normalized},
+        {Direction.RIGHT, (Vector3.right + Vector3.back).normalized}
+    };
 
     private Player player;
     private Rigidbody rigidbody;
@@ -42,20 +49,10 @@ public class PlayerMovement {
 
     private Vector3 GetInputDirection () {
         Vector3 inputDirection = Vector3.zero;
-        if (Input.GetKey(directionKeys[Direction.UP])) {
-            inputDirection += Vector3.forward;
-        }
-
-        if (Input.GetKey(directionKeys[Direction.DOWN])) {
-            inputDirection += Vector3.back;
-        }
-
-        if (Input.GetKey(directionKeys[Direction.LEFT])) {
-            inputDirection += Vector3.left;
-        }
-
-        if (Input.GetKey(directionKeys[Direction.RIGHT])) {
-            inputDirection += Vector3.right;
+        foreach (int direction in new int[] { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT}) {
+            if (Input.GetKey(directionKeys[direction])) {
+                inputDirection += directionVectors[direction];
+            }
         }
 
         if (inputDirection.magnitude > MIN_MOVEMENT_THRESHOLD) {
