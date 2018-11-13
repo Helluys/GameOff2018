@@ -34,6 +34,7 @@
 					float2 uv : TEXCOORD0;
 					float4 vertex : SV_POSITION;
 				};
+
 				int _Clip;
 				sampler2D _MainTex;
 				float4 _MainTex_ST;
@@ -50,12 +51,12 @@
 				fixed4 frag(v2f i) : SV_Target
 				{
 					clip(1 - (i.vertex.x % _Clip));
-				clip(1 - (i.vertex.y % _Clip));
-				fixed4 col = _SeeThroughColor;
-				return col;
+					clip(1 - (i.vertex.y % _Clip));
+					fixed4 col = _SeeThroughColor;
+					return col;
 				}
 				ENDCG
-					}
+		}
 		
 
 		ZTest Less

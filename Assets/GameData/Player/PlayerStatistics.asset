@@ -16,7 +16,7 @@ MonoBehaviour:
   drag: 5
   angularAcceleration: 10
   angularDrag: 50
-  rollStrength: 0
+  rollStrength: 15
   staticFriction: 0
   dynamicFriction: 0
   bounciness: 0

@@ -345,7 +345,6 @@ MonoBehaviour:
   movement:
     directionKeys: 7a000000730000007100000064000000
     rollKey: 304
-    rollStrength: 20
   combat:
     weakAttack: {fileID: 114480237878259554, guid: 81d25a0071d7a074a9c204d10bddc3fc,
       type: 2}

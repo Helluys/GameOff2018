@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a642b538a1969e4294fbae5552f2a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackStrength: 15
+  knockBackStrength: 30
   damageAmount: 50
   sphereMat: {fileID: 2100000, guid: 404bffd43a9d50d428a25a0a1565ec49, type: 2}
   effectTime: 0.5
