@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706328098588234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.48, y: 0, z: 0}
+  m_LocalPosition: {x: 15.3, y: 0, z: 39.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnableObjects:
   - {fileID: 1301826823967000, guid: 01d68712f54d06b4da7617efa4f521c5, type: 2}
+  spawnEffect: {fileID: 1729225579529612, guid: 5e6ca7e36023a2b4e912e3e0d11dc4ae,
+    type: 2}
   spawnSequence: {fileID: 11400000, guid: 498720cf0dea34b4991219b5d5cc7dbb, type: 2}
   spawnTransform: {fileID: 4267676188016976}
   loop: 1

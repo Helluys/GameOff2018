@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: EnemyStatistics
   m_EditorClassIdentifier: 
   maxHealth: 100
-  acceleration: 30
-  speed: 10
-  angularAcceleration: 360
+  acceleration: 100
+  speed: 30
+  angularAcceleration: 50
   stoppingDistance: 0
   attackDamage: 10
   attackRange: 2

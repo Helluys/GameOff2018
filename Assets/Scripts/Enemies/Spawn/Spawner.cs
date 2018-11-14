@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     [SerializeField] private List<GameObject> spawnableObjects = new List<GameObject>();
+    [SerializeField] private GameObject spawnEffect;
     [SerializeField] private SpawnSequence spawnSequence;
     [SerializeField] private Transform spawnTransform;
     [SerializeField] private bool loop;
@@ -24,6 +25,9 @@ public class Spawner : MonoBehaviour {
     private void Update () {
         if (!ended && Time.time > nextSpawnTime && GameManager.instance.AllowMonsterCreation()) {
             Instantiate(spawnableObjects[spawnSequence[currentSequenceIndex].entityIndex], spawnTransform.position, spawnTransform.rotation);
+
+            if (spawnEffect != null)
+                Instantiate(spawnEffect, spawnTransform.position, spawnTransform.rotation);
 
             currentSequenceIndex++;
             if (currentSequenceIndex >= spawnSequence.count) {

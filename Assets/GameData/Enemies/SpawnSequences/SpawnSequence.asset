@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequence:
   - entityIndex: 0
-    delay: 1
+    delay: 3
   - entityIndex: 0
-    delay: 5
+    delay: 1
   - entityIndex: 0
     delay: 1
