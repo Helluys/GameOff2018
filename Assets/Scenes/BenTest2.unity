@@ -2441,12 +2441,6 @@ Prefab:
       propertyPath: m_Name
       value: Spawner (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114793635462519820, guid: 87b959967994d9141b91b24b6b8d0a1f,
-        type: 2}
-      propertyPath: spawnEffect
-      value: 
-      objectReference: {fileID: 1729225579529612, guid: 5e6ca7e36023a2b4e912e3e0d11dc4ae,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87b959967994d9141b91b24b6b8d0a1f, type: 2}
   m_IsPrefabParent: 0
