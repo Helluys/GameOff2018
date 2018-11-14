@@ -8,6 +8,7 @@ public class PlayerMovement {
 
     [SerializeField] private KeyCode[] directionKeys = new KeyCode[] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
     [SerializeField] private KeyCode rollKey = KeyCode.LeftShift;
+
     private Dictionary<int, Vector3> directionVectors = new Dictionary<int, Vector3>() {
         {Direction.UP, (Vector3.forward + Vector3.right).normalized},
         {Direction.DOWN, (Vector3.back + Vector3.left).normalized},
@@ -49,7 +50,7 @@ public class PlayerMovement {
 
     private Vector3 GetInputDirection () {
         Vector3 inputDirection = Vector3.zero;
-        foreach (int direction in new int[] { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT}) {
+        foreach (int direction in new int[] { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT }) {
             if (Input.GetKey(directionKeys[direction])) {
                 inputDirection += directionVectors[direction];
             }
@@ -63,12 +64,16 @@ public class PlayerMovement {
     }
 
     private void AnimationManager_OnEnter (string eventName) {
-        if (eventName.Equals("Roll"))
+        if (eventName.Equals("Roll")) {
             player.state.isRolling = true;
+            player.gameObject.layer = LayerMask.NameToLayer("GhostPlayer"); ;
+        }
     }
 
     private void AnimatorManager_OnExit (string eventName) {
-        if (eventName.Equals("Roll"))
+        if (eventName.Equals("Roll")) {
             player.state.isRolling = false;
+            player.gameObject.layer = LayerMask.NameToLayer("Player");
+        }
     }
 }
