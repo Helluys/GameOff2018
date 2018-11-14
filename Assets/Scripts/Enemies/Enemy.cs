@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour {
         combatBehaviour.OnStart(this);
         combatCoroutine = StartCoroutine(combatBehaviour.Run());
 
+        GameManager.instance.AddMonster();
         OnDeath += Enemy_OnDeath;
     }
 
@@ -81,6 +82,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Enemy_OnDeath (Enemy origin) {
+        GameManager.instance.RemoveMonster();
         Destroy(gameObject);
     }
 }
