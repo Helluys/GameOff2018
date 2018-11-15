@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BenTest : MonoBehaviour
+public class SequenceManager : MonoBehaviour
 {
-
-    private Sequence sequence;
+    public Sequence sequence;
     public SequenceDisplay display;
     public SequencePlayer player;
-
-    public GameObject prefab;
 
     private void Start()
     {
@@ -41,13 +38,6 @@ public class BenTest : MonoBehaviour
             */
         if (Input.GetKeyDown(KeyCode.P))
             StartCoroutine(EGamePhase(true));
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            GameObject go = Instantiate(prefab, transform.position, Quaternion.identity);
-            go.transform.parent = transform.parent;
-            go.transform.localScale = Vector3.one;
-        }
     }
 
     private void OnKeyPress(int index,bool last)

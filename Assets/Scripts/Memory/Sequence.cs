@@ -79,6 +79,14 @@ public class Sequence {
             list.RemoveAt(list.Count - 1);
         }
     }
+
+    public void Repeat(int amount = 1)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            memory.Add(list[list.Count - 1]);
+        }
+    }
     /// <summary>
     /// Check if the given value correspond to the one in the sequence at the given index
     /// </summary>
