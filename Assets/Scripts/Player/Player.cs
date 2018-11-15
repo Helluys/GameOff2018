@@ -36,8 +36,9 @@ public class Player : MonoBehaviour {
         if (amount > instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }
-
         instanceStatistics.health = Mathf.Max(instanceStatistics.health - amount, 0f);
+        HUDManager.Instance.UpdateHealtBar(instanceStatistics.health / sharedStatistics.maxHealth);
+        HUDManager.Instance.HitEffect();
     }
 
     public void Heal (float amount) {

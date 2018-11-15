@@ -7,6 +7,7 @@ Properties
 	_StencilComp("Stencil Comparison", Float) = 5
 	_Stencil("Stencil ID", Float) = 1
 	_StencilOp("Stencil Operation", Float) = 2
+	_AlphaTolerance("Alpha Tolerance",Range(0,1)) = 0.1
 	[Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip("Use Alpha Clip", Float) = 0
 }
 
@@ -72,6 +73,7 @@ fixed4 _Color;
 fixed4 _TextureSampleAdd;
 float4 _ClipRect;
 float4 _MainTex_ST;
+float _AlphaTolerance;
 
 v2f vert(appdata_t v)
 {
@@ -99,7 +101,7 @@ fixed4 frag(v2f IN) : SV_Target
 	clip(color.a - 0.001);
 #endif
 
-	if (color.a == 0)
+	if (color.a <= _AlphaTolerance)
 		discard;
 	return color;
 }
