@@ -19,7 +19,6 @@ public class Player : MonoBehaviour {
 
     public event System.Action<Player> OnDeath;
 
-
     private void Start () {
         animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
         state = new PlayerState();

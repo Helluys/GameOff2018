@@ -2028,26 +2028,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 502517634}
   soundSource: {fileID: 502517633}
-  playlist:
-  - {fileID: 8300000, guid: 7f1426ca42bd58a44944fa4958793317, type: 3}
-  musicsVolumes:
-  - 0.503
-  sounds:
-  - {fileID: 8300000, guid: 99159cc8b7717a54d984bb3fd9691789, type: 3}
-  - {fileID: 8300000, guid: 4f5cc41b380a04545907f101507de721, type: 3}
-  - {fileID: 8300000, guid: 56b2f1c528500224f8cfc5bc0942b572, type: 3}
-  - {fileID: 8300000, guid: 511942153f7731d49b1a67421045860e, type: 3}
-  - {fileID: 8300000, guid: 9c11fe87a6bd98c42a81126a46b00556, type: 3}
-  - {fileID: 8300000, guid: f957de74aac8a4a45a4ca4caf6de13b0, type: 3}
-  soundsVolumes:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
   globalMusicVolume: 1
-  globalSoundVolume: 1
+  globalSoundVolume: 0.7
+  playlist:
+  - audio: {fileID: 8300000, guid: 7f1426ca42bd58a44944fa4958793317, type: 3}
+    volume: 0.4
+  - audio: {fileID: 8300000, guid: d1b7299af324ca64f9a62623817cc633, type: 3}
+    volume: 1
+  - audio: {fileID: 8300000, guid: 102491b558c4e6340a68affc8056ee4f, type: 3}
+    volume: 1
+  sounds:
+  - audio: {fileID: 8300000, guid: 99159cc8b7717a54d984bb3fd9691789, type: 3}
+    volume: 1
+  - audio: {fileID: 8300000, guid: 4f5cc41b380a04545907f101507de721, type: 3}
+    volume: 1
+  - audio: {fileID: 8300000, guid: 56b2f1c528500224f8cfc5bc0942b572, type: 3}
+    volume: 1
+  - audio: {fileID: 8300000, guid: 511942153f7731d49b1a67421045860e, type: 3}
+    volume: 1
+  - audio: {fileID: 8300000, guid: 9c11fe87a6bd98c42a81126a46b00556, type: 3}
+    volume: 1
+  - audio: {fileID: 8300000, guid: f957de74aac8a4a45a4ca4caf6de13b0, type: 3}
+    volume: 1
 --- !u!4 &502517636
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,13 @@ public enum SoundName
     sequenceFail = 5
 }
 
+[System.Serializable]
+public struct AudioVolumePair
+{
+    public AudioClip audio;
+    [Range(0, 1)] public float volume;
+}
+
 public class SoundController : SingletonBehaviour<SoundController> {
 
     #region Variables
@@ -19,15 +26,15 @@ public class SoundController : SingletonBehaviour<SoundController> {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource soundSource;
 
-    //Playlist (sound & musics) and their volumes
-    [SerializeField] private List<AudioClip> playlist;
-    [SerializeField] [Range(0,1)] private List<float> musicsVolumes;
-    [SerializeField] private List<AudioClip> sounds;
-    [SerializeField] [Range(0,1)] private List<float> soundsVolumes;
-
     //Getter/setter for the global volumes
     public float globalMusicVolume = 1;
     public float globalSoundVolume = 1;
+
+    //Playlist (sound & musics) and their volumes
+    [SerializeField] private AudioVolumePair[] playlist;
+    [SerializeField] private AudioVolumePair[] sounds;
+
+
 
     /// <summary>
     /// Index of the current music in the playlist
@@ -43,7 +50,13 @@ public class SoundController : SingletonBehaviour<SoundController> {
     #region Unity
     private void Start()
     {
-        PlayMusicFromPlaylist(0);
+        PlayMusicFromPlaylist(1);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+            PlayNextSong();
     }
     /*
     private void OnLevelWasLoaded(int level)
@@ -98,7 +111,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
     /// <param name="index">Index of the song to play</param>
     public void PlayMusicFromPlaylist(int index)
     {
-        PlayMusic(playlist[index],musicsVolumes[index]);
+        PlayMusic(playlist[index]);
         currentMusicIndex = index;
         cNextMusic = StartCoroutine(PlayNextMusic(index));
     }
@@ -107,7 +120,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
     /// </summary>
     public void UpdateMusicVolume()
     {
-        float currentVolume = musicsVolumes[currentMusicIndex];
+        float currentVolume = playlist[currentMusicIndex].volume;
         musicSource.volume = currentVolume * globalMusicVolume;
     }
     /// <summary>
@@ -116,8 +129,8 @@ public class SoundController : SingletonBehaviour<SoundController> {
     /// <param name="sound">Name of the sound to play</param>
     public void PlaySound(SoundName sound)
     {
-        float volume = soundsVolumes[(int)sound] * globalSoundVolume;
-        soundSource.PlayOneShot(sounds[(int)sound], volume);
+        float volume = sounds[(int)sound].volume * globalSoundVolume;
+        soundSource.PlayOneShot(sounds[(int)sound].audio, volume);
     }
     /// <summary>
     /// Transition between two music
@@ -139,14 +152,14 @@ public class SoundController : SingletonBehaviour<SoundController> {
     /// </summary>
     /// <param name="clip">AudioClip to play</param>
     /// <param name="volume">Volume of the audioClip</param>
-    private void PlayMusic(AudioClip clip,float volume)
+    private void PlayMusic(AudioVolumePair clip)
     {
         if (cNextMusic != null)
             StopCoroutine(cNextMusic);
 
         currentMusicIndex = -1;
-        musicSource.clip = clip;
-        musicSource.volume = volume * globalMusicVolume;
+        musicSource.clip = clip.audio;
+        musicSource.volume = clip.volume * globalMusicVolume;
         SoundTransition(true, 1.0f);
         musicSource.Play();
     }
@@ -164,8 +177,8 @@ public class SoundController : SingletonBehaviour<SoundController> {
             yield return null;
 
         int nextIndex = index + 1;
-        nextIndex = nextIndex > playlist.Count - 1 ? 0 : nextIndex;
-        nextIndex = nextIndex < 0 ? playlist.Count - 1 : nextIndex;
+        nextIndex = nextIndex > playlist.Length - 1 ? 0 : nextIndex;
+        nextIndex = nextIndex < 0 ? playlist.Length - 1 : nextIndex;
         PlayMusicFromPlaylist(nextIndex);
     }
     /// <summary>
