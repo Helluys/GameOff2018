@@ -82,9 +82,19 @@ public class Sequence {
 
     public void Repeat(int amount = 1)
     {
+        memory.Clear();
         for (int i = 0; i < amount; i++)
         {
             memory.Add(list[list.Count - 1]);
+        }
+    }
+
+    public void RepeatSequence()
+    {
+        memory.Clear();
+        for(int i = 0; i <list.Count; i++)
+        {
+            memory.Add(list[list.Count -1 - i]);
         }
     }
     /// <summary>

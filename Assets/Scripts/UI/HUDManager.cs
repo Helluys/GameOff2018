@@ -10,7 +10,7 @@ public struct ItemSpriteDictionnaryElement
     public Sprite sprite;
 }
 
-public class HUDManager : SingletonBehaviour<HUDManager> {
+public class HUDManager : MonoBehaviour {
 
     [SerializeField] private Image healthBar;
     [SerializeField] private Image coolDownBar;

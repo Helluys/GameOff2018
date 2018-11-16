@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     public AnimationManager animationManager { get; private set; }
     public PlayerState state { get; private set; }
     public SequenceManager sequenceManager;
+    public HUDManager hud;
 
     [SerializeField] private PlayerStatistics _sharedStatistics = null;
     [SerializeField] private PlayerStatistics.Instance _instanceStatistics = null;
@@ -18,7 +19,6 @@ public class Player : MonoBehaviour {
 
     public event System.Action<Player> OnDeath;
 
-    public int itemTest = 0;
 
     private void Start () {
         animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            items.SetItem(new Item_SequenceRepeater(3), 0);
+            items.SetItem(new Item_FullSequenceRepeater(), 0);
             items.SetItem(new Item_SequenceReducer(2), 1);
         }
     }
@@ -49,8 +49,8 @@ public class Player : MonoBehaviour {
             OnDeath(this);
         }
         instanceStatistics.health = Mathf.Max(instanceStatistics.health - amount, 0f);
-        HUDManager.Instance.UpdateHealtBar(instanceStatistics.health / sharedStatistics.maxHealth);
-        HUDManager.Instance.HitEffect();
+        hud.UpdateHealtBar(instanceStatistics.health / sharedStatistics.maxHealth);
+        hud.HitEffect();
     }
 
     public void Heal (float amount) {
