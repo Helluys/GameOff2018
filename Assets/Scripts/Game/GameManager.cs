@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int maximumMonsterCount = 30;
     [SerializeField] private float survivalTime = 30f;
 
+    [SerializeField] private GameObject levelLoaderPrefab;
+    [SerializeField] private string nextLevel = "SampleScene";
+
     private GameObject exitPortal;
     public bool levelEnded { get; private set; }
 
@@ -16,6 +19,7 @@ public class GameManager : MonoBehaviour {
     private List<Enemy> enemies = new List<Enemy>();
 
     public float timer { get; private set; }
+    public int killCount { get; private set; }
 
     private void Start () {
         instance = this;
@@ -50,12 +54,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RemoveEnemy (Enemy enemy) {
+        killCount++;
         enemies.Remove(enemy);
     }
 
     internal void EndLevel () {
         levelEnded = true;
+        // Make the player unreachable by enemies
+        player.transform.position += Vector3.up * 10;
         player.gameObject.SetActive(false);
-        Debug.Log("Level finished!");
+    }
+
+    public void StartNextLevel() {
+        Instantiate(levelLoaderPrefab).GetComponent<LevelLoader>().StartLoading(nextLevel);
     }
 }

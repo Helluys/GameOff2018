@@ -1,22 +1,23 @@
 ﻿using UnityEngine;
-
+[ExecuteInEditMode]
 public class ObjectTracker : MonoBehaviour {
 
     [SerializeField] private Transform trackedObject = null;
-    private Vector3 positionDelta;
+    [SerializeField] private float distance = 5;
+    [SerializeField] private float elevation = 5;
+    [SerializeField] private float lookAngle = 45f;
 
-    // Use this for initialization
-    private void Start () {
-        if (trackedObject == null) {
-            Debug.Log("No tracked object: deleting component");
-            Destroy(this);
-        } else {
-            positionDelta = transform.position - trackedObject.position;
+    private void Update () {
+        if (trackedObject != null) {
+            Vector3 positionDelta = Quaternion.Euler(0f, lookAngle, 0f) * Vector3.back * distance;
+            Vector3 position = trackedObject.position + positionDelta;
+            position.y = elevation;
+            transform.position = position;
+            transform.rotation = Quaternion.LookRotation(-positionDelta - elevation * Vector3.up);
         }
     }
 
-    // Update is called once per frame
-    private void Update () {
-        transform.position = trackedObject.position + positionDelta;
+    private void OnValidate () {
+        Update();
     }
 }

@@ -25,10 +25,10 @@ public class StrongAttack : Attack {
         UpdateDissolveValue(0);
         LeanTween.scale(gameObject, Vector3.one * effectSize, effectTime);
         LeanTween.value(gameObject, UpdateMatRadius, 1, effectSize, effectTime);
-        LeanTween.delayedCall(effectTime, SphereDissapear);
+        LeanTween.delayedCall(effectTime, SphereDisappear);
     }
 
-    private void SphereDissapear () {
+    private void SphereDisappear () {
         collider.radius = 0;
         LeanTween.scale(gameObject, Vector3.one * dissolveSize, dissolveTime).setEaseOutSine();
         LeanTween.value(gameObject, UpdateMatRadius, effectSize, dissolveSize, dissolveTime).setEaseOutSine();
