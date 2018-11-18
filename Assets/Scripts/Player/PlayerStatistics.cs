@@ -4,7 +4,7 @@
 public class PlayerStatistics : ScriptableObject {
 
     private const float MAX_ANGULAR_VELOCITY = 100f;
-
+    
     public float maxHealth;
 
     public float acceleration;

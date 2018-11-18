@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
@@ -6,18 +7,38 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private Player player = null;
     [SerializeField] private int maximumMonsterCount = 30;
+    [SerializeField] private float survivalTime = 30f;
 
+    [SerializeField] private GameObject levelLoaderPrefab;
+    [SerializeField] private string nextLevel = "SampleScene";
 
-    private int currentMonsterCount = 0;
+    private GameObject exitPortal;
+    public bool levelEnded { get; private set; }
+
+    private List<Spawner> spawners = new List<Spawner>();
+    private List<Enemy> enemies = new List<Enemy>();
+
     public float timer { get; private set; }
+    public int killCount { get; private set; }
 
     private void Start () {
         instance = this;
+
+        exitPortal = FindObjectOfType<ExitPortal>().gameObject;
+        exitPortal.SetActive(false);
+        spawners.AddRange(FindObjectsOfType<Spawner>());
+
+        levelEnded = false;
     }
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
+    private void Update () {
+        if (!levelEnded) {
+            timer += Time.deltaTime;
+        }
+
+        if (timer > survivalTime && !exitPortal.activeSelf) {
+            exitPortal.SetActive(true);
+        }
     }
 
     public Player GetPlayer () {
@@ -25,14 +46,26 @@ public class GameManager : MonoBehaviour {
     }
 
     public bool AllowMonsterCreation () {
-        return currentMonsterCount < maximumMonsterCount;
+        return enemies.Count < maximumMonsterCount;
     }
 
-    public void AddMonster () {
-        currentMonsterCount++;
+    public void AddEnemy (Enemy enemy) {
+        enemies.Add(enemy);
     }
 
-    public void RemoveMonster () {
-        currentMonsterCount--;
+    public void RemoveEnemy (Enemy enemy) {
+        killCount++;
+        enemies.Remove(enemy);
+    }
+
+    internal void EndLevel () {
+        levelEnded = true;
+        // Make the player unreachable by enemies
+        player.transform.position += Vector3.up * 10;
+        player.gameObject.SetActive(false);
+    }
+
+    public void StartNextLevel() {
+        Instantiate(levelLoaderPrefab).GetComponent<LevelLoader>().StartLoading(nextLevel);
     }
 }

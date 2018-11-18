@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundName
-{
+public enum SoundName {
     button0 = 0,
     button1 = 1,
     button2 = 2,
@@ -13,8 +11,7 @@ public enum SoundName
 }
 
 [System.Serializable]
-public struct AudioVolumePair
-{
+public struct AudioVolumePair {
     public AudioClip audio;
     [Range(0, 1)] public float volume;
 }
@@ -47,113 +44,110 @@ public class SoundController : SingletonBehaviour<SoundController> {
     #endregion
 
     #region Methods
+
     #region Unity
-    private void Start()
-    {
+
+    private void Start () {
         PlayMusicFromPlaylist(1);
     }
 
-    private void Update()
-    {
+    private void Update () {
         if (Input.GetKeyDown(KeyCode.N))
             PlayNextSong();
     }
-    /*
-    private void OnLevelWasLoaded(int level)
-    {
-        switch (level)
-        {
-            case 1:
-                PlayMusic(menuSong, 1);
+
+    private void LevelLoader_OnSceneLoaded (string levelName) {
+        Debug.Log("Sound : " + levelName);
+        switch (levelName) {
+            case "BenTest2":
+                PlayMusicFromPlaylist(0);
                 musicSource.loop = true;
                 break;
-            case 2:
-                PlayMusic(tutorialSong, 1);
+            case "SampleScene":
+                PlayMusicFromPlaylist(1);
                 musicSource.loop = true;
-                break;
-            case 3:
-            case 4:
-                PlayMusicFromPlaylist(Random.Range(0, playlist.Count - 1));
-                musicSource.loop = false;
                 break;
             default:
+                PlayMusicFromPlaylist(Random.Range(0, playlist.Length - 1));
+                musicSource.loop = false;
                 break;
         }
     }
-    */
+
     #endregion
+
     #region Public
+
     /// <summary>
     /// Plays the next song in the playlist
     /// </summary>
-    public void PlayNextSong()
-    {
-        if (cNextMusic != null)
-        {
+    public void PlayNextSong () {
+        if (cNextMusic != null) {
             StopCoroutine(cNextMusic);
             cNextMusic = StartCoroutine(PlayNextMusic(currentMusicIndex, false));
         }
     }
+
     /// <summary>
     /// Plays the previous song in the playlist
     /// </summary>
-    public void PlayPrevSong()
-    {
-        if (cNextMusic != null)
-        {
+    public void PlayPrevSong () {
+        if (cNextMusic != null) {
             StopCoroutine(cNextMusic);
             cNextMusic = StartCoroutine(PlayNextMusic(currentMusicIndex - 2, false));
         }
     }
+
     /// <summary>
     /// Plays a song in the playlist
     /// </summary>
     /// <param name="index">Index of the song to play</param>
-    public void PlayMusicFromPlaylist(int index)
-    {
+    public void PlayMusicFromPlaylist (int index) {
         PlayMusic(playlist[index]);
         currentMusicIndex = index;
         cNextMusic = StartCoroutine(PlayNextMusic(index));
     }
+
     /// <summary>
     /// Updates the music volume
     /// </summary>
-    public void UpdateMusicVolume()
-    {
+    public void UpdateMusicVolume () {
         float currentVolume = playlist[currentMusicIndex].volume;
         musicSource.volume = currentVolume * globalMusicVolume;
     }
+
     /// <summary>
     /// Plays a sound
     /// </summary>
     /// <param name="sound">Name of the sound to play</param>
-    public void PlaySound(SoundName sound)
-    {
-        float volume = sounds[(int)sound].volume * globalSoundVolume;
-        soundSource.PlayOneShot(sounds[(int)sound].audio, volume);
+    public void PlaySound (SoundName sound) {
+        float volume = sounds[(int) sound].volume * globalSoundVolume;
+        soundSource.PlayOneShot(sounds[(int) sound].audio, volume);
     }
+
     /// <summary>
     /// Transition between two music
     /// </summary>
     /// <param name="on">true if fade in, false in fade out</param>
     /// <param name="time">Duration of the transition</param>
-    public void SoundTransition(bool on, float time)
-    {
-        LeanTween.cancel(this.gameObject);
+    public void SoundTransition (bool on, float time) {
+        LeanTween.cancel(gameObject);
         float volume = musicSource.volume;
         float begin = on ? 0 : volume;
         float end = on ? volume : 0;
-        LeanTween.value(this.gameObject, SetMusicSourceVolume, begin, end, time);
+        LeanTween.value(gameObject, SetMusicSourceVolume, begin, end, time);
     }
+
     #endregion
+
     #region Private
+
     /// <summary>
     /// Plays an audio clip with a given volume
     /// </summary>
     /// <param name="clip">AudioClip to play</param>
     /// <param name="volume">Volume of the audioClip</param>
-    private void PlayMusic(AudioVolumePair clip)
-    {
+    private void PlayMusic (AudioVolumePair clip) {
         if (cNextMusic != null)
             StopCoroutine(cNextMusic);
 
@@ -163,14 +157,14 @@ public class SoundController : SingletonBehaviour<SoundController> {
         SoundTransition(true, 1.0f);
         musicSource.Play();
     }
+
     /// <summary>
     /// Coroutine use to play the next music
     /// </summary>
     /// <param name="index">Index of the next music to play</param>
     /// <param name="wait">Whether to wait for the current music to be over before playing the next one</param>
     /// <returns></returns>
-    private IEnumerator PlayNextMusic(int index,bool wait = true)
-    {
+    private IEnumerator PlayNextMusic (int index, bool wait = true) {
         if (wait)
             yield return new WaitUntil(() => !musicSource.isPlaying);
         else
@@ -181,14 +175,16 @@ public class SoundController : SingletonBehaviour<SoundController> {
         nextIndex = nextIndex < 0 ? playlist.Length - 1 : nextIndex;
         PlayMusicFromPlaylist(nextIndex);
     }
+
     /// <summary>
     /// Sets the musicSource volume
     /// </summary>
     /// <param name="f">volume to set</param>
-    private void SetMusicSourceVolume(float f)
-    {
+    private void SetMusicSourceVolume (float f) {
         musicSource.volume = f;
     }
+
     #endregion
+
     #endregion
 }

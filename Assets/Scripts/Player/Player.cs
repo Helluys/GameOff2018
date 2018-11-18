@@ -36,8 +36,7 @@ public class Player : MonoBehaviour {
         movement.OnUpdate();
         items.OnUpdate();
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
+        if (Input.GetKeyDown(KeyCode.I)) {
             items.SetItem(new Item_FullSequenceRepeater(), 0);
             items.SetItem(new Item_SequenceReducer(2), 1);
         }

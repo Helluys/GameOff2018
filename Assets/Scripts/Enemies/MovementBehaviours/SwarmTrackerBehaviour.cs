@@ -62,7 +62,7 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
     }
 
     private void Enemy_OnDeath (Enemy obj) {
-        swarm.RemoveAgent(navMeshAgent);
         enemy.StopCoroutine(updateCoroutine);
+        swarm.RemoveAgent(navMeshAgent);
     }
 }
