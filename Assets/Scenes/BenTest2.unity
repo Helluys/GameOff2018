@@ -3631,6 +3631,16 @@ Prefab:
       value: 
       objectReference: {fileID: 114677318848322698, guid: 0b93f4b40182382448c680d7c964eb05,
         type: 2}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: movement.rollCost
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: movement.staminaRefillSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3544fffdbbc5264cbd322b38f459c67, type: 2}
   m_IsPrefabParent: 0

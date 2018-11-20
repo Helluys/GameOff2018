@@ -23,6 +23,6 @@ public class TimerUI : MonoBehaviour {
         string minutes = ((int)value / 60).ToString("00");
         string seconds = (value % 60).ToString("00.00");
         string time = minutes.ToString() + ":" + seconds.ToString();
-        return time.Replace('.', ':');
+        return time.Replace(',',':');
     }
 }

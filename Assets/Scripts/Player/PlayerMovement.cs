@@ -8,6 +8,8 @@ public class PlayerMovement {
 
     [SerializeField] private KeyCode[] directionKeys = new KeyCode[] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
     [SerializeField] private KeyCode rollKey = KeyCode.LeftShift;
+    [SerializeField] private float rollCost;
+    [SerializeField] private float staminaRefillSpeed = 1;
 
     private Dictionary<int, Vector3> directionVectors = new Dictionary<int, Vector3>() {
         {Direction.UP, (Vector3.forward + Vector3.right).normalized},
@@ -24,6 +26,8 @@ public class PlayerMovement {
         rigidbody = player.GetComponent<Rigidbody>();
         player.animationManager.OnEnter += AnimationManager_OnEnter;
         player.animationManager.OnExit += AnimatorManager_OnExit;
+
+        Debug.Log(player.instanceStatistics.stamina + " " + player.sharedStatistics.maxStamina);
     }
 
     public void OnUpdate () {
@@ -36,12 +40,16 @@ public class PlayerMovement {
             rigidbody.AddTorque(Vector3.up * deltaAngle * player.sharedStatistics.angularAcceleration);
         }
 
-        if (!player.state.isRolling && Input.GetKeyDown(rollKey)) {
+        if (!player.state.isRolling && Input.GetKeyDown(rollKey) && player.instanceStatistics.stamina > rollCost) {
             rigidbody.AddForce(player.sharedStatistics.rollStrength * inputDirection, ForceMode.VelocityChange);
             player.animationManager.animator.SetTrigger("roll");
+            player.instanceStatistics.stamina -= rollCost;
         }
 
         player.animationManager.animator.SetFloat("speed", rigidbody.velocity.magnitude);
+        player.instanceStatistics.stamina += Time.deltaTime * staminaRefillSpeed;
+        player.instanceStatistics.stamina = Mathf.Min(player.instanceStatistics.stamina, player.sharedStatistics.maxStamina);
+        player.hud.UpdateCoolDownBar(player.instanceStatistics.stamina / player.sharedStatistics.maxStamina);
     }
 
     public void SetKey (int direction, KeyCode key) {

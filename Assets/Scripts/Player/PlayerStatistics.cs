@@ -6,6 +6,7 @@ public class PlayerStatistics : ScriptableObject {
     private const float MAX_ANGULAR_VELOCITY = 100f;
     
     public float maxHealth;
+    public float maxStamina;
 
     public float acceleration;
     public float drag;
@@ -23,9 +24,11 @@ public class PlayerStatistics : ScriptableObject {
     public class Instance {
 
         public float health;
+        public float stamina;
 
         public Instance (PlayerStatistics origin) {
             health = origin.maxHealth;
+            stamina = origin.maxStamina;
         }
     }
 
@@ -42,5 +45,6 @@ public class PlayerStatistics : ScriptableObject {
         };
 
         player.instanceStatistics.health = maxHealth;
+        player.instanceStatistics.stamina = maxStamina;
     }
 }

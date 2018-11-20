@@ -58,6 +58,10 @@ public class HUDManager : MonoBehaviour {
     public void UpdateCoolDownBar(float value)
     {
         coolDownBar.fillAmount = value;
+        if (value < 0.25)
+            coolDownBar.color = Color.grey;
+        else
+            coolDownBar.color = Color.yellow;
     }
 
     public void HitEffect()

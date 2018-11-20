@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Shield : MonoBehaviour {
 
     [SerializeField] private Material sphereMat;
+
+    private NavMeshObstacle obstacle;
     private Material mat;
     private new MeshRenderer renderer;
 
@@ -34,6 +37,7 @@ public class Shield : MonoBehaviour {
         mat.SetColor("_Color", color);
         SphereAppear();
         LeanTween.delayedCall(duration, SphereDisappear);
+        obstacle = GetComponent<NavMeshObstacle>();
     }
 
     private void SphereAppear()
@@ -45,6 +49,7 @@ public class Shield : MonoBehaviour {
 
     private void SphereDisappear()
     {
+        obstacle.enabled = false;
         LeanTween.scale(gameObject, Vector3.one * dissolveSize, dissolveTime).setEaseOutSine();
         LeanTween.value(gameObject, UpdateMatRadius, radius, dissolveSize, dissolveTime).setEaseOutSine();
         LeanTween.value(gameObject, UpdateDissolveValue, 0, 1, dissolveTime).setEaseOutSine().setOnComplete(() => Destroy(gameObject));

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: PlayerStatistics
   m_EditorClassIdentifier: 
   maxHealth: 100
+  maxStamina: 100
   acceleration: 100
   drag: 5
   angularAcceleration: 10
