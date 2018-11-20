@@ -3580,6 +3580,57 @@ Prefab:
       propertyPath: m_CullingMask.m_Bits
       value: 2048
       objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.normalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.normalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.normalColor.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.rageColor.g
+      value: 0.43618035
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.rageColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.rageColor.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.rageColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.shieldColor.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.shieldColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968753495155242, guid: a3544fffdbbc5264cbd322b38f459c67,
+        type: 2}
+      propertyPath: combat.shield
+      value: 
+      objectReference: {fileID: 114677318848322698, guid: 0b93f4b40182382448c680d7c964eb05,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3544fffdbbc5264cbd322b38f459c67, type: 2}
   m_IsPrefabParent: 0
@@ -3919,6 +3970,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 575432384}
     m_Modifications:
+    - target: {fileID: 114965444144429156, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: InspectorDictionnary.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 224267826111453812, guid: 3162d80ab9ca0b3439c785879a5b561e,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -4009,6 +4065,27 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114965444144429156, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: InspectorDictionnary.Array.data[4].type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114965444144429156, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: InspectorDictionnary.Array.data[4].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9b244456e2111bd4da81d79c47aad523,
+        type: 3}
+    - target: {fileID: 114965444144429156, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: InspectorDictionnary.Array.data[5].type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114965444144429156, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: InspectorDictionnary.Array.data[5].sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3162d80ab9ca0b3439c785879a5b561e, type: 2}
   m_IsPrefabParent: 0

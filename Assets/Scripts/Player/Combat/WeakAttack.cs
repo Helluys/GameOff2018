@@ -7,15 +7,29 @@ public class WeakAttack : Attack {
     [SerializeField] private float speed = 30;
     [SerializeField] private LayerMask mask;
 
+    [SerializeField] private Material weakAttackMat;
+
+    private Material mat;
+    private new MeshRenderer renderer;
+
     private Transform ennemyTarget;
     private Vector3 direction;
     private bool init = false;
     private bool aimBot = true;
     private float lifeTime = 10;
 
-    public void Init (bool aimBot, Vector3 direction) {
+    public void Init (float damageAmount, bool aimBot, Vector3 direction,Color color) {
+
+        mat = new Material(weakAttackMat);
+        renderer = GetComponent<MeshRenderer>();
+        renderer.material = mat;
+        mat.SetColor("_Color", color);
+
         Destroy(gameObject, lifeTime);
+
         this.aimBot = aimBot;
+        this.damageAmount = damageAmount;
+
         if (aimBot) {
             ennemyTarget = GetClosestEnnemy();
             if (ennemyTarget == null) {
@@ -60,7 +74,6 @@ public class WeakAttack : Attack {
                 index = i;
             }
         }
-
         return colliders[index].transform;
     }
 

@@ -14,8 +14,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerStatistics.Instance _instanceStatistics = null;
 
     [SerializeField] private PlayerMovement movement = null;
-    [SerializeField] private PlayerCombat combat = null;
     [SerializeField] private PlayerItems items = null;
+    public PlayerCombat combat = null;
 
     public event System.Action<Player> OnDeath;
 
@@ -37,8 +37,8 @@ public class Player : MonoBehaviour {
         items.OnUpdate();
 
         if (Input.GetKeyDown(KeyCode.I)) {
-            items.SetItem(new Item_FullSequenceRepeater(), 0);
-            items.SetItem(new Item_SequenceReducer(2), 1);
+            items.SetItem(new Item_DamageUp(2), 0);
+            items.SetItem(new Item_Shield(20,5), 1);
         }
     }
 

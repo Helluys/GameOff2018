@@ -6,32 +6,41 @@ public class StrongAttack : Attack {
     private Material mat;
     private new MeshRenderer renderer;
     private new SphereCollider collider;
-    [SerializeField] private float effectTime = 5;
-    [SerializeField] private float dissolveTime = 1;
-    [SerializeField] private float effectSize = 20;
-    [SerializeField] private float dissolveSize = 25;
+
+    private float sizeRatio = 1.33f;
+    private float timeRatio = 4f;
+    private float attackTime { get { return attackSize / 40; } }
+    private float attackSize = 20;
+
+    private float dissolveSize { get { return attackSize * sizeRatio; } }
+    private float dissolveTime { get { return attackTime * timeRatio; } }
 
     private float currentRadius = 0;
 
-    private void Start () {
+    public void Init (float damageAmount, float attackSize,Color color) {
+
+        this.damageAmount = damageAmount;
+        this.attackSize = attackSize;
+
         mat = new Material(sphereMat);
         renderer = GetComponent<MeshRenderer>();
         collider = GetComponent<SphereCollider>();
         renderer.material = mat;
+        mat.SetColor("_Color", color);
         SphereAppear();
     }
 
     private void SphereAppear () {
         UpdateDissolveValue(0);
-        LeanTween.scale(gameObject, Vector3.one * effectSize, effectTime);
-        LeanTween.value(gameObject, UpdateMatRadius, 1, effectSize, effectTime);
-        LeanTween.delayedCall(effectTime, SphereDisappear);
+        LeanTween.scale(gameObject, Vector3.one * attackSize, attackTime).setEaseOutSine();
+        LeanTween.value(gameObject, UpdateMatRadius, 1, attackSize, attackTime).setEaseOutSine();
+        LeanTween.delayedCall(attackTime, SphereDisappear);
     }
 
     private void SphereDisappear () {
         collider.radius = 0;
         LeanTween.scale(gameObject, Vector3.one * dissolveSize, dissolveTime).setEaseOutSine();
-        LeanTween.value(gameObject, UpdateMatRadius, effectSize, dissolveSize, dissolveTime).setEaseOutSine();
+        LeanTween.value(gameObject, UpdateMatRadius, attackSize, dissolveSize, dissolveTime).setEaseOutSine();
         LeanTween.value(gameObject, UpdateDissolveValue, 0, 1, dissolveTime).setEaseOutSine().setOnComplete(() => Destroy(gameObject));
     }
 

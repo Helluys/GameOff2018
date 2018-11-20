@@ -233,3 +233,4 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
+  weakAttackMat: {fileID: 2100000, guid: 04e781d31ba89cf47b9e16f2023518a3, type: 2}

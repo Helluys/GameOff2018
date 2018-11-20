@@ -7,7 +7,9 @@ public enum ItemType
     Undefined,
     Reducer,
     Repeater,
-    FullRepeater
+    FullRepeater,
+    DamageUp,
+    Shield
 }
 
 public class Item {
