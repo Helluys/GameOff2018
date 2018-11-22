@@ -22,6 +22,9 @@ public class Swarm : MonoBehaviour {
         nextDelta = targetFactor * nextDelta + directionFactor * GetSwarmDirection(agent) + avoidanceFactor * GetAvoidanceDirection(agent);
         nextDelta = Vector3.ClampMagnitude(nextDelta, agent.speed * Time.deltaTime);
 
+        if (!CustomUtils.IsValidVector(nextDelta))
+            return;
+
         agent.nextPosition = agent.transform.position + nextDelta;
         agent.transform.position = agent.nextPosition;
     }
@@ -37,10 +40,13 @@ public class Swarm : MonoBehaviour {
         return (1f / agents.Count) * swarmDirection;
     }
 
-    private Vector3 GetAvoidanceDirection (NavMeshAgent currentAgent) {
+    private Vector3 GetAvoidanceDirection(NavMeshAgent currentAgent)
+    {
         Vector3 avoidanceDirection = Vector3.zero;
-        foreach (NavMeshAgent agent in agents) {
-            if (agent != currentAgent) {
+        foreach (NavMeshAgent agent in agents)
+        {
+            if (agent != currentAgent)
+            {
                 Vector3 delta = currentAgent.nextPosition - agent.nextPosition;
                 avoidanceDirection += (1f / Mathf.Pow(delta.magnitude, gamma)) * delta;
             }
