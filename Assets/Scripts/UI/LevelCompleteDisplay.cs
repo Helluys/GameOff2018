@@ -18,6 +18,7 @@ public class LevelCompleteDisplay : MonoBehaviour {
         timerText.text = timerTextPrefix + GameManager.instance.timer.ToString("0.00");
         killCountText.text = killCountTextPrefix + GameManager.instance.killCount;
         container.SetActive(true);
+        ItemManager.Instance.InitCardDisplay();
     }
 
 }

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerStatistics.Instance _instanceStatistics = null;
 
     [SerializeField] private PlayerMovement movement = null;
-    [SerializeField] private PlayerItems items = null;
+    public PlayerItems items = null;
     public PlayerCombat combat = null;
 
     public event System.Action<Player> OnDeath;

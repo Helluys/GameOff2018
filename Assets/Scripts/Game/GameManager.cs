@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartNextLevel() {
+        ItemManager.Instance.ApplyItemChanges();
         Instantiate(levelLoaderPrefab).GetComponent<LevelLoader>().StartLoading(nextLevel);
     }
 }

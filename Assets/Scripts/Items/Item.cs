@@ -12,8 +12,12 @@ public enum ItemType
     Shield
 }
 
-public class Item {
+public class Item{
     public ItemType type = ItemType.Undefined;
+    public Sprite sprite;
     public virtual void OnUse(Player player) { }
-    public Item() { }
+    public  Item()
+    {
+        ItemManager.Instance.SetSprite(this);
+    }
 }

@@ -31,7 +31,7 @@ public class PlayerItems{
         if (index < 0 || index > items.Length - 1)
             return;
         items[index] = item;
-        player.hud.SetItemDisplay(item.type,index);
+        player.hud.SetItemDisplay(item,index);
     }
 
     public void UseItem(int index)
@@ -41,6 +41,11 @@ public class PlayerItems{
 
         items[index].OnUse(player);
         items[index] = new Item();
-        player.hud.SetItemDisplay(ItemType.Undefined,index);
+        player.hud.SetItemDisplay(items[index],index);
+    }
+
+    public Item[] GetItems()
+    {
+        return items;
     }
 }

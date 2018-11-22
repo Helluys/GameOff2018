@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 29152ef5a644f6b43853c74318785adf
+guid: a7ec8fb70ac82cf44ae33ee562e79e7f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -10,10 +10,12 @@ public class Item_DamageUp : Item {
     {
         type = ItemType.DamageUp;
         this.damageMultiplier = damageMultiplier;
+        ItemManager.Instance.SetSprite(this);
     }
-
+    
     public override void OnUse(Player player)
     {
         player.combat.DamageUp(damageMultiplier);
     }
+    
 }

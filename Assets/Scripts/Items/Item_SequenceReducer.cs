@@ -10,10 +10,12 @@ public class Item_SequenceReducer : Item {
     {
         type = ItemType.Reducer;
         this.reduceAmount = reduceAmount;
+        ItemManager.Instance.SetSprite(this);
     }
-
+    
     public override void OnUse(Player player)
     {
         player.sequenceManager.sequence.UnComplexify(reduceAmount);
     }
+    
 }

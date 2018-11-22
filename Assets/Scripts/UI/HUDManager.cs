@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct ItemSpriteDictionnaryElement
-{
-    public ItemType type;
-    public Sprite sprite;
-}
-
 public class HUDManager : MonoBehaviour {
 
     [SerializeField] private Image healthBar;
@@ -24,30 +17,18 @@ public class HUDManager : MonoBehaviour {
     private Color textureOriginalColor;
     private Coroutine cHitEffect;
 
-    [SerializeField] private ItemSpriteDictionnaryElement[] InspectorDictionnary;
-    private Dictionary<ItemType, Sprite> itemsSpritesDictionnary;
 
     private void Start()
     {
         textureOriginalColor = timotheTexture.color;
-        itemsSpritesDictionnary = new Dictionary<ItemType, Sprite>();
-        for(int i = 0; i < InspectorDictionnary.Length; i++)
-        {
-            itemsSpritesDictionnary.Add(InspectorDictionnary[i].type, InspectorDictionnary[i].sprite);
-        }
     }
 
-    public void SetItemDisplay(ItemType type,int index)
+    public void SetItemDisplay(Item item,int index)
     {
-        Sprite sprite;
-        if (itemsSpritesDictionnary.TryGetValue(type, out sprite))
-        {
-            if (index == 0)
-                ItemDisplay1.sprite = sprite;
-            else
-                ItemDisplay2.sprite = sprite;
-        }
-            
+        if (index == 0)
+            ItemDisplay1.sprite = item.sprite;
+        else
+            ItemDisplay2.sprite = item.sprite;     
     }
 
     public void UpdateHealtBar(float value)
