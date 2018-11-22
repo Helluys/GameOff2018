@@ -3023,15 +3023,15 @@ MonoBehaviour:
   - type: 0
     sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   - type: 1
-    sprite: {fileID: 21300000, guid: 9b244456e2111bd4da81d79c47aad523, type: 3}
+    sprite: {fileID: 21300000, guid: 4c73dcffd61a7cb40810d86d7ee4bc3d, type: 3}
   - type: 2
-    sprite: {fileID: 21300000, guid: e537cc0fa461cc348a3053204ece587d, type: 3}
+    sprite: {fileID: 21300000, guid: 278d1f238cf00114e941cd672c96f193, type: 3}
   - type: 3
-    sprite: {fileID: 21300000, guid: af1f1b45fa6b5e64894c04ceb8a592f7, type: 3}
+    sprite: {fileID: 21300000, guid: b40e33e9afe49c840b718af6e3684860, type: 3}
   - type: 4
-    sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    sprite: {fileID: 21300000, guid: 12cc6eeddaa6b264887747dedb0e6147, type: 3}
   - type: 5
-    sprite: {fileID: 21300000, guid: 146820dac89c49b479db21bd017f093a, type: 3}
+    sprite: {fileID: 21300000, guid: df5b6a66291a04e43a3cb530d59384b6, type: 3}
   cardHolders:
   - {fileID: 1750903045}
   - {fileID: 1027685011}
@@ -4181,6 +4181,36 @@ Prefab:
       propertyPath: InspectorDictionnary.Array.data[5].sprite
       value: 
       objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 114997710739947758, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 114997710739947758, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.53822535
+      objectReference: {fileID: 0}
+    - target: {fileID: 114997710739947758, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.53822535
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244725952666950, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244725952666950, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.53822535
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244725952666950, guid: 3162d80ab9ca0b3439c785879a5b561e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.53822535
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3162d80ab9ca0b3439c785879a5b561e, type: 2}
   m_IsPrefabParent: 0
