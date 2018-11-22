@@ -12,7 +12,12 @@ public class Item_SequenceRepeater : Item {
         this.repeatAmount = repeatAmount;
         ItemManager.Instance.SetSprite(this);
     }
-    
+
+    public override string GetInfo()
+    {
+        return string.Format("Repeat the last input {0} times", repeatAmount);
+    }
+
     public override void OnUse(Player player)
     {
         player.sequenceManager.sequence.Repeat(repeatAmount);

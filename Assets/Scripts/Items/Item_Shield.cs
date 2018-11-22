@@ -15,6 +15,11 @@ public class Item_Shield : Item
         ItemManager.Instance.SetSprite(this);
     }
 
+    public override string GetInfo()
+    {
+        return string.Format("Create a shield of radius {0} during {1} seconds",radius,duration);
+    }
+
     public override void OnUse(Player player)
     {
         player.combat.InstantiateShield(radius,duration);

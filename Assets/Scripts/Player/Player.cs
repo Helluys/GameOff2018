@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.I)) {
             items.SetItem(new Item_DamageUp(2), 0);
-            items.SetItem(new Item_Shield(20,5), 1);
+            items.SetItem(new Item_Shield(15,3), 1);
         }
     }
 

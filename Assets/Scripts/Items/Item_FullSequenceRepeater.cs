@@ -9,10 +9,14 @@ public class Item_FullSequenceRepeater : Item {
         type = ItemType.FullRepeater;
         ItemManager.Instance.SetSprite(this);
     }
-    
+
+    public override string GetInfo()
+    {
+        return "Repeat current sequence";
+    }
+
     public override void OnUse(Player player)
     {
         player.sequenceManager.sequence.RepeatSequence();
     }
-    
 }

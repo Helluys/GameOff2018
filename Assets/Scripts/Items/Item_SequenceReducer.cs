@@ -12,7 +12,12 @@ public class Item_SequenceReducer : Item {
         this.reduceAmount = reduceAmount;
         ItemManager.Instance.SetSprite(this);
     }
-    
+
+    public override string GetInfo()
+    {
+        return string.Format("Reduce the current sequence of {0} inputs", reduceAmount);
+    }
+
     public override void OnUse(Player player)
     {
         player.sequenceManager.sequence.UnComplexify(reduceAmount);

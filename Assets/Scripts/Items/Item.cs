@@ -12,12 +12,15 @@ public enum ItemType
     Shield
 }
 
+[System.Serializable]
 public class Item{
     public ItemType type = ItemType.Undefined;
     public Sprite sprite;
     public virtual void OnUse(Player player) { }
+    public virtual string GetInfo() { return string.Empty; }
     public  Item()
     {
+        if(ItemManager.Instance != null)
         ItemManager.Instance.SetSprite(this);
     }
 }

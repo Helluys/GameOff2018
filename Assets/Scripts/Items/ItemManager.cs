@@ -19,6 +19,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     [SerializeField] private RectTransform[] cardStands;
     [SerializeField] private ItemUICard itemCard;
     [SerializeField] private GameObject itemManagementPanel;
+    [SerializeField] private Text itemInfo;
 
     Player player { get { return GameManager.instance.GetPlayer(); } }
 
@@ -65,17 +66,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
         {
             ItemUICard card = Instantiate(itemCard, cardStands[i].position, Quaternion.identity);
             card.transform.parent = cardStands[i].transform.parent;
-            switch (i) {
-                case 0:
-                    card.SetUp(new Item_DamageUp(2), cardHolders);
-                    break;
-                case 1:
-                    card.SetUp(new Item_SequenceReducer(2), cardHolders);
-                    break;
-                case 2:
-                    card.SetUp(new Item_SequenceRepeater(5), cardHolders);
-                    break;
-            }
+            card.SetUp(GetRandomItem(),cardHolders);
             cards.Add(card);
         }
     }
@@ -95,5 +86,30 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
             Destroy(cards[i].gameObject);
         }
         cards.Clear();
+    }
+
+    private Item GetRandomItem()
+    {
+        int random = Random.Range(0, 5);
+        switch (random)
+        {
+            case 0:
+                return new Item_DamageUp(1.5f);
+            case 1:
+                return new Item_FullSequenceRepeater();
+            case 2:
+                return new Item_SequenceRepeater(3);
+            case 3:
+                return new Item_Shield(15, 3);
+            case 4:
+                return new Item_DamageUp(1.5f);
+            default:
+                return new Item();
+        }
+    }
+
+    public void SetInfo(string info)
+    {
+        itemInfo.text = info;
     }
 }
