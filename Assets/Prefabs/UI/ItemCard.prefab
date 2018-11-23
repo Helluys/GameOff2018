@@ -41,12 +41,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rt_DragIcon: {fileID: 224836057197713646}
+  image: {fileID: 114929764226316524}
   cardHolders:
   - {fileID: 0}
   - {fileID: 0}
   isDragable: 1
-  test: 2
-  image: {fileID: 114929764226316524}
 --- !u!114 &114929764226316524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,5 +95,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0, y: 44}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -7,12 +7,28 @@ public class Item_Shield : Item
     private float radius;
     private float duration;
 
-    public Item_Shield(float radius,float duration)
+    public Item_Shield(ItemStrength strength)
     {
+        this.strength = strength;
         this.type = ItemType.Shield;
-        this.radius = radius;
-        this.duration = duration;
-        ItemManager.Instance.SetSprite(this);
+
+        switch (strength)
+        {
+            case ItemStrength.Weak:
+                radius = 10;
+                duration = 2;
+                break;
+            case ItemStrength.Medium:
+                radius = 15;
+                duration = 2;
+                break;
+            case ItemStrength.Strong:
+                radius = 15;
+                duration = 3;
+                break;
+        }
+        
+        ItemManager.Instance.SetUpItem(this);
     }
 
     public override string GetInfo()
@@ -22,6 +38,7 @@ public class Item_Shield : Item
 
     public override void OnUse(Player player)
     {
+        base.OnUse(player);
         player.combat.InstantiateShield(radius,duration);
     }
     

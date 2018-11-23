@@ -2,40 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_DamageUp : Item {
+public class Item_HealthUp : Item {
 
-    private float damageMultiplier;
+    private float healAmount;
 
-    public Item_DamageUp(ItemStrength strength)
+    public Item_HealthUp(ItemStrength strength)
     {
-        type = ItemType.DamageUp;
+        type = ItemType.HealthUp;
         this.strength = strength;
 
         switch (strength)
         {
             case ItemStrength.Weak:
-                damageMultiplier = 1.2f;
+                healAmount = 4;
                 break;
             case ItemStrength.Medium:
-                damageMultiplier = 1.5f;
+                healAmount = 3;
                 break;
             case ItemStrength.Strong:
-                damageMultiplier = 2.0f;
+                healAmount = 2;
                 break;
         }
 
-        
         ItemManager.Instance.SetUpItem(this);
     }
 
     public override string GetInfo()
     {
-        return string.Format("Multiply damage by {0} for the current sequence", damageMultiplier);
+        return string.Format("Restore 1/{0} of Timothee's health", healAmount);
     }
 
     public override void OnUse(Player player)
     {
         base.OnUse(player);
-        player.combat.DamageUp(damageMultiplier);
+        player.Heal(player.sharedStatistics.maxHealth / healAmount);
     }
 }

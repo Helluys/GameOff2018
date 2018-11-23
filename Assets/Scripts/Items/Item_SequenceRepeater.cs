@@ -6,11 +6,25 @@ public class Item_SequenceRepeater : Item {
 
     private int repeatAmount;
 
-    public Item_SequenceRepeater(int repeatAmount)
+    public Item_SequenceRepeater(ItemStrength strength)
     {
         type = ItemType.Repeater;
-        this.repeatAmount = repeatAmount;
-        ItemManager.Instance.SetSprite(this);
+        this.strength = strength;
+
+        switch (strength)
+        {
+            case ItemStrength.Weak:
+                repeatAmount = 2;
+                break;
+            case ItemStrength.Medium:
+                repeatAmount = 4;
+                break;
+            case ItemStrength.Strong:
+                repeatAmount = 6;
+                break;
+        }
+
+        ItemManager.Instance.SetUpItem(this);
     }
 
     public override string GetInfo()
@@ -20,6 +34,7 @@ public class Item_SequenceRepeater : Item {
 
     public override void OnUse(Player player)
     {
+        base.OnUse(player);
         player.sequenceManager.sequence.Repeat(repeatAmount);
     }
 }

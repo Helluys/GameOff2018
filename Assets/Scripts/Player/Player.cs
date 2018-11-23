@@ -37,8 +37,8 @@ public class Player : MonoBehaviour {
         items.OnUpdate();
 
         if (Input.GetKeyDown(KeyCode.I)) {
-            items.SetItem(new Item_DamageUp(2), 0);
-            items.SetItem(new Item_Shield(15,3), 1);
+            items.SetItem(ItemManager.Instance.GetRandomItem(), 0);
+            items.SetItem(ItemManager.Instance.GetRandomItem(), 1);
         }
     }
 
@@ -53,6 +53,11 @@ public class Player : MonoBehaviour {
 
     public void Heal (float amount) {
         instanceStatistics.health = Mathf.Min(instanceStatistics.health + amount, sharedStatistics.maxHealth);
+    }
+
+    public void StaminaRegen(float amount)
+    {
+        instanceStatistics.stamina = Mathf.Min(instanceStatistics.stamina + amount, sharedStatistics.maxStamina);
     }
 
     private void Player_OnDeath (Player origin) {

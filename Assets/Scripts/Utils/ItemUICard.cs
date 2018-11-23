@@ -96,6 +96,7 @@ public class ItemUICard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         this.item = item;
         image.sprite = item.sprite;
+        image.color = item.color;
         this.cardHolders = holders;
     }
     #endregion
