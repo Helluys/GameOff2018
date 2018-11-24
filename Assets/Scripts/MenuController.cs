@@ -36,17 +36,19 @@ public class MenuController : MonoBehaviour {
     }
 
     public void GoToPos(int index, float time)
-    {/*
-        if (cGoToPos != null)
-            StopCoroutine(cGoToPos);
-        cGoToPos = StartCoroutine(EGoToPos(index, time));*/
-
+    {
         LeanTween.cancel(gameObject);
         currentPos = camera.position;
         targetPos = cameraPos[index].position;
         currentAng = camera.rotation;
         targetAng = cameraPos[index].rotation;
-        LeanTween.value(gameObject, LerpUpdate, 0, 1, 3).setEase(easing);
+        LeanTween.value(gameObject, LerpUpdate, 0, 1, time).setEase(easing);
+    }
+
+    public void BackToMainView()
+    {
+        if (!InputManager.Instance.isWaitingForInput)
+            GoToPos(1, 2);
     }
 
     private void LerpUpdate(float val)
@@ -54,26 +56,5 @@ public class MenuController : MonoBehaviour {
         camera.position = Vector3.Lerp(currentPos, targetPos, val);
         camera.rotation = Quaternion.Lerp(currentAng, targetAng, val);
     }
-
-    private IEnumerator EGoToPos(int index, float time)
-    {
-        float elapsedTime = 0;
-        float lerpVal = 0;
-
-        Vector3 currentPos = camera.position;
-        Vector3 targetPos = cameraPos[index].position;
-        Quaternion currentAng = camera.rotation;
-        Quaternion targetAng = cameraPos[index].rotation;
-
-        while(elapsedTime < time)
-        {
-            lerpVal = elapsedTime / time;
-            camera.position = Vector3.Lerp(currentPos, targetPos, lerpVal);
-            camera.rotation = Quaternion.Lerp(currentAng, targetAng, lerpVal);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-    }
-
 
 }
