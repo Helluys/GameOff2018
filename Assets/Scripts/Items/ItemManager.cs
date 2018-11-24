@@ -92,6 +92,13 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
             player.items.SetItem(cardHolders[1].card.item, 1);    
     }
 
+    public List<Item> RevtrieveSelectedItems() {
+        return new List<Item>() {
+            cardHolders[0].card?.item,
+            cardHolders[1].card?.item
+        };
+    }
+
     private void DeleteCards()
     {
         for(int i = 0; i < cards.Count; i++)

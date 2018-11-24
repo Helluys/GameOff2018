@@ -66,7 +66,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartNextLevel() {
-        ItemManager.Instance.ApplyItemChanges();
-        Instantiate(levelLoaderPrefab).GetComponent<LevelLoader>().StartLoading(nextLevel);
+        LevelLoader levelLoader = Instantiate(levelLoaderPrefab).GetComponent<LevelLoader>();
+        levelLoader.storedItems = ItemManager.Instance.RevtrieveSelectedItems();
+        levelLoader.StartLoading(nextLevel);
     }
 }
