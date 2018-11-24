@@ -10,36 +10,50 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     {
         public ItemType type;
         public Sprite sprite;
+        public AudioClip sound;
     }
-
-    [SerializeField] private ItemSpriteDictionnaryElement[] InspectorDictionnary;
-    private Dictionary<ItemType, Sprite> itemsSpritesDictionnary;
-
+    [Header("Reference")]
     [SerializeField] private ItemUICardHolder[] cardHolders;
     [SerializeField] private RectTransform[] cardStands;
     [SerializeField] private ItemUICard itemCard;
     [SerializeField] private GameObject itemManagementPanel;
+    [SerializeField] private Text itemInfo;
 
+    [Header("Parameters")]
+    [SerializeField] private ItemSpriteDictionnaryElement[] InspectorDictionnary;
+    [SerializeField] private Color weakColor;
+    [SerializeField] private Color mediumColor;
+    [SerializeField] private Color strongColor;
+
+    private Dictionary<ItemType, Sprite> itemsSpritesDictionnary;
+    private Dictionary<ItemType, AudioClip> itemsSoundsDictionnary;
     Player player { get { return GameManager.instance.GetPlayer(); } }
-
     private List<ItemUICard> cards;
 
     private void Start()
     {
         itemsSpritesDictionnary = new Dictionary<ItemType, Sprite>();
+        itemsSoundsDictionnary = new Dictionary<ItemType, AudioClip>();
         cards = new List<ItemUICard>();
         for (int i = 0; i < InspectorDictionnary.Length; i++)
         {
             itemsSpritesDictionnary.Add(InspectorDictionnary[i].type, InspectorDictionnary[i].sprite);
+            itemsSoundsDictionnary.Add(InspectorDictionnary[i].type, InspectorDictionnary[i].sound);
         }
     }
 
-    public void SetSprite(Item item)
+    public void SetUpItem(Item item)
     {
         Sprite sprite;
         if (itemsSpritesDictionnary.TryGetValue(item.type, out sprite))
         {
             item.sprite = sprite;
+            item.color = GetColor(item.strength);
+        }
+        AudioClip sound;
+        if (itemsSoundsDictionnary.TryGetValue(item.type, out sound))
+        {
+            item.sound = sound;
         }
     }
 
@@ -65,17 +79,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
         {
             ItemUICard card = Instantiate(itemCard, cardStands[i].position, Quaternion.identity);
             card.transform.parent = cardStands[i].transform.parent;
-            switch (i) {
-                case 0:
-                    card.SetUp(new Item_DamageUp(2), cardHolders);
-                    break;
-                case 1:
-                    card.SetUp(new Item_SequenceReducer(2), cardHolders);
-                    break;
-                case 2:
-                    card.SetUp(new Item_SequenceRepeater(5), cardHolders);
-                    break;
-            }
+            card.SetUp(GetRandomItem(),cardHolders);
             cards.Add(card);
         }
     }
@@ -95,5 +99,55 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
             Destroy(cards[i].gameObject);
         }
         cards.Clear();
+    }
+
+    public Item GetRandomItem()
+    {
+        int random = Random.Range(0, InspectorDictionnary.Length-1);
+        switch (random)
+        {
+            case 0:
+                return new Item_DamageUp(GetRandomItemStrength());
+            case 1:
+                return new Item_FullSequenceRepeater();
+            case 2:
+                return new Item_SequenceRepeater(GetRandomItemStrength());
+            case 3:
+                return new Item_Shield(GetRandomItemStrength());
+            case 4:
+                return new Item_SequenceReducer(GetRandomItemStrength());
+            case 5:
+                return new Item_HealthUp(GetRandomItemStrength());
+            case 6:
+                return new Item_StaminaUp(GetRandomItemStrength());
+            
+            default:
+                return new Item();
+        }
+    }
+
+    public Color GetColor (ItemStrength strength)
+    {
+        switch (strength)
+        {
+            case ItemStrength.Weak:
+                return weakColor;
+            case ItemStrength.Medium:
+                return mediumColor;
+            case ItemStrength.Strong:
+                return strongColor;
+            default:
+                return weakColor;
+        }
+    }
+
+    private ItemStrength GetRandomItemStrength()
+    {
+        return (ItemStrength) Random.Range(0, 3);
+    }
+
+    public void SetInfo(string info)
+    {
+        itemInfo.text = info;
     }
 }

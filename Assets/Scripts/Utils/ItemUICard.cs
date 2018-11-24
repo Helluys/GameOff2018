@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemUICard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemUICard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     #region Variables
     [SerializeField] private RectTransform Rt_DragIcon;
@@ -58,6 +58,16 @@ public class ItemUICard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
         GoToPosition(originalPos);
     }
+
+    public void OnPointerEnter(PointerEventData data)
+    {
+        ItemManager.Instance.SetInfo(item.GetInfo());
+    }
+
+    public void OnPointerExit(PointerEventData data)
+    {
+        ItemManager.Instance.SetInfo(string.Empty);
+    }
     #endregion
     public void GoToPosition(Vector3 position)
     {   
@@ -86,6 +96,7 @@ public class ItemUICard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         this.item = item;
         image.sprite = item.sprite;
+        image.color = item.color;
         this.cardHolders = holders;
     }
     #endregion

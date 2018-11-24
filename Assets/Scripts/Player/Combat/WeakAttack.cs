@@ -8,6 +8,7 @@ public class WeakAttack : Attack {
     [SerializeField] private LayerMask mask;
 
     [SerializeField] private Material weakAttackMat;
+    private TrailRenderer trailRenderer;
 
     private Material mat;
     private new MeshRenderer renderer;
@@ -22,8 +23,12 @@ public class WeakAttack : Attack {
 
         mat = new Material(weakAttackMat);
         renderer = GetComponent<MeshRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.material = mat;
         renderer.material = mat;
-        mat.SetColor("_Color", color);
+        Color newCol = color;
+        newCol.a = 0.8f;
+        mat.SetColor("_Color", newCol);
 
         Destroy(gameObject, lifeTime);
 

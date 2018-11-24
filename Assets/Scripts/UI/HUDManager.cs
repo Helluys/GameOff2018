@@ -26,9 +26,21 @@ public class HUDManager : MonoBehaviour {
     public void SetItemDisplay(Item item,int index)
     {
         if (index == 0)
+        {
+            ItemDisplay1.enabled = true;
             ItemDisplay1.sprite = item.sprite;
+            ItemDisplay1.color = item.color;
+            if (item.type == ItemType.Undefined)
+                ItemDisplay1.enabled = false;
+        }
         else
-            ItemDisplay2.sprite = item.sprite;     
+        {
+            ItemDisplay2.enabled = true;
+            ItemDisplay2.sprite = item.sprite;
+            ItemDisplay2.color = item.color;
+            if (item.type == ItemType.Undefined)
+                ItemDisplay2.enabled = false;
+        }       
     }
 
     public void UpdateHealtBar(float value)

@@ -26,10 +26,12 @@ public class SoundController : SingletonBehaviour<SoundController> {
     //Getter/setter for the global volumes
     public float globalMusicVolume = 1;
     public float globalSoundVolume = 1;
+    public float globalSpeechVolume = 1;
 
     //Playlist (sound & musics) and their volumes
     [SerializeField] private AudioVolumePair[] playlist;
     [SerializeField] private AudioVolumePair[] sounds;
+    [SerializeField] private AudioVolumePair[] speeches;
 
 
 
@@ -125,6 +127,10 @@ public class SoundController : SingletonBehaviour<SoundController> {
         soundSource.PlayOneShot(sounds[(int) sound].audio, volume);
     }
 
+    public void Say(AudioClip clip)
+    {
+        soundSource.PlayOneShot(clip, globalSpeechVolume);
+    }
     /// <summary>
     /// Transition between two music
     /// </summary>

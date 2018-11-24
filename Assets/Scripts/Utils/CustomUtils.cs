@@ -50,4 +50,9 @@ public class CustomUtils {
         string seconds = (value % 60).ToString("00.00");
         return minutes + ":" + seconds;
     }
+
+    public static bool IsValidVector(Vector3 vector)
+    {
+        return (!float.IsNaN(vector.x) && !float.IsNaN(vector.x) && !float.IsNaN(vector.x));
+    }
 }
