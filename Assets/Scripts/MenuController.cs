@@ -8,10 +8,8 @@ public class MenuController : MonoBehaviour {
     [SerializeField] LeanTweenType easing;
     public Animator[] animators;
     [SerializeField] new private Transform camera;
-
     [SerializeField] private Transform[] cameraPos;
-    private Coroutine cGoToPos;
-
+    
     Vector3 currentPos;
     Vector3 targetPos;
     Quaternion currentAng;
@@ -19,6 +17,9 @@ public class MenuController : MonoBehaviour {
 
     private void Start()
     {
+        camera.position = cameraPos[0].position;
+        camera.rotation = cameraPos[0].rotation;
+
         foreach (Animator animator in animators)
             animator.SetFloat("speed", 2.0f);
 
@@ -29,6 +30,16 @@ public class MenuController : MonoBehaviour {
    {
         GoToPos(2, 2);
    }
+
+    public void OpenOptionsSettings()
+    {
+        GoToPos(3, 2);
+    }
+
+    public void OpenCredits()
+    {
+        GoToPos(4, 2);
+    }
 
     public void LoadPlayScene()
     {
