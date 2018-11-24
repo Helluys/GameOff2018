@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862174fa5a983c74bbbe0c303e28f1f4, type: 3}
+  m_Name: JumperBehaviour
+  m_EditorClassIdentifier: 
+  landAttackPrefab: {fileID: 1135596498466452, guid: 84ae771e045e78a4c8835d65e8ff486d,
+    type: 2}
+  aoeTargetPrefab: {fileID: 1498253257303468, guid: 0b434c8940986ab4b82e5cc6913a60da,
+    type: 2}
+  jumpingDistance: 20
+  jumpTime: 0.4
+  jumpHeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 15.376785
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.08470066
+    - serializedVersion: 3
+      time: 0.7
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -16.880516
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.07134116
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpCooldown: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048

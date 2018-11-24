@@ -5,15 +5,18 @@ using UnityEngine.AI;
 [CreateAssetMenu(fileName = "SwarmTrackerBehaviour", menuName = "Game data/AI/Movement/Swarm tracker")]
 public class SwarmTrackerBehaviour : EnemyBehaviour {
 
+    public LayerMask terrainMask;
+
     [SerializeField] private float updateDelay = 0.1f;
     [SerializeField] private float updateRange = 0.1f;
-
-    private Swarm swarm;
 
     private Enemy enemy;
     private NavMeshAgent navMeshAgent;
     private Transform trackedObject;
+    private Swarm swarm;
+
     private Coroutine updateCoroutine;
+    private Coroutine groundedCoroutine;
 
     public override void OnStart (Enemy enemy) {
         this.enemy = enemy;
@@ -30,8 +33,10 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
         }
         swarm.AddAgent(navMeshAgent);
         enemy.OnDeath += Enemy_OnDeath;
+        enemy.OnDamage += Enemy_OnDamage;
 
         updateCoroutine = enemy.StartCoroutine(UpdateCoroutine());
+        groundedCoroutine = enemy.StartCoroutine(GroundedCoroutine());
     }
 
     public override IEnumerator Run () {
@@ -49,6 +54,25 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
         }
     }
 
+    private IEnumerator GroundedCoroutine () {
+        while(true) {
+            if (!navMeshAgent.enabled && IsGrounded()) {
+                enemy.rigidbody.velocity = Vector3.zero;
+                enemy.rigidbody.isKinematic = true;
+                navMeshAgent.enabled = true;
+            }
+            yield return null;
+        }
+    }
+
+    private bool IsGrounded () {
+        RaycastHit info;
+        if (Physics.Raycast(enemy.transform.position, Vector3.down, out info, 5, terrainMask)) {
+            return info.distance < 1;
+        }
+        return false;
+    }
+
     private IEnumerator UpdateCoroutine () {
         while (true) {
             swarm.UpdateNextPosition(navMeshAgent);
@@ -59,6 +83,10 @@ public class SwarmTrackerBehaviour : EnemyBehaviour {
 
             yield return null;
         }
+    }
+
+    private void Enemy_OnDamage (Enemy enemy, float amount) {
+        navMeshAgent.enabled = false;
     }
 
     private void Enemy_OnDeath (Enemy obj) {

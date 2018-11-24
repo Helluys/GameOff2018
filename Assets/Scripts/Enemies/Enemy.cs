@@ -1,65 +1,44 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour {
 
     public EnemyStatistics sharedStatistics { get { return _sharedStatistics; } }
     public EnemyStatistics.Instance instanceStatistics { get { return _instanceStatistics; } }
 
-    [SerializeField] private EnemyBehaviour movementBehaviour = null;
-    [SerializeField] private EnemyBehaviour combatBehaviour = null;
+    [SerializeField] private List<EnemyBehaviour> behaviours = new List<EnemyBehaviour>();
 
     [SerializeField] private EnemyStatistics _sharedStatistics = null;
     [SerializeField] private EnemyStatistics.Instance _instanceStatistics = null;
     [SerializeField] private ParticleSystem hitEffect;
 
-    public NavMeshAgent agent { get; private set; }
     public new Rigidbody rigidbody { get; private set; }
     public AnimationManager animationManager { get; private set; }
-    public LayerMask terrainMask;
 
     [SerializeField] private bool resetInstanceStatisticsOnStart = true;
 
     public event System.Action<Enemy> OnDeath;
-
-    private Coroutine movementCoroutine = null;
-    private Coroutine combatCoroutine = null;
+    public event System.Action<Enemy, float> OnDamage;
 
     private void Start () {
         if (resetInstanceStatisticsOnStart) {
             sharedStatistics.ApplyStatistics(this);
         }
-        agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponent<Rigidbody>();
         animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
 
-        movementBehaviour = Instantiate(movementBehaviour);
-        movementBehaviour.OnStart(this);
-        movementCoroutine = StartCoroutine(movementBehaviour.Run());
-
-        combatBehaviour = Instantiate(combatBehaviour);
-        combatBehaviour.OnStart(this);
-        combatCoroutine = StartCoroutine(combatBehaviour.Run());
+        List<EnemyBehaviour> instantiatedBehaviours = new List<EnemyBehaviour>();
+        for (int i = 0; i < behaviours.Count; i++) {
+            EnemyBehaviour behaviour = Instantiate(behaviours[i]);
+            instantiatedBehaviours.Add(behaviour);
+            behaviour.OnStart(this);
+            StartCoroutine(behaviour.Run());
+        }
+        behaviours = instantiatedBehaviours;
 
         GameManager.instance.AddEnemy(this);
         OnDeath += Enemy_OnDeath;
-    }
-
-    private void Update () {
-        if (!agent.enabled && IsGrounded()) {
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.isKinematic = true;
-            agent.enabled = true;
-        }
-    }
-
-    private bool IsGrounded () {
-        RaycastHit info;
-        if (Physics.Raycast(transform.position, Vector3.down, out info, 5, terrainMask)) {
-            return info.distance < 1;
-        }
-        return false;
     }
 
     private void OnTriggerEnter (Collider other) {
@@ -70,6 +49,10 @@ public class Enemy : MonoBehaviour {
     }
 
     public void Damage (float amount) {
+        if(OnDamage != null) {
+            OnDamage(this, amount);
+        }
+
         if (amount > instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }

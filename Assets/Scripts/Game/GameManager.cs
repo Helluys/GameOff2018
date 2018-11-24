@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject levelLoaderPrefab;
     [SerializeField] private string nextLevel = "SampleScene";
 
-    private GameObject exitPortal;
+    private ExitPortal exitPortal;
     public bool levelEnded { get; private set; }
 
     private List<Spawner> spawners = new List<Spawner>();
@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour {
     private void Start () {
         instance = this;
 
-        exitPortal = FindObjectOfType<ExitPortal>().gameObject;
-        exitPortal.SetActive(false);
+        exitPortal = FindObjectOfType<ExitPortal>();
+        exitPortal.active = false;
         spawners.AddRange(FindObjectsOfType<Spawner>());
 
         levelEnded = false;
@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour {
             timer += Time.deltaTime;
         }
 
-        if (timer > survivalTime && !exitPortal.activeSelf) {
-            exitPortal.SetActive(true);
+        if (timer > survivalTime && !exitPortal.active) {
+            exitPortal.active = true;
         }
     }
 
