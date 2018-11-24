@@ -417,20 +417,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequenceManager: {fileID: 114918671635585494}
+  hud: {fileID: 0}
   _sharedStatistics: {fileID: 11400000, guid: d3bd84479e3f2a044918b3b3c49f7563, type: 2}
   _instanceStatistics:
     health: 0
+    stamina: 0
   movement:
     directionKeys: 7a000000730000007100000064000000
     rollKey: 304
+    rollCost: 25
+    staminaRefillSpeed: 2
+  items:
+    itemAmount: 2
+    keys: 6100000065000000
   combat:
     weakAttack: {fileID: 114480237878259554, guid: 81d25a0071d7a074a9c204d10bddc3fc,
       type: 2}
     strongAttack: {fileID: 114765119124829374, guid: 88142a3d80494de47ba774487bc62604,
       type: 2}
+    shield: {fileID: 114677318848322698, guid: 0b93f4b40182382448c680d7c964eb05, type: 2}
+    normalColor: {r: 0, g: 1, b: 1, a: 0.2}
+    rageColor: {r: 1, g: 0.43618035, b: 0, a: 0.2}
+    shieldColor: {r: 0, g: 1, b: 0, a: 0.2}
     aimBot: 1
-  items:
-    itemAmount: 2
+    strongAttackSize: 20
+    strongAttackDamage: 50
+    weakAttackDamage: 10
 --- !u!136 &136987927678872392
 CapsuleCollider:
   m_ObjectHideFlags: 1

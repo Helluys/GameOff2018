@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224150590740538312}
   - component: {fileID: 114023736713576286}
   - component: {fileID: 114048167071466064}
+  - component: {fileID: 114076654031829750}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   maximumMonsterCount: 30
-  survivalTime: 2
+  survivalTime: 5
   levelLoaderPrefab: {fileID: 1516255827284840, guid: 7c2f0af0a87acfd4881999ae960f7e65,
     type: 2}
   nextLevel: SampleScene
@@ -60,6 +61,55 @@ MonoBehaviour:
   directionFactor: 0
   avoidanceFactor: 2
   gamma: 2
+--- !u!114 &114076654031829750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240903110859038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913b6519bb35f134693fb7abed8f706d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardHolders:
+  - {fileID: 0}
+  - {fileID: 0}
+  cardStands:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemCard: {fileID: 114861344580433574, guid: 7677b78913e883040bf92e3e9f6323cc, type: 2}
+  itemManagementPanel: {fileID: 0}
+  itemInfo: {fileID: 0}
+  InspectorDictionnary:
+  - type: -1
+    sprite: {fileID: 0}
+    sound: {fileID: 0}
+  - type: 0
+    sprite: {fileID: 21300000, guid: 77e9cf53e1be43440baf8b4079062497, type: 3}
+    sound: {fileID: 8300000, guid: c98d9ad686c75424a9c2fec44f770655, type: 3}
+  - type: 1
+    sprite: {fileID: 21300000, guid: b40e33e9afe49c840b718af6e3684860, type: 3}
+    sound: {fileID: 8300000, guid: 420d9ea545ff21a43a0882db4a294800, type: 3}
+  - type: 2
+    sprite: {fileID: 21300000, guid: 278d1f238cf00114e941cd672c96f193, type: 3}
+    sound: {fileID: 8300000, guid: 5a6395979fb905f499f78b48a8758417, type: 3}
+  - type: 3
+    sprite: {fileID: 21300000, guid: 66c92af5d1c614744aae897b72cb1f86, type: 3}
+    sound: {fileID: 8300000, guid: 732a67a76ab03a541b843e2cfaa0ca9f, type: 3}
+  - type: 4
+    sprite: {fileID: 21300000, guid: df5b6a66291a04e43a3cb530d59384b6, type: 3}
+    sound: {fileID: 8300000, guid: 92066553677d2c4439fef3793b59647c, type: 3}
+  - type: 5
+    sprite: {fileID: 21300000, guid: b1bfebb1641d01f43a27b292e95522f7, type: 3}
+    sound: {fileID: 8300000, guid: 79625fc3997043c4eb1bb73ce86974dd, type: 3}
+  - type: 6
+    sprite: {fileID: 21300000, guid: 77bf564eede2a52469d42d98159a0fa6, type: 3}
+    sound: {fileID: 8300000, guid: 862bab8a1039b0a45a139a3e0d765e8a, type: 3}
+  weakColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  mediumColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+  strongColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!224 &224150590740538312
 RectTransform:
   m_ObjectHideFlags: 1
