@@ -28,13 +28,13 @@ public class ExitPortal : MonoBehaviour {
     }
 
     private void OnTriggerEnter (Collider other) {
-        if (other.tag.Equals("Player") && !opened) {
+        if (other.tag.Equals("Player") && active && !opened) {
             GameManager.instance.GetPlayer().sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
         }
     }
 
     private void OnTriggerExit (Collider other) {
-        if (other.tag.Equals("Player") && !opened) {
+        if (other.tag.Equals("Player") && active && !opened) {
             GameManager.instance.GetPlayer().sequenceManager.player.OnSuccess -= SequencePlayer_OnSuccess;
         }
     }

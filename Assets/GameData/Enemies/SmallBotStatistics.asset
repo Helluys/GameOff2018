@@ -8,11 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646661a7e43a03c4c9fddb84d88a7ec0, type: 3}
-  m_Name: SwarmTrackerBehaviour
+  m_Script: {fileID: 11500000, guid: d2552db787ede014d80445cf2602a271, type: 3}
+  m_Name: SmallBotStatistics
   m_EditorClassIdentifier: 
-  terrainMask:
-    serializedVersion: 2
-    m_Bits: 4096
-  updateDelay: 0.1
-  updateRange: 0.1
+  maxHealth: 100
+  acceleration: 100
+  speed: 30
+  angularAcceleration: 50
+  stoppingDistance: 0
+  attackDamage: 10
+  attackRange: 2

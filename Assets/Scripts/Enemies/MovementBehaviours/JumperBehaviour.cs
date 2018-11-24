@@ -90,7 +90,7 @@ public class JumperBehaviour : EnemyBehaviour {
                     float jumpDistSq = jumpingDistance * jumpingDistance;
                     float prevDistSq = previousCornerDistance * previousCornerDistance;
 
-                    // Because trigonometry
+                    // Because math
                     float x = (previousCornerDistance / deltaCornerDistance) * (Mathf.Sqrt(cos_theta - 1 + (jumpDistSq / prevDistSq)) - cos_theta);
                     jumpTargetPosition = path.corners[i - 1] + (path.corners[i] - path.corners[i - 1]) * x;
 
@@ -98,7 +98,7 @@ public class JumperBehaviour : EnemyBehaviour {
                 }
             }
         }
-        Debug.Log("path not found");
+
         return false;
     }
 

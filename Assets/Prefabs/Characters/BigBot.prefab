@@ -204,12 +204,12 @@ Rigidbody:
   m_GameObject: {fileID: 1543862979806494}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 3
+  m_AngularDrag: 0.1
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!95 &95916869418496620
 Animator:
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behaviours:
   - {fileID: 11400000, guid: f32e48994124f9b4a8b2c233f472ccc5, type: 2}
-  _sharedStatistics: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1, type: 2}
+  _sharedStatistics: {fileID: 11400000, guid: 9d4bb66bd498a314eb02eddfd8ace3e6, type: 2}
   _instanceStatistics:
     health: 100
   hitEffect: {fileID: 198251173729888730}
