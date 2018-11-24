@@ -26,8 +26,6 @@ public class PlayerMovement {
         rigidbody = player.GetComponent<Rigidbody>();
         player.animationManager.OnEnter += AnimationManager_OnEnter;
         player.animationManager.OnExit += AnimatorManager_OnExit;
-
-        Debug.Log(player.instanceStatistics.stamina + " " + player.sharedStatistics.maxStamina);
     }
 
     public void OnUpdate () {

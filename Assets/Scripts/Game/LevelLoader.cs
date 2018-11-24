@@ -1,16 +1,16 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour {
 
-    public event System.Action<string> OnSceneLoaded;
-
     [SerializeField] private GameObject loadingScreenPrefab;
 
     private ManualBarUI loadingBar;
     private AsyncOperation loadingOperation;
+    public List<Item> storedItems { get; set; }
 
     public void StartLoading (string sceneName) {
         DontDestroyOnLoad(this);
@@ -19,20 +19,9 @@ public class LevelLoader : MonoBehaviour {
         StartCoroutine(LoadSceneWithProgressBar(sceneName));
     }
 
-    IEnumerator LoadSceneWithProgressBar (string sceneName) {
+    private IEnumerator LoadSceneWithProgressBar (string sceneName) {
         // Reset all tweens to avoid updates on destroyed objects
         LeanTween.reset();
-
-        // For testing purposes
-        loadingBar.manualMaxValue = 1f;
-        yield return new WaitForSeconds(1f);
-        loadingBar.manualValue = 0.25f;
-        yield return new WaitForSeconds(1f);
-        loadingBar.manualValue = 0.5f;
-        yield return new WaitForSeconds(1f);
-        loadingBar.manualValue = 0.75f;
-        yield return new WaitForSeconds(1f);
-        loadingBar.manualValue = 1f;
 
         // Load scene asynchronously
         loadingOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -41,9 +30,9 @@ public class LevelLoader : MonoBehaviour {
             yield return null;
         }
 
-        if (OnSceneLoaded != null) {
-            OnSceneLoaded(sceneName);
-        }
+        GameManager.instance.GetPlayer().items.SetItem(storedItems[0], 0);
+        GameManager.instance.GetPlayer().items.SetItem(storedItems[1], 1);
+
         Destroy(gameObject);
     }
 }

@@ -7,7 +7,6 @@ public abstract class Attack : MonoBehaviour {
 
     public virtual void OnEnter (Enemy enemy) {
         enemy.Damage(damageAmount);
-        enemy.agent.enabled = false;
         enemy.rigidbody.isKinematic = false;
         Vector3 knockBackDirection = (enemy.transform.position - transform.position).normalized;
         knockBackDirection = (3 * Vector3.up + knockBackDirection).normalized;

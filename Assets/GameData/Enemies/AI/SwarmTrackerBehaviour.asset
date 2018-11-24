@@ -11,5 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646661a7e43a03c4c9fddb84d88a7ec0, type: 3}
   m_Name: SwarmTrackerBehaviour
   m_EditorClassIdentifier: 
+  terrainMask:
+    serializedVersion: 2
+    m_Bits: 4096
   updateDelay: 0.1
   updateRange: 0.1

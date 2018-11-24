@@ -33,13 +33,13 @@ public class AnimationManager : MonoBehaviour {
             OnAnimationEvent(eventName);
     }
 
-    private void AnimatorTrigger_OnEnter (string eventName) {
+    private void AnimatorTrigger_OnEnter (string clipName) {
         if (OnEnter != null)
-            OnEnter(eventName);
+            OnEnter(clipName);
     }
 
-    private void AnimatorTrigger_OnExit (string eventName) {
+    private void AnimatorTrigger_OnExit (string clipName) {
         if (OnExit != null)
-            OnExit(eventName);
+            OnExit(clipName);
     }
 }

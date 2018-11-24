@@ -252,8 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bee5d7485a20b24d8807ebe2215464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementBehaviour: {fileID: 11400000, guid: 312c5253e5a0baf478c901dc8be4c70c, type: 2}
-  combatBehaviour: {fileID: 11400000, guid: 83b39206b6ca13f4ea55650609c6bbb0, type: 2}
+  behaviours:
+  - {fileID: 11400000, guid: 312c5253e5a0baf478c901dc8be4c70c, type: 2}
+  - {fileID: 11400000, guid: 83b39206b6ca13f4ea55650609c6bbb0, type: 2}
   _sharedStatistics: {fileID: 11400000, guid: 84a3c47cfc40dbe41bb4ee218cb389b1, type: 2}
   _instanceStatistics:
     health: 99

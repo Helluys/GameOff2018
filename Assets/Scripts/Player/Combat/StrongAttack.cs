@@ -46,7 +46,7 @@ public class StrongAttack : Attack {
 
     public override void OnEnter (Enemy enemy) {
         base.OnEnter(enemy);
-        enemy.rigidbody.AddTorque(Vector3.one * Random.value, ForceMode.VelocityChange);
+        enemy.rigidbody.AddTorque(Vector3.one * Random.value, ForceMode.Acceleration);
     }
 
     private void UpdateMatRadius (float radius) {

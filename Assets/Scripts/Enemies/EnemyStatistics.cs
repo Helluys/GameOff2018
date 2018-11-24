@@ -18,7 +18,6 @@ public class EnemyStatistics : ScriptableObject {
 
     [System.Serializable]
     public class Instance {
-
         public float health;
 
         public Instance (PlayerStatistics origin) {
@@ -28,9 +27,11 @@ public class EnemyStatistics : ScriptableObject {
 
     public void ApplyStatistics (Enemy enemy) {
         NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
-        agent.acceleration = acceleration;
-        agent.speed = speed;
-        agent.angularSpeed = angularAcceleration;
-        agent.stoppingDistance = stoppingDistance;
+        if (agent) {
+            agent.acceleration = acceleration;
+            agent.speed = speed;
+            agent.angularSpeed = angularAcceleration;
+            agent.stoppingDistance = stoppingDistance;
+        }
     }
 }
