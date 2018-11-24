@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour {
 
     public Animator[] animators;
+
     private void Start()
     {
         foreach (Animator animator in animators)
@@ -16,4 +17,6 @@ public class MenuController : MonoBehaviour {
     {
         SceneManager.LoadScene(0);
     }
+
+
 }
