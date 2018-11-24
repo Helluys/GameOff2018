@@ -60,11 +60,13 @@ public class JumperBehaviour : EnemyBehaviour {
 
                     break;
                 case State.JUMPING:
+                    enemy.rigidbody.isKinematic = true;
                     float jumpTimeRatio = (Time.time - jumpStartTime) / jumpTime;
                     enemy.transform.position = Vector3.Lerp(jumpStartPosition, jumpTargetPosition, jumpTimeRatio) + jumpHeightCurve.Evaluate(jumpTimeRatio) * Vector3.up;
                     enemy.transform.rotation = Quaternion.LookRotation(Vector3.Lerp(jumpStartDirection, jumpTargetPosition - jumpStartPosition, jumpTimeRatio));
 
                     if (jumpTimeRatio > 1) {
+                        enemy.rigidbody.isKinematic = false;
                         Fall();
                         yield return waitForIdle;
                     }

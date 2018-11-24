@@ -47,7 +47,12 @@ ModelImporter:
     7400006: Jump
     9500000: //RootNode
     13700000: BigBot
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__Diffuse
+    second: {fileID: 2100000, guid: 48799f1c993f60742ab4518aa9e80d9f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -142,7 +147,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
