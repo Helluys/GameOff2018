@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SequencePlayer : MonoBehaviour {
 
     #region Variables
@@ -53,6 +54,7 @@ public class SequencePlayer : MonoBehaviour {
             {
                 if (OnKeyPress != null)
                     OnKeyPress(input);
+
                 return input;
             }
         }
@@ -81,7 +83,7 @@ public class SequencePlayer : MonoBehaviour {
                 bool last = i == list.Count - 1;
                 OnValidKeyPress(input, last);
             }
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         if (OnSuccess != null)
             OnSuccess();

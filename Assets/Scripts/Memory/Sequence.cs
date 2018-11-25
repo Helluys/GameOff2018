@@ -110,14 +110,17 @@ public class Sequence {
         return (list[index] == value);
     }
     #region Debug
-    public void DebugDisplay()
+    public string DebugDisplay()
     {
         string seq = "Sequence: ";
+        if (list == null)
+            return seq += "mabite";
         for(int i = 0; i < list.Count; i++)
         {
             seq += list[i] + ", ";
         }
         Debug.Log(seq);
+        return seq;
     }
     #endregion
     #endregion

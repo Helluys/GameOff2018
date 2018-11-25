@@ -52,6 +52,7 @@ public class InputManager : SingletonBehaviour<InputManager> {
     public delegate void del_KeySetEvent(InputType type);
     public del_KeySetEvent KeySetEvent;
 
+
     public override void Awake()
     {
         base.Awake();
