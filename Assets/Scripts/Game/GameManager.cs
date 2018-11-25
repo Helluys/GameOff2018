@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int maximumMonsterCount = 30;
     [SerializeField] private float survivalTime = 30f;
 
-    [SerializeField] private GameObject levelLoaderPrefab;
-    [SerializeField] private string nextLevel = "SampleScene";
+    [SerializeField] private SceneName nextLevel = SceneName.Level2;
 
     private ExitPortal exitPortal;
     public bool levelEnded { get; private set; }
@@ -66,8 +65,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartNextLevel() {
-        LevelLoader levelLoader = Instantiate(levelLoaderPrefab).GetComponent<LevelLoader>();
-        levelLoader.storedItems = ItemManager.Instance.RevtrieveSelectedItems();
-        levelLoader.StartLoading(nextLevel);
+        SceneController.Instance.storedItems = ItemManager.Instance.RevtrieveSelectedItems();
+        SceneController.Instance.LoadScene(nextLevel);
     }
 }

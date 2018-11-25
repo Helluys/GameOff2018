@@ -51,6 +51,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
 
     private void Start () {
         PlayMusicFromPlaylist(1);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update () {

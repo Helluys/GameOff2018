@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class SequenceManager : MonoBehaviour {
     public Sequence sequence;
     public SequenceDisplay display;
     public SequencePlayer player;
+
 
     private void Start () {
         sequence = new Sequence(4);

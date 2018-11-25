@@ -30,8 +30,9 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     Player player { get { return GameManager.instance.GetPlayer(); } }
     private List<ItemUICard> cards;
 
-    private void Start()
+    public override void Awake()
     {
+        base.Awake();
         itemsSpritesDictionnary = new Dictionary<ItemType, Sprite>();
         itemsSoundsDictionnary = new Dictionary<ItemType, AudioClip>();
         cards = new List<ItemUICard>();
@@ -62,7 +63,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
         DeleteCards();
         Player player = GameManager.instance.GetPlayer();
         Item[] items = player.items.GetItems();
-        for(int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
             if (items[i].type == ItemType.Undefined)
                 continue;
@@ -93,9 +94,17 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     }
 
     public List<Item> RevtrieveSelectedItems() {
+
+        Item item1 = new Item();
+        Item item2 = new Item();
+
+        if (cardHolders[0].card != null)
+           item1 = cardHolders[0].card.item;
+        if (cardHolders[1].card != null)
+           item2 = cardHolders[1].card.item;
+
         return new List<Item>() {
-            cardHolders[0].card?.item,
-            cardHolders[1].card?.item
+            item1,item2
         };
     }
 

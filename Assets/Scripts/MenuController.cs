@@ -43,7 +43,7 @@ public class MenuController : MonoBehaviour {
 
     public void LoadPlayScene()
     {
-        SceneManager.LoadScene(0);
+        SceneController.Instance.LoadScene(SceneName.Level1);
     }
 
     public void GoToPos(int index, float time)

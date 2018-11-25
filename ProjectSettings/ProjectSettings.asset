@@ -662,7 +662,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 1f173084-769c-4e69-98bc-a4512dc0481d
   projectName: GameOff2018
   organizationId: helluys
