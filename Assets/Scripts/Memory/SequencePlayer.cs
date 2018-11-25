@@ -5,11 +5,10 @@ using UnityEngine;
 public class SequencePlayer : MonoBehaviour {
 
     #region Variables
-    private KeyCode[] keys;
     private Coroutine cSequenceplay;
 
     // Events
-    public delegate void Del_KeyPressEvent(int index,bool last = false);
+    public delegate void Del_KeyPressEvent(InputType type,bool last = false);
     public Del_KeyPressEvent OnValidKeyPress;
     public Del_KeyPressEvent OnKeyPress;
     public delegate void Del_SequenceEvent();
@@ -20,20 +19,12 @@ public class SequencePlayer : MonoBehaviour {
     #region Methods
     #region Public
     /// <summary>
-    /// Set the key to use 
-    /// </summary>
-    /// <param name="keys">Arrays of key to use</param>
-    public void SetKeys(KeyCode[] keys)
-    {
-        this.keys = keys;
-    }
-    /// <summary>
     /// Start listening for the player input
     /// </summary>
     /// <param name="sequence"></param>
     public void StartSequencePlay(Sequence sequence)
     {
-        if (sequence.sequencePossibility > keys.Length)
+        if (sequence.sequencePossibility > 4)
         {
             Debug.LogError("Too few keys set to play the sequence");
             return;
@@ -54,18 +45,18 @@ public class SequencePlayer : MonoBehaviour {
     /// Raise event on key press
     /// </summary>
     /// <returns></returns>
-    private int keyPress()
+    private InputType keyPress()
     {
-        for (int i = 0; i < keys.Length; i++)
+        foreach(InputType input in InputManager.Instance.simonInputs)
         {
-            if (Input.GetKeyDown(keys[i]))
+            if (InputManager.Instance.IsKeyDown(input))
             {
                 if (OnKeyPress != null)
-                    OnKeyPress(i);
-                return i;
+                    OnKeyPress(input);
+                return input;
             }
         }
-        return -1;
+        return InputType.None;
     }
     /// <summary>
     /// Coroutine used to listen for the player input + verification of the sequence
@@ -74,12 +65,12 @@ public class SequencePlayer : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator ESequencePlay(Sequence sequence)
     {
-        int val = -1;
+        InputType input = InputType.None;
         List<int> list = sequence.GetList();
         for (int i = 0; i < list.Count; i++)
         {
-            yield return new WaitUntil(() => (val = keyPress()) != -1);
-            if (!sequence.Verify(i, val))
+            yield return new WaitUntil(() => (input = keyPress()) != InputType.None);
+            if (!sequence.Verify(i, InputManager.Instance.simonInputsValues[input]))
             {
                 if (OnFail != null)
                     OnFail();
@@ -88,7 +79,7 @@ public class SequencePlayer : MonoBehaviour {
             if (OnValidKeyPress != null)
             {
                 bool last = i == list.Count - 1;
-                OnValidKeyPress(val, last);
+                OnValidKeyPress(input, last);
             }
             yield return new WaitForEndOfFrame();
         }

@@ -7,7 +7,6 @@ public class PlayerCombat {
     [SerializeField] private StrongAttack strongAttack;
     [SerializeField] private Shield shield;
 
-
     [SerializeField] private Color normalColor;
     [SerializeField] private Color rageColor;
     [SerializeField] private Color shieldColor;
@@ -34,25 +33,26 @@ public class PlayerCombat {
         sequencePlayer.OnValidKeyPress += OnValidKeyPress;
     }
 
-    private void OnValidKeyPress (int keyIndex, bool last) {
+    private void OnValidKeyPress (InputType input, bool last) {
         if (last)
             return;
 
         WeakAttack wa = Object.Instantiate(weakAttack, player.transform.position, Quaternion.identity);
         Vector3 direction = Vector3.zero;
 
-        switch (keyIndex) {
-            case 0:
-                direction = Vector3.forward;
+        switch (input)
+        {
+            case InputType.Green:
+                direction = (Vector3.forward + Vector3.right).normalized;
                 break;
-            case 1:
-                direction = Vector3.right;
+            case InputType.Red:
+                direction = (Vector3.right + Vector3.back).normalized;
                 break;
-            case 2:
-                direction = Vector3.left;
+            case InputType.Yellow:
+                direction = (Vector3.left + Vector3.forward).normalized;
                 break;
-            case 3:
-                direction = Vector3.back;
+            case InputType.Blue:
+                direction = (Vector3.back + Vector3.left).normalized;
                 break;
         }
         wa.Init(weakAttackDamage,aimBot, direction,color);

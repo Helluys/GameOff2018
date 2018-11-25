@@ -20,9 +20,9 @@ public class PlayerItems{
 
     public void OnUpdate()
     {
-        if (Input.GetKeyDown(keys[0]))
+        if (InputManager.Instance.IsKeyDown(InputType.Item1))
             UseItem(0);
-        if (Input.GetKeyDown(keys[1]))
+        if (InputManager.Instance.IsKeyDown(InputType.Item2))
             UseItem(1);
     }
 

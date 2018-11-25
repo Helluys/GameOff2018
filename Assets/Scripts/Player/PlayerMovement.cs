@@ -6,16 +6,14 @@ public class PlayerMovement {
 
     private const float MIN_MOVEMENT_THRESHOLD = 0.1f;
 
-    [SerializeField] private KeyCode[] directionKeys = new KeyCode[] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
-    [SerializeField] private KeyCode rollKey = KeyCode.LeftShift;
     [SerializeField] private float rollCost;
     [SerializeField] private float staminaRefillSpeed = 1;
 
-    private Dictionary<int, Vector3> directionVectors = new Dictionary<int, Vector3>() {
-        {Direction.UP, (Vector3.forward + Vector3.right).normalized},
-        {Direction.DOWN, (Vector3.back + Vector3.left).normalized},
-        {Direction.LEFT, (Vector3.left + Vector3.forward).normalized},
-        {Direction.RIGHT, (Vector3.right + Vector3.back).normalized}
+    private Dictionary<InputType, Vector3> directionVectors = new Dictionary<InputType, Vector3>() {
+        {InputType.Up, (Vector3.forward + Vector3.right).normalized},
+        {InputType.Down, (Vector3.back + Vector3.left).normalized},
+        {InputType.Left, (Vector3.left + Vector3.forward).normalized},
+        {InputType.Right, (Vector3.right + Vector3.back).normalized}
     };
 
     private Player player;
@@ -38,7 +36,7 @@ public class PlayerMovement {
             rigidbody.AddTorque(Vector3.up * deltaAngle * player.sharedStatistics.angularAcceleration);
         }
 
-        if (!player.state.isRolling && Input.GetKeyDown(rollKey) && player.instanceStatistics.stamina > rollCost) {
+        if (!player.state.isRolling && InputManager.Instance.IsKeyDown(InputType.Roll) && player.instanceStatistics.stamina > rollCost) {
             rigidbody.AddForce(player.sharedStatistics.rollStrength * inputDirection, ForceMode.VelocityChange);
             player.animationManager.animator.SetTrigger("roll");
             player.instanceStatistics.stamina -= rollCost;
@@ -50,15 +48,11 @@ public class PlayerMovement {
         player.hud.UpdateCoolDownBar(player.instanceStatistics.stamina / player.sharedStatistics.maxStamina);
     }
 
-    public void SetKey (int direction, KeyCode key) {
-        directionKeys[direction] = key;
-    }
-
     private Vector3 GetInputDirection () {
         Vector3 inputDirection = Vector3.zero;
-        foreach (int direction in new int[] { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT }) {
-            if (Input.GetKey(directionKeys[direction])) {
-                inputDirection += directionVectors[direction];
+        foreach (InputType input in new InputType[] { InputType.Up, InputType.Down, InputType.Left, InputType.Right }) {
+            if (InputManager.Instance.IsKey(input)) {
+                inputDirection += directionVectors[input];
             }
         }
 

@@ -17,7 +17,9 @@ public enum InputType
     Blue = 7,
 
     Item1 = 8,
-    Item2 = 9
+    Item2 = 9,
+
+    Roll = 10
 }
 
 [System.Serializable]
@@ -30,6 +32,15 @@ public struct TypeKeyCodePair
 public class InputManager : SingletonBehaviour<InputManager> {
 
     [SerializeField] private TypeKeyCodePair[] editorKeys;
+
+    public InputType[] simonInputs { get { return new InputType[] { InputType.Green, InputType.Yellow, InputType.Red, InputType.Blue }; } }
+    public Dictionary<InputType, int> simonInputsValues = new Dictionary<InputType, int>()
+    {
+        { InputType.Green,0 },
+        { InputType.Yellow,2 },
+        { InputType.Red,1 },
+        { InputType.Blue,3 },
+    };
 
     private KeyCode pressedKey = KeyCode.None;
     public bool isWaitingForInput { get; private set; }
@@ -52,6 +63,11 @@ public class InputManager : SingletonBehaviour<InputManager> {
         }
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public KeyCode GetKey(InputType type)
     {
         KeyCode key;
@@ -60,6 +76,17 @@ public class InputManager : SingletonBehaviour<InputManager> {
         
         Debug.LogError("No key defined for this Input");
         return KeyCode.None;
+    }
+
+    public bool IsKeyDown(InputType type)
+    {
+        return Input.GetKeyDown(GetKey(type));
+    }
+
+
+    public bool IsKey(InputType type)
+    {
+        return Input.GetKey(GetKey(type));
     }
 
     private void SetKey(InputType type,KeyCode key)

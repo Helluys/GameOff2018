@@ -8,7 +8,6 @@ public class SequenceManager : MonoBehaviour {
 
     private void Start () {
         sequence = new Sequence(4);
-        player.SetKeys(new KeyCode[] { KeyCode.Keypad8, KeyCode.Keypad6, KeyCode.Keypad4, KeyCode.Keypad2 });
         player.OnKeyPress += OnKeyPress;
         player.OnValidKeyPress += OnValidKey;
         player.OnSuccess += OnSuccess;
@@ -21,11 +20,11 @@ public class SequenceManager : MonoBehaviour {
         StartCoroutine(EGamePhase(true));
     }
 
-    private void OnKeyPress (int index, bool last) {
-        display.TurnOn(index, true, 0.3f);
+    private void OnKeyPress (InputType input, bool last) {
+        display.TurnOn(InputManager.Instance.simonInputsValues[input], true, 0.3f);
     }
 
-    private void OnValidKey (int index, bool last) {
+    private void OnValidKey (InputType input, bool last) {
 
     }
 

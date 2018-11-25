@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour {
         foreach (Animator animator in animators)
             animator.SetFloat("speed", 2.0f);
 
-        GoToPos(1, 3);
+        GoToPos(1, 2);
     }
 
    public void OpenInputSettings()
