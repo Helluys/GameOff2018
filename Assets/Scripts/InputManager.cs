@@ -74,7 +74,7 @@ public class InputManager : SingletonBehaviour<InputManager> {
         if (Keys.TryGetValue(type, out key))
             return key;
         
-        Debug.LogError("No key defined for this Input");
+        Debug.LogError("No key defined for this Input: " + type);
         return KeyCode.None;
     }
 
