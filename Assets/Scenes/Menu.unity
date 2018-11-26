@@ -9062,17 +9062,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815311633}
-  m_LocalRotation: {x: 0, y: -0, z: 0.8870109, w: -0.46174863}
+  m_LocalRotation: {x: 0, y: -0, z: 0.91768533, w: -0.39730802}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1170848594}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 235}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 226.82}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22, y: 37}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -16.100002, y: 44.649994}
+  m_SizeDelta: {x: -11.800003, y: 15.300007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815311635
 MonoBehaviour:
@@ -9106,7 +9106,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Controls
 --- !u!222 &1815311636
 CanvasRenderer:
   m_ObjectHideFlags: 0

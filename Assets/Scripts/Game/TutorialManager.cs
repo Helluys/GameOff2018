@@ -142,6 +142,7 @@ public class TutorialManager : SingletonBehaviour<TutorialManager> {
         // Portal : Part 2 (activate)
         yield return new WaitForSeconds(3f);
         dialogUI.OnDisplayFinished += DialogUI_OnDisplayFinished;
+        GameManager.instance.exitPortal.OnEnter += ExitPortal_OnEnter;
         dialogUI.DisplayText(portalTutorialText2);
         GameManager.instance.exitPortal.enabled = true;
         GameManager.instance.exitPortal.active = true;
@@ -149,16 +150,16 @@ public class TutorialManager : SingletonBehaviour<TutorialManager> {
         stepOk = false;
         dialogUI.OnDisplayFinished -= DialogUI_OnDisplayFinished;
         yield return new WaitForSeconds(1f);
-        sequenceManager.player.StopSequencePlay();
-        sequenceManager.player.StartSequencePlay(sequenceManager.sequence);
+        if (!GameManager.instance.levelEnded) {
+            sequenceManager.player.StopSequencePlay();
+            sequenceManager.player.StartSequencePlay(sequenceManager.sequence);
 
-        // Portal : Part 3 (open)
-        GameManager.instance.exitPortal.OnEnter += ExitPortal_OnEnter;
-        sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
-        yield return waitStepOk;
-        stepOk = false;
-
-        dialogUI.DisplayText(finalTutorialText);
+            // Portal : Part 3 (open)
+            sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
+            yield return waitStepOk;
+            stepOk = false;
+            dialogUI.DisplayText(finalTutorialText);
+        }
         SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
     }
 

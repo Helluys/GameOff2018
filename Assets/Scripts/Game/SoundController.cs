@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum SoundName {
     button0 = 0,
@@ -51,6 +52,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
     private void Start () {
         PlayMusic(menuSong);
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update () {
@@ -58,11 +60,9 @@ public class SoundController : SingletonBehaviour<SoundController> {
             PlayNextSong();
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        SceneName scene = (SceneName)level;
-        switch (scene)
-        {
+    private void OnSceneLoaded (Scene scene, LoadSceneMode loadMode) {
+        SceneName sceneName = (SceneName) scene.buildIndex;
+        switch (sceneName) {
             case SceneName.Menu:
                 PlayMusic(menuSong);
                 break;
@@ -132,8 +132,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
         soundSource.PlayOneShot(sounds[(int) sound].audio, volume);
     }
 
-    public void Say(AudioClip clip)
-    {
+    public void Say (AudioClip clip) {
         soundSource.PlayOneShot(clip, globalSpeechVolume);
     }
     /// <summary>
@@ -150,12 +149,11 @@ public class SoundController : SingletonBehaviour<SoundController> {
         LeanTween.value(gameObject, SetMusicSourceVolume, begin, end, time);
     }
 
-    public void DimMusic(bool on,float time, float value)
-    {
+    public void DimMusic (bool on, float time, float value) {
         LeanTween.cancel(gameObject);
         float volume = musicSource.volume;
         float begin = on ? volume : volume;
-        float end = on ? volume/value : volume*value;
+        float end = on ? volume / value : volume * value;
         LeanTween.value(gameObject, SetMusicSourceVolume, begin, end, time);
     }
 
