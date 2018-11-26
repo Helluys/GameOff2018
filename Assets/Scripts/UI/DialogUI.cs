@@ -35,8 +35,11 @@ public class DialogUI : MonoBehaviour {
     }
 
     private IEnumerator DisplayTextCoroutine (string text) {
+
         for (int i = 0; i < text.Length; i++) {
             textUI.text += text[i];
+            if(i%5 == 0)
+                SoundController.Instance.PlaySound(SoundName.text);
             yield return waitForDisplayDelay;
         }
 

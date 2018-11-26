@@ -7,21 +7,29 @@ using UnityEngine.SceneManagement;
 public enum SceneName
 {
     Menu = 0,
-    Level1 = 1,
-    Level2 = 2,
-    Level3 = 3,
-    Level4 = 4
+    Tutorial = 1,
+    Level1 = 2,
+    Level2 = 3,
+    Level3 = 4,
+    Level4 = 5
 }
 
 public class SceneController : SingletonBehaviour<SceneController> {
+
+    [SerializeField] private float minLoadingTime = 2;
+    [SerializeField] private float appearTime = 0.5f;
 
     [SerializeField] private GameObject LoadingScreen;
     [SerializeField] private Image loadingBar;
     [SerializeField] private GameObject loadingIcon;
     [SerializeField] private Text loadingText;
+    [SerializeField] private GameObject skipTuto;
+    [SerializeField] private CanvasGroup loadingCanvas;
 
-    private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4 };
+    private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4,SceneName.Tutorial };
     private bool isLoading = false;
+
+    private SceneName currentScene = SceneName.Menu;
 
     private AsyncOperation loadingOperation;
     public List<Item> storedItems;
@@ -29,16 +37,53 @@ public class SceneController : SingletonBehaviour<SceneController> {
     private void Start()
     {
         storedItems = new List<Item>();
+        LoadingScreen.SetActive(false);
+        loadingCanvas.alpha = 0;
+
         DontDestroyOnLoad(gameObject);
     }
 
     public void LoadScene(SceneName scene)
     {
-        if (isLoading)
+        if (isLoading || currentScene == scene)
             return;
 
-        LoadingScreen.SetActive(true);
+        currentScene = scene;
+        StartCoroutine(EShowLoadingScreen(true));
+
+        if (scene == SceneName.Tutorial)
+            skipTuto.SetActive(true);
+        else
+            skipTuto.SetActive(false);
         StartCoroutine(ELoadScene(scene));
+    }
+
+    public void SkipTutorial()
+    {
+        skipTuto.SetActive(false);
+        TutorialManager.Instance.Skip();
+    }
+
+    public void BackToMenu()
+    {
+        if (currentScene == SceneName.Menu)
+            Application.Quit();
+
+        LoadScene(SceneName.Menu);
+    }
+
+    private IEnumerator EShowLoadingScreen(bool on)
+    {
+        if(on) LoadingScreen.SetActive(true);
+        float elapsedTime = 0;
+        while(elapsedTime < appearTime)
+        {
+            loadingCanvas.alpha = Mathf.Lerp(on ? 0 : 1, on ? 1 : 0, elapsedTime / appearTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        loadingCanvas.alpha = on ? 1 : 0;
+        if (!on) LoadingScreen.SetActive(false);
     }
 
     private IEnumerator ELoadScene(SceneName scene)
@@ -51,22 +96,38 @@ public class SceneController : SingletonBehaviour<SceneController> {
         loadingOperation = SceneManager.LoadSceneAsync((int)scene);
         loadingText.text = "Loading...";
         loadingIcon.SetActive(true);
+        float loadProgress = 0;
+        float elapsedTime = 0;
+        bool first = true;
 
         if(levelScene.Contains(scene))
            loadingOperation.allowSceneActivation = false;
 
+        SoundController.Instance.DimMusic(true, minLoadingTime, 10);
+
         while (!loadingOperation.isDone)
         {
-            loadingBar.fillAmount = loadingOperation.progress + 0.1f;
-            if(loadingOperation.progress >= 0.9f && !loadingOperation.allowSceneActivation)
+            loadProgress = Mathf.Min(elapsedTime / minLoadingTime, loadingOperation.progress);
+            loadingBar.fillAmount = loadProgress + 0.1f;
+            if (loadProgress >= 0.9f && !loadingOperation.allowSceneActivation)
             {
-                loadingIcon.SetActive(false);
-                loadingText.text = "Press Enter to start";
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (first) {
+                    first = false;
+                    SoundController.Instance.PlaySound(SoundName.text);
+                    loadingIcon.SetActive(false);
+                    loadingText.text = "Press Enter to start";
+                    LeanTween.scale(loadingText.rectTransform, 1.05f * Vector3.one, 0.5f).setLoopPingPong().setEaseOutCubic();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Return))
                     loadingOperation.allowSceneActivation = true;
             }
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        LeanTween.cancel(loadingText.rectTransform);
+        LeanTween.scale(loadingText.rectTransform, Vector3.one, 0);
 
         if (levelScene.Contains(scene)){
             if (storedItems.Count > 0)
@@ -75,8 +136,8 @@ public class SceneController : SingletonBehaviour<SceneController> {
                 GameManager.instance.GetPlayer().items.SetItem(storedItems[1], 1);
             }
         }
-
-        LoadingScreen.SetActive(false);
+        loadingIcon.SetActive(false);
+        StartCoroutine(EShowLoadingScreen(false));
         isLoading = false;
     }
 }

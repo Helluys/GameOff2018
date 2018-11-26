@@ -33,14 +33,9 @@ public class InputManager : SingletonBehaviour<InputManager> {
 
     [SerializeField] private TypeKeyCodePair[] editorKeys;
 
-    public InputType[] simonInputs { get { return new InputType[] { InputType.Green, InputType.Yellow, InputType.Red, InputType.Blue }; } }
-    public Dictionary<InputType, int> simonInputsValues = new Dictionary<InputType, int>()
-    {
-        { InputType.Green,0 },
-        { InputType.Yellow,2 },
-        { InputType.Red,1 },
-        { InputType.Blue,3 },
-    };
+    public List<InputType> simonInputs { get; private set; }
+    public Dictionary<InputType, int> simonInputsValues { get; private set; }
+    public Dictionary<InputType, Color> simonInputsColor { get; private set; }
 
     private KeyCode pressedKey = KeyCode.None;
     public bool isWaitingForInput { get; private set; }
@@ -57,6 +52,25 @@ public class InputManager : SingletonBehaviour<InputManager> {
     {
         base.Awake();
         isWaitingForInput = false;
+
+
+        simonInputs = new List<InputType>() { InputType.Green, InputType.Yellow, InputType.Red, InputType.Blue };
+        simonInputsValues = new Dictionary<InputType, int>()
+        {
+            { InputType.Green,0 },
+            { InputType.Yellow,2 },
+            { InputType.Red,1 },
+            { InputType.Blue,3 },
+        };
+
+        simonInputsColor = new Dictionary<InputType, Color>()
+        {
+            { InputType.Green,Color.green },
+            { InputType.Yellow,Color.yellow },
+            { InputType.Red,Color.red },
+            { InputType.Blue,Color.blue },
+        };
+
         Keys = new Dictionary<InputType, KeyCode>();
         foreach (TypeKeyCodePair key in editorKeys)
         {

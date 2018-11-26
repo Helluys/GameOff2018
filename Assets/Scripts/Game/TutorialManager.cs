@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialManager : MonoBehaviour {
+public class TutorialManager : SingletonBehaviour<TutorialManager> {
 
     [SerializeField] private DialogUI dialogUI;
     [SerializeField] private RectTransform awaitedKeysParent;
@@ -61,6 +61,7 @@ public class TutorialManager : MonoBehaviour {
             InputType.Up, InputType.Left, InputType.Right, InputType.Down
         });
         step1Wall.SetActive(false);
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
 
         // Roll
         rollValidateZone.gameObject.SetActive(true);
@@ -69,6 +70,7 @@ public class TutorialManager : MonoBehaviour {
         yield return waitRollValidate;
         Destroy(awaitedKeyUIRoll.gameObject);
         rollValidateZone.gameObject.SetActive(false);
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
 
         // Memory : Part 1
         dialogUI.DisplayText(memoryTutorialText1);
@@ -91,12 +93,16 @@ public class TutorialManager : MonoBehaviour {
         sequenceManager.player.OnValidKeyPress -= SequencePlayer_OnValidKeyPress;
         stepOk = false;
 
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
+
         // Memory : Part 2
         sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
         dialogUI.DisplayText(memoryTutorialText2);
         yield return waitStepOk;
         sequenceManager.player.OnSuccess -= SequencePlayer_OnSuccess;
         stepOk = false;
+
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
 
         // Memory : Part 3
         dialogUI.DisplayText(memoryTutorialText3);
@@ -108,14 +114,17 @@ public class TutorialManager : MonoBehaviour {
         Destroy(awaitedKeyUIYellow.gameObject);
         Destroy(awaitedKeyUIGreen.gameObject);
 
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
+
         // Items
-        GameManager.instance.GetPlayer().items.SetItem(ItemManager.Instance.GetRandomItem(), 0);
-        GameManager.instance.GetPlayer().items.SetItem(ItemManager.Instance.GetRandomItem(), 1);
+        GameManager.instance.GetPlayer().items.SetItem(new Item_Shield(ItemStrength.Medium), 0);
+        GameManager.instance.GetPlayer().items.SetItem(new Item_StaminaUp(ItemStrength.Medium), 1);
         dialogUI.DisplayText(itemsTutorialText);
         yield return AwaitInput(new List<InputType>() {
             InputType.Item1, InputType.Item2
         });
         step2Wall.SetActive(false);
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
 
         // Walk to portal
         walkValidateZone.gameObject.SetActive(true);
@@ -150,6 +159,7 @@ public class TutorialManager : MonoBehaviour {
         stepOk = false;
 
         dialogUI.DisplayText(finalTutorialText);
+        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
     }
 
     private AwaitedKeyUI CreateAwaitedUI (bool destroyOnPress, InputType input) {
@@ -181,5 +191,13 @@ public class TutorialManager : MonoBehaviour {
 
     private void ExitPortal_OnEnter () {
         dialogUI.gameObject.SetActive(false);
+    }
+
+    public void Skip()
+    {
+        dialogUI.gameObject.SetActive(false);
+        awaitedKeysParent.gameObject.SetActive(false);
+
+        GameManager.instance.EndLevel();
     }
 }

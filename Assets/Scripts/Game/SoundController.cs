@@ -7,7 +7,8 @@ public enum SoundName {
     button2 = 2,
     button3 = 3,
     sequenceSuccess = 4,
-    sequenceFail = 5
+    sequenceFail = 5,
+    text = 6
 }
 
 [System.Serializable]
@@ -29,11 +30,9 @@ public class SoundController : SingletonBehaviour<SoundController> {
     public float globalSpeechVolume = 1;
 
     //Playlist (sound & musics) and their volumes
+    [SerializeField] private AudioVolumePair menuSong;
     [SerializeField] private AudioVolumePair[] playlist;
     [SerializeField] private AudioVolumePair[] sounds;
-    [SerializeField] private AudioVolumePair[] speeches;
-
-
 
     /// <summary>
     /// Index of the current music in the playlist
@@ -50,7 +49,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
     #region Unity
 
     private void Start () {
-        PlayMusicFromPlaylist(1);
+        PlayMusic(menuSong);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -59,24 +58,29 @@ public class SoundController : SingletonBehaviour<SoundController> {
             PlayNextSong();
     }
 
-    private void LevelLoader_OnSceneLoaded (string levelName) {
-        Debug.Log("Sound : " + levelName);
-        switch (levelName) {
-            case "BenTest2":
-                PlayMusicFromPlaylist(0);
-                musicSource.loop = true;
+    private void OnLevelWasLoaded(int level)
+    {
+        SceneName scene = (SceneName)level;
+        switch (scene)
+        {
+            case SceneName.Menu:
+                PlayMusic(menuSong);
                 break;
-            case "SampleScene":
-                PlayMusicFromPlaylist(1);
-                musicSource.loop = true;
+
+            case SceneName.Tutorial:
+                PlayMusic(playlist[2]);
                 break;
-            default:
-                PlayMusicFromPlaylist(Random.Range(0, playlist.Length - 1));
-                musicSource.loop = false;
+
+            case SceneName.Level1:
+                PlayMusic(playlist[0]);
+                break;
+
+            case SceneName.Level2:
+                PlayMusic(playlist[1]);
                 break;
         }
+        musicSource.loop = true;
     }
-
     #endregion
 
     #region Public
@@ -138,10 +142,20 @@ public class SoundController : SingletonBehaviour<SoundController> {
     /// <param name="on">true if fade in, false in fade out</param>
     /// <param name="time">Duration of the transition</param>
     public void SoundTransition (bool on, float time) {
+
         LeanTween.cancel(gameObject);
         float volume = musicSource.volume;
         float begin = on ? 0 : volume;
         float end = on ? volume : 0;
+        LeanTween.value(gameObject, SetMusicSourceVolume, begin, end, time);
+    }
+
+    public void DimMusic(bool on,float time, float value)
+    {
+        LeanTween.cancel(gameObject);
+        float volume = musicSource.volume;
+        float begin = on ? volume : volume;
+        float end = on ? volume/value : volume*value;
         LeanTween.value(gameObject, SetMusicSourceVolume, begin, end, time);
     }
 
@@ -155,13 +169,14 @@ public class SoundController : SingletonBehaviour<SoundController> {
     /// <param name="clip">AudioClip to play</param>
     /// <param name="volume">Volume of the audioClip</param>
     private void PlayMusic (AudioVolumePair clip) {
+
         if (cNextMusic != null)
             StopCoroutine(cNextMusic);
 
         currentMusicIndex = -1;
         musicSource.clip = clip.audio;
         musicSource.volume = clip.volume * globalMusicVolume;
-        SoundTransition(true, 1.0f);
+        SoundTransition(true, 2.0f);
         musicSource.Play();
     }
 

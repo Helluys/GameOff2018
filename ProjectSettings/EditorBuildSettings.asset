@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d2d4fb457c112cb4ea2fe4033c6ac29a
   - enabled: 1
+    path: Assets/Scenes/TutorialLevel.unity
+    guid: 166bcd1a2a5dd4f48861b29b94e229a1
+  - enabled: 1
     path: Assets/Scenes/BenTest2.unity
     guid: bfb3ba3dd910f5a46a70a3faf5f7e1ec
   - enabled: 1
