@@ -94,7 +94,12 @@ public class JumperBehaviour : EnemyBehaviour {
 
                     // Because math
                     float x = (previousCornerDistance / deltaCornerDistance) * (Mathf.Sqrt(cos_theta - 1 + (jumpDistSq / prevDistSq)) - cos_theta);
-                    jumpTargetPosition = path.corners[i - 1] + (path.corners[i] - path.corners[i - 1]) * x;
+
+                    // Protect from bugs
+                    if (float.IsNaN(x))
+                        x = 1f;
+
+                    jumpTargetPosition = path.corners[i - 1] + (path.corners[i] - path.corners[i - 1]) * Mathf.Clamp01(x);
 
                     return true;
                 }

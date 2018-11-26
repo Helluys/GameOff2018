@@ -1,23 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
 public class DialogUI : MonoBehaviour {
 
+    public event Action OnDisplayFinished;
+
+    [SerializeField] private Text textUI;
     [SerializeField] [Range(0.1f, 1000f)] private float displaySpeed;
 
-    private Text textUI;
     private WaitForSeconds waitForDisplayDelay;
     private Coroutine displayTextCoroutine;
 
     private void Start () {
-        textUI = GetComponent<Text>();
         waitForDisplayDelay = new WaitForSeconds(1f / displaySpeed);
     }
 
     public void SetDisplaySpeed(float speed) {
         waitForDisplayDelay = new WaitForSeconds(1f / displaySpeed);
+    }
+
+    internal void DisplayText (object memoryTutorialText) {
+        throw new NotImplementedException();
     }
 
     public void DisplayText (string text) {
@@ -34,5 +39,8 @@ public class DialogUI : MonoBehaviour {
             textUI.text += text[i];
             yield return waitForDisplayDelay;
         }
+
+        if (OnDisplayFinished != null)
+            OnDisplayFinished();
     }
 }

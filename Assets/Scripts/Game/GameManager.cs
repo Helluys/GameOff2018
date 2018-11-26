@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private SceneName nextLevel = SceneName.Level2;
 
-    private ExitPortal exitPortal;
+    [SerializeField] private bool tutorial = false;
+
+    public ExitPortal exitPortal { get; private set; }
     public bool levelEnded { get; private set; }
 
     private List<Spawner> spawners = new List<Spawner>();
@@ -28,6 +30,9 @@ public class GameManager : MonoBehaviour {
         spawners.AddRange(FindObjectsOfType<Spawner>());
 
         levelEnded = false;
+
+        if(!tutorial)
+            player.GetComponent<SequenceManager>().Invoke("StartGamePhase", 2f);
     }
 
     private void Update () {
@@ -35,7 +40,7 @@ public class GameManager : MonoBehaviour {
             timer += Time.deltaTime;
         }
 
-        if (timer > survivalTime && !exitPortal.active) {
+        if (timer > survivalTime && !exitPortal.active && !tutorial) {
             exitPortal.active = true;
         }
     }
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour {
         enemies.Remove(enemy);
     }
 
-    internal void EndLevel () {
+    public void EndLevel () {
         levelEnded = true;
         // Make the player unreachable by enemies
         player.transform.position += Vector3.up * 10;
@@ -65,7 +70,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartNextLevel() {
-        SceneController.Instance.storedItems = ItemManager.Instance.RevtrieveSelectedItems();
+        SceneController.Instance.storedItems = ItemManager.Instance.RetrieveSelectedItems();
         SceneController.Instance.LoadScene(nextLevel);
     }
 }

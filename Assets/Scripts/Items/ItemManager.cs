@@ -93,7 +93,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
             player.items.SetItem(cardHolders[1].card.item, 1);    
     }
 
-    public List<Item> RevtrieveSelectedItems() {
+    public List<Item> RetrieveSelectedItems() {
 
         Item item1 = new Item();
         Item item2 = new Item();

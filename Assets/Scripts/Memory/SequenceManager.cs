@@ -7,6 +7,7 @@ public class SequenceManager : MonoBehaviour {
     public SequenceDisplay display;
     public SequencePlayer player;
 
+    private Coroutine gamePhaseCoroutine;
 
     private void Start () {
         sequence = new Sequence(4);
@@ -14,12 +15,15 @@ public class SequenceManager : MonoBehaviour {
         player.OnValidKeyPress += OnValidKey;
         player.OnSuccess += OnSuccess;
         player.OnFail += OnFail;
-
-        Invoke("StartGamePhase", 2f);
     }
 
-    private void StartGamePhase() {
-        StartCoroutine(EGamePhase(true));
+    public void StartGamePhase () {
+        gamePhaseCoroutine = StartCoroutine(EGamePhase(true));
+    }
+
+    public void StopGamePhase () {
+        if (gamePhaseCoroutine != null)
+            StopCoroutine(gamePhaseCoroutine);
     }
 
     private void OnKeyPress (InputType input, bool last) {

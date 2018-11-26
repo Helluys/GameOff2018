@@ -1,16 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 using UnityEngine;
 
 public class ExitPortal : MonoBehaviour {
 
+    public event Action OnEnter;
+
     public bool active { get; set; }
     private bool opened = false;
 
-    [SerializeField] private new GameObject particleSystem;
+    [SerializeField] private new ParticleSystem particleSystem;
 
     private void Start () {
         StartCoroutine(AnimateMaterial(GetComponent<MeshRenderer>().materials[1]));
+        GameManager.instance.GetPlayer().sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
     }
 
     private IEnumerator AnimateMaterial (Material portalMaterial) {
@@ -27,18 +31,6 @@ public class ExitPortal : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter (Collider other) {
-        if (other.tag.Equals("Player")) {
-            GameManager.instance.GetPlayer().sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
-        }
-    }
-
-    private void OnTriggerExit (Collider other) {
-        if (other.tag.Equals("Player")) {
-            GameManager.instance.GetPlayer().sequenceManager.player.OnSuccess -= SequencePlayer_OnSuccess;
-        }
-    }
-
     private void OnTriggerStay (Collider other) {
         if (other.tag.Equals("Player") && opened) {
             Enter();
@@ -52,11 +44,15 @@ public class ExitPortal : MonoBehaviour {
 
     private void Open () {
         opened = true;
-        particleSystem.SetActive(true);
+        particleSystem.Play();
         GameManager.instance.GetPlayer().sequenceManager.player.OnSuccess -= SequencePlayer_OnSuccess;
     }
 
     private void Enter () {
+        if (OnEnter != null)
+            OnEnter();
+
+        particleSystem.Play();
         GameManager.instance.EndLevel();
     }
 }
