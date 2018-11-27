@@ -36,6 +36,12 @@ public class InputManagerUI : MonoBehaviour {
         updateColor = true;
     }
 
+    private void OnDestroy()
+    {
+        InputManager.Instance.KeySetEvent -= UpdateButtonDisplay;
+    }
+
+
     private void SetKey(ButtonTypePair button)
     {
         if (IsWaitingForInput)

@@ -21,7 +21,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
 
     [SerializeField] private GameObject LoadingScreen;
     [SerializeField] private Image loadingBar;
-    [SerializeField] private GameObject loadingIcon;
+    [SerializeField] private LoadingIcon loadingIcon;
     [SerializeField] private Text loadingText;
     [SerializeField] private GameObject skipTuto;
     [SerializeField] private CanvasGroup loadingCanvas;
@@ -95,7 +95,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
         // Load scene asynchronously
         loadingOperation = SceneManager.LoadSceneAsync((int)scene);
         loadingText.text = "Loading...";
-        loadingIcon.SetActive(true);
+        loadingIcon.StartLoading();
         float loadProgress = 0;
         float elapsedTime = 0;
         bool first = true;
@@ -114,7 +114,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
                 if (first) {
                     first = false;
                     SoundController.Instance.PlaySound(SoundName.text);
-                    loadingIcon.SetActive(false);
+                    loadingIcon.StopLoading();
                     loadingText.text = "Press Enter to start";
                     LeanTween.scale(loadingText.rectTransform, 1.05f * Vector3.one, 0.5f).setLoopPingPong().setEaseOutCubic();
                 }
@@ -136,7 +136,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
                 GameManager.instance.GetPlayer().items.SetItem(storedItems[1], 1);
             }
         }
-        loadingIcon.SetActive(false);
+        loadingIcon.StopLoading();
         StartCoroutine(EShowLoadingScreen(false));
         isLoading = false;
     }

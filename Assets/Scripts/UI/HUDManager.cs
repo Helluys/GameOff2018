@@ -14,6 +14,8 @@ public class HUDManager : MonoBehaviour {
 
     [SerializeField] private Color hitEffectColor;
     [SerializeField] private float hitEffectTime = 1;
+
+    private Color coolDownOriginalColor;
     private Color textureOriginalColor;
     private Coroutine cHitEffect;
 
@@ -21,6 +23,7 @@ public class HUDManager : MonoBehaviour {
     private void Start()
     {
         textureOriginalColor = timotheTexture.color;
+        coolDownOriginalColor = coolDownBar.color;
     }
 
     public void SetItemDisplay(Item item,int index)
@@ -54,7 +57,7 @@ public class HUDManager : MonoBehaviour {
         if (value < 0.25)
             coolDownBar.color = Color.grey;
         else
-            coolDownBar.color = Color.yellow;
+            coolDownBar.color = coolDownOriginalColor;
     }
 
     public void HitEffect()

@@ -247,7 +247,10 @@ MonoBehaviour:
   soundSource: {fileID: 82199063380139662}
   globalMusicVolume: 1
   globalSoundVolume: 0.7
+  globalSpeechVolume: 1
   playlist:
+  - audio: {fileID: 8300000, guid: 13b636b17489e00419cce3d18222005d, type: 3}
+    volume: 1
   - audio: {fileID: 8300000, guid: 7f1426ca42bd58a44944fa4958793317, type: 3}
     volume: 0.4
   - audio: {fileID: 8300000, guid: d1b7299af324ca64f9a62623817cc633, type: 3}
@@ -267,3 +270,5 @@ MonoBehaviour:
     volume: 1
   - audio: {fileID: 8300000, guid: f957de74aac8a4a45a4ca4caf6de13b0, type: 3}
     volume: 1
+  - audio: {fileID: 8300000, guid: de084ad2a8a3ea7448511c530bd5f0b6, type: 3}
+    volume: 0.3

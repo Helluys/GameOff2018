@@ -284,8 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 7c8f35048ec5a734db27ffa176406c2b, type: 2}
-  m_Color: {r: 0, g: 0.7075472, b: 0.6576028, a: 0.8}
+  m_Material: {fileID: 2100000, guid: 131c43dd91105f648855bd0b9bf77e33, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 7c8f35048ec5a734db27ffa176406c2b, type: 2}
+  m_Material: {fileID: 2100000, guid: 6fab65706bebc034d95eb2e241e1b330, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -399,13 +399,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799523720568394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.53822535, b: 0.53822535, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.92957884, g: 1, b: 0.28627455, a: 1}
+  m_Color: {r: 0.18511927, g: 0.6037736, b: 0.59134865, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.39947334, g: 1, b: 0.28627455, a: 1}
+  m_Color: {r: 0.28627455, g: 0.9720548, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -709,32 +709,23 @@ MonoBehaviour:
   healthBar: {fileID: 114343371884597180}
   coolDownBar: {fileID: 114296980644505942}
   timotheTexture: {fileID: 114549024632507854}
-  ItemDisplay1: {fileID: 114997710739947758}
-  ItemDisplay2: {fileID: 114244725952666950}
+  ItemDisplay1: {fileID: 114244725952666950}
+  ItemDisplay2: {fileID: 114997710739947758}
   hitEffectColor: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
   hitEffectTime: 1
-  InspectorDictionnary:
-  - type: 0
-    sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - type: 1
-    sprite: {fileID: 21300000, guid: af1f1b45fa6b5e64894c04ceb8a592f7, type: 3}
-  - type: 2
-    sprite: {fileID: 21300000, guid: e537cc0fa461cc348a3053204ece587d, type: 3}
-  - type: 3
-    sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &114997710739947758
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1475585747868258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.53822535, b: 0.53822535, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

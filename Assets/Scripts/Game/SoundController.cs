@@ -30,7 +30,6 @@ public class SoundController : SingletonBehaviour<SoundController> {
     public float globalSpeechVolume = 1;
 
     //Playlist (sound & musics) and their volumes
-    [SerializeField] private AudioVolumePair menuSong;
     [SerializeField] private AudioVolumePair[] playlist;
     [SerializeField] private AudioVolumePair[] sounds;
 
@@ -49,7 +48,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
     #region Unity
 
     private void Start () {
-        PlayMusic(menuSong);
+        PlayMusicFromPlaylist(0);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -64,19 +63,19 @@ public class SoundController : SingletonBehaviour<SoundController> {
         switch (scene)
         {
             case SceneName.Menu:
-                PlayMusic(menuSong);
+                PlayMusicFromPlaylist(0);
                 break;
 
             case SceneName.Tutorial:
-                PlayMusic(playlist[2]);
+                PlayMusicFromPlaylist(3);
                 break;
 
             case SceneName.Level1:
-                PlayMusic(playlist[0]);
+                PlayMusicFromPlaylist(1);
                 break;
 
             case SceneName.Level2:
-                PlayMusic(playlist[1]);
+                PlayMusicFromPlaylist(2);
                 break;
         }
         musicSource.loop = true;
@@ -112,7 +111,7 @@ public class SoundController : SingletonBehaviour<SoundController> {
     public void PlayMusicFromPlaylist (int index) {
         PlayMusic(playlist[index]);
         currentMusicIndex = index;
-        cNextMusic = StartCoroutine(PlayNextMusic(index));
+       // cNextMusic = StartCoroutine(PlayNextMusic(index));
     }
 
     /// <summary>
