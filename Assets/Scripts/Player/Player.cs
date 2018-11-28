@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     public PlayerState state { get; private set; }
     public SequenceManager sequenceManager;
     public HUDManager hud;
+    public bool alive { get; private set; }
 
     [SerializeField] private PlayerStatistics _sharedStatistics = null;
     [SerializeField] private PlayerStatistics.Instance _instanceStatistics = null;
@@ -30,20 +31,18 @@ public class Player : MonoBehaviour {
         items.OnStart(this);
 
         OnDeath += Player_OnDeath;
+        alive = true;
     }
 
     private void Update () {
-        movement.OnUpdate();
-        items.OnUpdate();
-
-        if (Input.GetKeyDown(KeyCode.I)) {
-            items.SetItem(ItemManager.Instance.GetRandomItem(), 0);
-            items.SetItem(ItemManager.Instance.GetRandomItem(), 1);
+        if (alive) {
+            movement.OnUpdate();
+            items.OnUpdate();
         }
     }
 
     public void Damage (float amount) {
-        if (amount > instanceStatistics.health && OnDeath != null) {
+        if (alive && amount > instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }
         instanceStatistics.health = Mathf.Max(instanceStatistics.health - amount, 0f);
@@ -55,13 +54,13 @@ public class Player : MonoBehaviour {
         instanceStatistics.health = Mathf.Min(instanceStatistics.health + amount, sharedStatistics.maxHealth);
     }
 
-    public void StaminaRegen(float amount)
-    {
+    public void StaminaRegen (float amount) {
         instanceStatistics.stamina = Mathf.Min(instanceStatistics.stamina + amount, sharedStatistics.maxStamina);
     }
 
     private void Player_OnDeath (Player origin) {
-        Debug.Log("Omae wa mou SHINDEIRU!!!");
-        instanceStatistics.health = sharedStatistics.maxHealth;
+        animationManager.animator.SetTrigger("die");
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        alive = false;
     }
 }

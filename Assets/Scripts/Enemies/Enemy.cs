@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour {
     private void Start () {
         if (resetInstanceStatisticsOnStart) {
             sharedStatistics.ApplyStatistics(this);
+            _instanceStatistics.Reset(sharedStatistics);
         }
         rigidbody = GetComponent<Rigidbody>();
         animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
