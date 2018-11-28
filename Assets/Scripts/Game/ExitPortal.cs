@@ -25,7 +25,8 @@ public class ExitPortal : MonoBehaviour {
         yield return new WaitUntil(() => active);
 
         while (true) {
-            color.a = 0.3f * Mathf.Sin(3f * Time.time) + (opened ? 0.7f : 0.3f);
+            color = opened ? Color.yellow : Color.cyan;
+            color.a = 0.4f * Mathf.Sin(3f * Time.time) + 0.5f;
             portalMaterial.color = color;
             yield return null;
         }

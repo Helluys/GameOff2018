@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44307947, g: 0.4922846, b: 0.5719948, a: 1}
+  m_IndirectSpecularColor: {r: 0.44307962, g: 0.49228454, b: 0.5719953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 5d9e05088caca6e49a53e383d0be8617,
+  m_LightingDataAsset: {fileID: 112000002, guid: c971d43a0c1b1264c8a11e25b95e840b,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -2351,7 +2351,7 @@ Prefab:
         type: 2}
       propertyPath: itemManagementPanel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1618699846}
     - target: {fileID: 114076654031829750, guid: e66859ed427c46f42afeaf0ac10ec5ec,
         type: 2}
       propertyPath: itemInfo
@@ -2585,7 +2585,7 @@ Prefab:
     - target: {fileID: 224819122656382672, guid: 5193439e460ecfc45adafa92d7303aec,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224819122656382672, guid: 5193439e460ecfc45adafa92d7303aec,
         type: 2}
@@ -2626,15 +2626,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114784820705477452, guid: 5193439e460ecfc45adafa92d7303aec,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1905610813}
-    - target: {fileID: 1590984761444940, guid: 5193439e460ecfc45adafa92d7303aec, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1222570435598552, guid: 5193439e460ecfc45adafa92d7303aec, type: 2}
       propertyPath: m_IsActive
@@ -3585,6 +3576,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1618699846 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1750090317096564, guid: 5193439e460ecfc45adafa92d7303aec,
+    type: 2}
+  m_PrefabInternal: {fileID: 1010573624}
 --- !u!1001 &1716780227
 Prefab:
   m_ObjectHideFlags: 0
@@ -3928,12 +3924,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224816681291297094, guid: 113828c97984af94bbe154de41747adf,
     type: 2}
   m_PrefabInternal: {fileID: 1217478110}
---- !u!114 &1905610813 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114023736713576286, guid: e66859ed427c46f42afeaf0ac10ec5ec,
-    type: 2}
-  m_PrefabInternal: {fileID: 922432199}
-  m_Script: {fileID: 11500000, guid: dca03cc1f14135b4dbf5c36e0f1f703d, type: 3}
 --- !u!4 &1918174633 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4267676188016976, guid: 87b959967994d9141b91b24b6b8d0a1f,

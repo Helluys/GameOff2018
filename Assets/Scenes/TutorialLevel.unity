@@ -2040,7 +2040,7 @@ MonoBehaviour:
   movementTutorialText: Timothe, you got trapped inside the SimonJi! Do not worry,
     I will help you get out. Can you move around?
   step1Wall: {fileID: 574512733}
-  rollTutorialText: Good! Let's get out of here. See those robots there? Be carfeul,
+  rollTutorialText: Good! Let's get out of here. See those robots there? Be careful,
     they will hunt you down. Luckily, those seem inactive. You will have to roll through
     them to pass, can you do it?
   rollValidateZone: {fileID: 1712995032}
@@ -2059,7 +2059,7 @@ MonoBehaviour:
     sense the way out is that way...
   walkValidateZone: {fileID: 671349726}
   portalTutorialText1: 'See the big metallic thing on the ground? That is our way
-    out: the portal! It seems to be not powered right now, but it usually activates
+    out: the portal! It does not seem to be powered right now, but it usually activates
     itself after a while...'
   portalTutorialText2: Yes! Can you see? It activated! It is not fully open yet however.
     You will need to complete a full colour sequence to open it. Let's go!
