@@ -38,6 +38,7 @@ public class InputManagerUI : MonoBehaviour {
 
     private void OnDestroy()
     {
+        if(InputManager.Instance != null)
         InputManager.Instance.KeySetEvent -= UpdateButtonDisplay;
     }
 

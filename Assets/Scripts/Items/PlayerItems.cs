@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerItems{
 
     [SerializeField] private int itemAmount = 2;
-    [SerializeField] private KeyCode[] keys = new KeyCode[2] { KeyCode.A, KeyCode.E };
     private Item[] items;
     private Player player;
+
+    private PickUpItem overItem;
 
     public void OnStart(Player player)
     {
@@ -20,10 +21,32 @@ public class PlayerItems{
 
     public void OnUpdate()
     {
-        if (InputManager.Instance.IsKeyDown(InputType.Item1))
-            UseItem(0);
-        if (InputManager.Instance.IsKeyDown(InputType.Item2))
-            UseItem(1);
+        if (overItem == null)
+        {
+            if (InputManager.Instance.IsKeyDown(InputType.Item1))
+                UseItem(0);
+            if (InputManager.Instance.IsKeyDown(InputType.Item2))
+                UseItem(1);
+        }
+        else
+        {
+            if (InputManager.Instance.IsKeyDown(InputType.Item1))
+                SwitchItem(0);
+            if (InputManager.Instance.IsKeyDown(InputType.Item2))
+                SwitchItem(1);
+        }
+    }
+
+    public void SetOverItem(PickUpItem pickUp)
+    {
+        overItem = pickUp;
+    }
+
+    public void SwitchItem(int index)
+    {
+        Item temp = items[index];
+        SetItem(overItem.GetItem(), index);
+        overItem.SetUp(temp);
     }
 
     public void SetItem(Item item,int index)

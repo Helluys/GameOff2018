@@ -58,6 +58,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
         StartCoroutine(ELoadScene(scene));
     }
 
+
     public void SkipTutorial()
     {
         skipTuto.SetActive(false);

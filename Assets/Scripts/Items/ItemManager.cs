@@ -16,6 +16,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     [SerializeField] private ItemUICardHolder[] cardHolders;
     [SerializeField] private RectTransform[] cardStands;
     [SerializeField] private ItemUICard itemCard;
+    [SerializeField] private PickUpItem pickUpItem;
     [SerializeField] private GameObject itemManagementPanel;
     [SerializeField] private Text itemInfo;
 
@@ -25,10 +26,15 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     [SerializeField] private Color mediumColor;
     [SerializeField] private Color strongColor;
 
+    [Header("Item spawn")]
+    [SerializeField] private float spawnPeriod = 30;
+    [SerializeField] private ItemSpawn[] spawnablePosition;
+    
     private Dictionary<ItemType, Sprite> itemsSpritesDictionnary;
     private Dictionary<ItemType, AudioClip> itemsSoundsDictionnary;
     Player player { get { return GameManager.instance.GetPlayer(); } }
     private List<ItemUICard> cards;
+    private List<ItemSpawn> emptySpawn;
 
     public override void Awake()
     {
@@ -36,11 +42,50 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
         itemsSpritesDictionnary = new Dictionary<ItemType, Sprite>();
         itemsSoundsDictionnary = new Dictionary<ItemType, AudioClip>();
         cards = new List<ItemUICard>();
+        emptySpawn = new List<ItemSpawn>();
         for (int i = 0; i < InspectorDictionnary.Length; i++)
         {
             itemsSpritesDictionnary.Add(InspectorDictionnary[i].type, InspectorDictionnary[i].sprite);
             itemsSoundsDictionnary.Add(InspectorDictionnary[i].type, InspectorDictionnary[i].sound);
         }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(EItemSpawn());
+    }
+
+    private void SpawnRandomItem()
+    {
+        if (spawnablePosition.Length < 1)
+            return;
+
+        emptySpawn.Clear();
+        foreach(ItemSpawn spawn in spawnablePosition)
+        {
+            if (spawn.isEmpty)
+                emptySpawn.Add(spawn);
+        }
+
+        if (emptySpawn.Count < 1)
+            return;
+        
+        int rand = Random.Range(0, emptySpawn.Count);
+        emptySpawn[rand].SetItem(CreatePickUpItem(GetRandomItem(), emptySpawn[rand].position));
+    }
+
+    IEnumerator EItemSpawn()
+    {
+        yield return new WaitForSeconds(spawnPeriod);
+        SpawnRandomItem();
+        StartCoroutine(EItemSpawn());
+    }
+
+    public PickUpItem CreatePickUpItem(Item item, Vector3 position)
+    {
+        PickUpItem pickUp = Instantiate(pickUpItem, position, Quaternion.identity);
+        pickUp.SetUp(item);
+        return pickUp;
     }
 
     public void SetUpItem(Item item)
