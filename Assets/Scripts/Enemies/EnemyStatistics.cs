@@ -20,8 +20,12 @@ public class EnemyStatistics : ScriptableObject {
     public class Instance {
         public float health;
 
-        public Instance (PlayerStatistics origin) {
-            health = origin.maxHealth;
+        public Instance (EnemyStatistics origin) {
+            Reset(origin);
+        }
+
+        public void Reset (EnemyStatistics sharedStatistics) {
+            health = sharedStatistics.maxHealth;
         }
     }
 
