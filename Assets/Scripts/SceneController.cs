@@ -50,14 +50,16 @@ public class SceneController : SingletonBehaviour<SceneController> {
 
         currentScene = scene;
         StartCoroutine(EShowLoadingScreen(true));
-
-        if (scene == SceneName.Tutorial)
-            skipTuto.SetActive(true);
-        else
-            skipTuto.SetActive(false);
         StartCoroutine(ELoadScene(scene));
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if ((SceneName)level == SceneName.Tutorial)
+            skipTuto.SetActive(true);
+        else
+            skipTuto.SetActive(false);
+    }
 
     public void SkipTutorial()
     {

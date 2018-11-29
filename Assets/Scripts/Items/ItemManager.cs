@@ -28,12 +28,12 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
 
     [Header("Item spawn")]
     [SerializeField] private float spawnPeriod = 30;
-    [SerializeField] private ItemSpawn[] spawnablePosition;
     
     private Dictionary<ItemType, Sprite> itemsSpritesDictionnary;
     private Dictionary<ItemType, AudioClip> itemsSoundsDictionnary;
     Player player { get { return GameManager.instance.GetPlayer(); } }
     private List<ItemUICard> cards;
+    private ItemSpawn[] spawnablePosition;
     private List<ItemSpawn> emptySpawn;
 
     public override void Awake()
@@ -52,6 +52,7 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
 
     private void Start()
     {
+        spawnablePosition = GameObject.FindObjectsOfType<ItemSpawn>();
         StartCoroutine(EItemSpawn());
     }
 
@@ -78,6 +79,8 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
     {
         yield return new WaitForSeconds(spawnPeriod);
         SpawnRandomItem();
+        if (spawnablePosition.Length < 1)
+            yield break;
         StartCoroutine(EItemSpawn());
     }
 

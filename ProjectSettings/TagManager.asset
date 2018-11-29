@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - Attack
   - Terrain
+  - ItemSpawn
   layers:
   - Default
   - TransparentFX
