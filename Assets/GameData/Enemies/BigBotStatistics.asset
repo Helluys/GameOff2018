@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2552db787ede014d80445cf2602a271, type: 3}
   m_Name: BigBotStatistics
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 120
   acceleration: 100
   speed: 30
   angularAcceleration: 50
   stoppingDistance: 0
   attackDamage: 10
-  attackRange: 5
+  attackRange: 7.5

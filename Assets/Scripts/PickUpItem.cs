@@ -8,6 +8,7 @@ public class PickUpItem : MonoBehaviour {
     [SerializeField] private Image display;
     [SerializeField] private GameObject display3D;
     [SerializeField] private float animationSpeed = 1;
+    [SerializeField] private ParticleSystem particles;
 
     private Item item;
     private Player player;
@@ -52,14 +53,22 @@ public class PickUpItem : MonoBehaviour {
         if (playerItems[0].type == ItemType.Undefined)
         {
             player.items.SetItem(item, 0);
-            Destroy(gameObject);
             player.items.SetOverItem(null);
+            DestroyPickUp();
         }
         else if (playerItems[1].type == ItemType.Undefined)
         {
             player.items.SetItem(item, 1);
-            Destroy(gameObject);
             player.items.SetOverItem(null);
+            DestroyPickUp();
         }
+    }
+
+    private void DestroyPickUp()
+    {
+        particles.Stop();
+        particles.gameObject.transform.parent = transform.parent;
+        Destroy(particles.gameObject, 2.0f);
+        Destroy(gameObject);
     }
 }

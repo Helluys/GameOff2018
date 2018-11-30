@@ -16,7 +16,7 @@ MonoBehaviour:
   aoeTargetPrefab: {fileID: 1498253257303468, guid: 0b434c8940986ab4b82e5cc6913a60da,
     type: 2}
   jumpingDistance: 20
-  jumpTime: 0.4
+  jumpTime: 0.8
   jumpHeightCurve:
     serializedVersion: 2
     m_Curve:

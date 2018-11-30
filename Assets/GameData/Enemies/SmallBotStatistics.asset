@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2552db787ede014d80445cf2602a271, type: 3}
   m_Name: SmallBotStatistics
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 70
   acceleration: 100
   speed: 20
   angularAcceleration: 50

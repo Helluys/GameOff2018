@@ -59,6 +59,9 @@ public class SceneController : SingletonBehaviour<SceneController> {
             skipTuto.SetActive(true);
         else
             skipTuto.SetActive(false);
+
+        if ((SceneName)level == SceneName.Menu && storedItems != null)
+            storedItems.Clear();
     }
 
     public void SkipTutorial()

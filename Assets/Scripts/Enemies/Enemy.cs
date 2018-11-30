@@ -37,8 +37,6 @@ public class Enemy : MonoBehaviour {
             StartCoroutine(behaviour.Run());
         }
         behaviours = instantiatedBehaviours;
-
-        GameManager.instance.AddEnemy(this);
         OnDeath += Enemy_OnDeath;
     }
 
@@ -54,7 +52,7 @@ public class Enemy : MonoBehaviour {
             OnDamage(this, amount);
         }
 
-        if (amount > instanceStatistics.health && OnDeath != null) {
+        if (amount >= instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }
 
@@ -66,7 +64,8 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Enemy_OnDeath (Enemy origin) {
-        GameManager.instance.RemoveEnemy(this);
+        hitEffect.transform.parent = transform.parent;
+        Destroy(hitEffect.gameObject, 2.0f);
         Destroy(gameObject);
     }
 }

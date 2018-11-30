@@ -7,17 +7,19 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private Player player = null;
     [SerializeField] private int maximumMonsterCount = 30;
+
+    [SerializeField] private int[] maxEntityCount = new int[] {10,10,10};
+    public int[] MaxEntityCount { get { return maxEntityCount;}}
+    private int[] entityCount = new int[] { 0, 0, 0 };
+
     [SerializeField] private float survivalTime = 30f;
-
     [SerializeField] private SceneName nextLevel = SceneName.Level2;
-
     [SerializeField] private bool tutorial = false;
 
-    public ExitPortal exitPortal { get; private set; }
+    public ExitPortal exitPortal { get; private set;}
     public bool levelEnded { get; private set; }
 
     private List<Spawner> spawners = new List<Spawner>();
-    private List<Enemy> enemies = new List<Enemy>();
 
     public float timer { get; private set; }
     public int killCount { get; private set; }
@@ -43,23 +45,31 @@ public class GameManager : MonoBehaviour {
         if (timer > survivalTime && !exitPortal.active && !tutorial) {
             exitPortal.active = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            string str = "";
+            for (int i = 0; i < entityCount.Length; i++)
+                str += entityCount[i] + " ";
+            Debug.Log(str);
+        }
     }
 
     public Player GetPlayer () {
         return player;
     }
 
-    public bool AllowMonsterCreation () {
-        return enemies.Count < maximumMonsterCount;
+    public bool AllowMonsterCreation (int entityIndex) {
+        return entityCount[entityIndex] < maxEntityCount[entityIndex];
     }
 
-    public void AddEnemy (Enemy enemy) {
-        enemies.Add(enemy);
+    public void AddEnemy (int entityIndex) {
+        entityCount[entityIndex]++;
     }
 
-    public void RemoveEnemy (Enemy enemy) {
+    public void RemoveEnemy (int entityIndex) {
         killCount++;
-        enemies.Remove(enemy);
+        entityCount[entityIndex]--;
     }
 
     public void EndLevel () {

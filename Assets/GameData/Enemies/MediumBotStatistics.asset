@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2552db787ede014d80445cf2602a271, type: 3}
   m_Name: MediumBotStatistics
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 20
   acceleration: 100
-  speed: 20
+  speed: 35
   angularAcceleration: 50
   stoppingDistance: 0
   attackDamage: 10

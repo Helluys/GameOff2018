@@ -11,9 +11,9 @@ public class Spawner : MonoBehaviour {
     [SerializeField] private bool loop;
     [SerializeField] private float initialDelay;
 
-    private int currentSequenceIndex;
+    private int currentSequenceIndex = 0;
     private float nextSpawnTime;
-    private bool ended;
+    private bool ended = false;
 
     private void Start () {
         if (spawnSequence.count == 0)
@@ -22,15 +22,26 @@ public class Spawner : MonoBehaviour {
             nextSpawnTime = initialDelay + spawnSequence[0].delay;
     }
 
-    private void Update () {
-        if (!ended && Time.time > nextSpawnTime && GameManager.instance.AllowMonsterCreation()) {
-            Instantiate(spawnableObjects[spawnSequence[currentSequenceIndex].entityIndex], spawnTransform.position, spawnTransform.rotation);
+    private int entityIndex;
 
-            if (spawnEffect != null)
-                Instantiate(spawnEffect, spawnTransform.position, spawnTransform.rotation);
+    private void Update () {
+
+        if (!ended && Time.time > nextSpawnTime)
+        {
+            entityIndex = spawnSequence[currentSequenceIndex].entityIndex;
+            if (GameManager.instance.AllowMonsterCreation(entityIndex))
+            {
+                GameObject go = Instantiate(spawnableObjects[entityIndex], spawnTransform.position, spawnTransform.rotation);
+                GameManager.instance.AddEnemy(entityIndex);
+                go.GetComponent<Enemy>().OnDeath += (Enemy enemy) => GameManager.instance.RemoveEnemy(entityIndex);
+
+                if (spawnEffect != null)
+                    Instantiate(spawnEffect, spawnTransform.position, spawnTransform.rotation);
+            }
 
             currentSequenceIndex++;
-            if (currentSequenceIndex >= spawnSequence.count) {
+            if (currentSequenceIndex >= spawnSequence.count)
+            {
                 if (loop)
                     currentSequenceIndex = 0;
                 else

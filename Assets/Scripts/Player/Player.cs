@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour {
@@ -13,16 +15,19 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private PlayerStatistics _sharedStatistics = null;
     [SerializeField] private PlayerStatistics.Instance _instanceStatistics = null;
-
     [SerializeField] private PlayerMovement movement = null;
     public PlayerItems items = null;
     public PlayerCombat combat = null;
+
+    [SerializeField] Material mat;
+    [SerializeField] private float hitInvicibilityTime = 1.0f;
 
     public event System.Action<Player> OnDeath;
 
     private void Start () {
         animationManager = transform.Find("Graphics").GetComponent<AnimationManager>();
         state = new PlayerState();
+        state.isBlindToDamage = false;
 
         sharedStatistics.ApplyStatistics(this);
 
@@ -32,6 +37,7 @@ public class Player : MonoBehaviour {
 
         OnDeath += Player_OnDeath;
         alive = true;
+        UpdateMatColor(0);
     }
 
     private void Update () {
@@ -45,9 +51,28 @@ public class Player : MonoBehaviour {
         if (alive && amount > instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }
+
         instanceStatistics.health = Mathf.Max(instanceStatistics.health - amount, 0f);
         hud.UpdateHealtBar(instanceStatistics.health / sharedStatistics.maxHealth);
         hud.HitEffect();
+        StartCoroutine(EBlindToDamage());
+    }
+
+    private IEnumerator EBlindToDamage()
+    {
+        state.isBlindToDamage = true;
+        gameObject.layer = LayerMask.NameToLayer("GhostPlayer");
+        LeanTween.value(gameObject, UpdateMatColor, 0, 1, 0.1f).setLoopPingPong();
+        yield return new WaitForSeconds(hitInvicibilityTime);
+        LeanTween.cancel(gameObject);
+        UpdateMatColor(0);
+        state.isBlindToDamage = false;
+        gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    private void UpdateMatColor(float val)
+    {
+        mat.color = Color.Lerp(Color.white, Color.black, val);
     }
 
     public void Heal (float amount) {

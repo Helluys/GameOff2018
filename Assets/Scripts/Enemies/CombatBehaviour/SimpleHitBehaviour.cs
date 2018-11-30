@@ -34,7 +34,7 @@ public class SimpleHitBehaviour : EnemyBehaviour {
     private void AnimationListener (string eventName) {
         if (eventName.Equals("attackEvent")) {
             isAttacking = false;
-            if (!player.state.isRolling && IsPlayerInRange()) {
+            if (!player.state.isRolling && IsPlayerInRange() && !player.state.isBlindToDamage) {
                 player.Damage(enemy.sharedStatistics.attackDamage);
             }
         }
