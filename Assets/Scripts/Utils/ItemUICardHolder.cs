@@ -12,7 +12,7 @@ public class ItemUICardHolder : MonoBehaviour {
         rect = GetComponent<RectTransform>();
     }
 
-    public void SetCard(ItemUICard card,Vector3 position)
+    public void SetCard(ItemUICard card,Vector3 position,bool sound = false)
     {
         if (this.card != null)
         {
@@ -22,6 +22,7 @@ public class ItemUICardHolder : MonoBehaviour {
 
         this.card = card;
         this.card.isDragable = false;
-        SoundController.Instance.PlaySound(SoundName.UIButton2);
+        if(sound)
+            SoundController.Instance.PlaySound(SoundName.UIButton4);
     }
 }

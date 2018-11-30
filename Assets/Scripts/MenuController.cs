@@ -52,27 +52,27 @@ public class MenuController : MonoBehaviour {
     public void OpenInputSettings()
    {
         GoToPos(2, 2);
-        SoundController.Instance.PlaySound(SoundName.UIButton1);
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
         Invoke("Controls", 0.5f);
    }
 
     public void OpenOptionsSettings()
     {
         GoToPos(3, 2);
-        SoundController.Instance.PlaySound(SoundName.UIButton1);
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
         Invoke("Preferences", 0.5f);
     }
 
     public void OpenCredits()
     {
         GoToPos(4, 2);
-        SoundController.Instance.PlaySound(SoundName.UIButton1);
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
         Invoke("MadeMe", 0.5f);
     }
 
     public void LoadPlayScene()
     {
-        SoundController.Instance.PlaySound(SoundName.UIButton1);
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
         SceneController.Instance.LoadScene(SceneName.Tutorial);
     }
 
@@ -90,7 +90,7 @@ public class MenuController : MonoBehaviour {
     {
         if (!InputManager.Instance.isWaitingForInput)
             GoToPos(1, 2);
-        SoundController.Instance.PlaySound(SoundName.UIButton3);
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
     }
 
     private void LerpUpdate(float val)

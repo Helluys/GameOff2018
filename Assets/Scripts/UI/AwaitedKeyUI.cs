@@ -25,7 +25,7 @@ public class AwaitedKeyUI : MonoBehaviour {
     private void Update () {
         if (InputManager.Instance.IsKeyDown(awaitedInput) && destroyOnPress)
         {
-            SoundController.Instance.PlaySound(SoundName.button1);
+            SoundController.Instance.PlaySound(SoundName.UIButton2);
             Destroy(gameObject);
         }
     }

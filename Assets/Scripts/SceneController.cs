@@ -68,7 +68,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
     {
         skipTuto.SetActive(false);
         TutorialManager.Instance.Skip();
-        SoundController.Instance.PlaySound(SoundName.UIButton1);
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
     }
 
     public void BackToMenu()
@@ -121,7 +121,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
             {
                 if (first) {
                     first = false;
-                    SoundController.Instance.PlaySound(SoundName.UIButton2);
+                    SoundController.Instance.PlaySound(SoundName.UIButton1);
                     loadingIcon.StopLoading();
                     loadingText.text = "Press Enter to start";
                     LeanTween.scale(loadingText.rectTransform, 1.05f * Vector3.one, 0.5f).setLoopPingPong().setEaseOutCubic();

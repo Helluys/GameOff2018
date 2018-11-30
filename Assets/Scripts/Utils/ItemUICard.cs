@@ -51,7 +51,7 @@ public class ItemUICard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             dropZone = cardHolders[i].rect;
             if (CustomUtils.IsPosInRect(dropZone, eventData.position))
             {
-                cardHolders[i].SetCard(this, originalPos);
+                cardHolders[i].SetCard(this, originalPos,true);
                 GoToPosition(dropZone.localPosition);
                 return;
             }
