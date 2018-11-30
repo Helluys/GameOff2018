@@ -45,14 +45,6 @@ public class GameManager : MonoBehaviour {
         if (timer > survivalTime && !exitPortal.active && !tutorial) {
             exitPortal.active = true;
         }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            string str = "";
-            for (int i = 0; i < entityCount.Length; i++)
-                str += entityCount[i] + " ";
-            Debug.Log(str);
-        }
     }
 
     public Player GetPlayer () {
@@ -80,6 +72,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartNextLevel() {
+        SoundController.Instance.PlaySound(SoundName.UIButton1);
         SceneController.Instance.storedItems = ItemManager.Instance.RetrieveSelectedItems();
         SceneController.Instance.LoadScene(nextLevel);
     }

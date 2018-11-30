@@ -245,9 +245,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 82558770510903722}
   soundSource: {fileID: 82199063380139662}
-  globalMusicVolume: 1
+  globalMusicVolume: 0.5
   globalSoundVolume: 0.7
-  globalSpeechVolume: 1
+  globalSpeechVolume: 0.5
   playlist:
   - audio: {fileID: 8300000, guid: 13b636b17489e00419cce3d18222005d, type: 3}
     volume: 1
@@ -272,3 +272,13 @@ MonoBehaviour:
     volume: 1
   - audio: {fileID: 8300000, guid: de084ad2a8a3ea7448511c530bd5f0b6, type: 3}
     volume: 0.3
+  - audio: {fileID: 8300000, guid: c658b6e711bcfd84aa2e25fd2bb90d40, type: 3}
+    volume: 0.15
+  - audio: {fileID: 8300000, guid: ad71845aefcf14142a23b156c2efb0f9, type: 3}
+    volume: 0.5
+  - audio: {fileID: 8300000, guid: 3209cfeb8d9604d4d98bbda6aba6741f, type: 3}
+    volume: 0.5
+  - audio: {fileID: 8300000, guid: 80c2bf3e96efc3d49927b7872c7ece69, type: 3}
+    volume: 0.4
+  - audio: {fileID: 8300000, guid: 36141760eb9e137499a7fbc374c440b2, type: 3}
+    volume: 1

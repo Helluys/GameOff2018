@@ -22,5 +22,6 @@ public class ItemUICardHolder : MonoBehaviour {
 
         this.card = card;
         this.card.isDragable = false;
+        SoundController.Instance.PlaySound(SoundName.UIButton2);
     }
 }

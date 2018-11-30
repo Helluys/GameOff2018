@@ -93,8 +93,6 @@ public class TutorialManager : SingletonBehaviour<TutorialManager> {
         sequenceManager.player.OnValidKeyPress -= SequencePlayer_OnValidKeyPress;
         stepOk = false;
 
-        SoundController.Instance.PlaySound(SoundName.sequenceSuccess);
-
         // Memory : Part 2
         sequenceManager.player.OnSuccess += SequencePlayer_OnSuccess;
         dialogUI.DisplayText(memoryTutorialText2);

@@ -142,7 +142,8 @@ public class InputManager : SingletonBehaviour<InputManager> {
         Keys[type] = pressedKey;
         pressedKey = KeyCode.None;
         isWaitingForInput = false;
-        if(KeySetEvent != null)
+        SoundController.Instance.PlaySound(SoundName.UIButton2);
+        if (KeySetEvent != null)
         KeySetEvent(type);
     }
 }

@@ -60,6 +60,7 @@ public class Player : MonoBehaviour {
 
     private IEnumerator EBlindToDamage()
     {
+        SoundController.Instance.PlaySound(SoundName.TimotheHit);
         state.isBlindToDamage = true;
         gameObject.layer = LayerMask.NameToLayer("GhostPlayer");
         LeanTween.value(gameObject, UpdateMatColor, 0, 1, 0.1f).setLoopPingPong();

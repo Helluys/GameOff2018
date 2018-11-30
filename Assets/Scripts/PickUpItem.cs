@@ -9,6 +9,7 @@ public class PickUpItem : MonoBehaviour {
     [SerializeField] private GameObject display3D;
     [SerializeField] private float animationSpeed = 1;
     [SerializeField] private ParticleSystem particles;
+    [SerializeField] private AudioClip itemAcquired;
 
     private Item item;
     private Player player;
@@ -49,6 +50,9 @@ public class PickUpItem : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.gameObject.tag != "Player")
+            return;
+
         Item[] playerItems = player.items.GetItems();
         if (playerItems[0].type == ItemType.Undefined)
         {
@@ -66,6 +70,7 @@ public class PickUpItem : MonoBehaviour {
 
     private void DestroyPickUp()
     {
+        SoundController.Instance.Say(itemAcquired);
         particles.Stop();
         particles.gameObject.transform.parent = transform.parent;
         Destroy(particles.gameObject, 2.0f);

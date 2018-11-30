@@ -9,7 +9,12 @@ public enum SoundName {
     button3 = 3,
     sequenceSuccess = 4,
     sequenceFail = 5,
-    text = 6
+    text = 6,
+    TimotheHit = 7,
+    UIButton1 = 8,
+    UIButton2 = 9,
+    UIButton3 = 10,
+    UIButton4 = 11
 }
 
 [System.Serializable]
