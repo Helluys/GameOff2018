@@ -2437,6 +2437,10 @@ MonoBehaviour:
   - {fileID: 1123958987}
   - {fileID: 474609815}
   - {fileID: 1520243620}
+  welcome: {fileID: 8300000, guid: 3787f345dcd7f2848b9b914736011c9e, type: 3}
+  controls: {fileID: 8300000, guid: ef2eed6326057454283130ff0849dd5c, type: 3}
+  preferences: {fileID: 8300000, guid: 6b4207d81d6405943b21367cf6c8d6a5, type: 3}
+  madeMe: {fileID: 8300000, guid: fc9eba918e748b541ab872d58b3bc7e5, type: 3}
 --- !u!4 &492410740
 Transform:
   m_ObjectHideFlags: 0

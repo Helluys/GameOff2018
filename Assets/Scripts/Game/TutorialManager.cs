@@ -116,7 +116,7 @@ public class TutorialManager : SingletonBehaviour<TutorialManager> {
 
         // Items
         GameManager.instance.GetPlayer().items.SetItem(new Item_Shield(ItemStrength.Medium), 0);
-        GameManager.instance.GetPlayer().items.SetItem(new Item_StaminaUp(ItemStrength.Medium), 1);
+        GameManager.instance.GetPlayer().items.SetItem(new Item_SequenceReducer(ItemStrength.Medium), 1);
         dialogUI.DisplayText(itemsTutorialText);
         yield return AwaitInput(new List<InputType>() {
             InputType.Item1, InputType.Item2

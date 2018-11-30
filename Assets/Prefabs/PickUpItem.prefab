@@ -257,6 +257,7 @@ MonoBehaviour:
   display3D: {fileID: 1905414748634912}
   animationSpeed: 40
   particles: {fileID: 198695818888822026}
+  itemAcquired: {fileID: 8300000, guid: 6fda3f83788245a42954c25482e89f94, type: 3}
 --- !u!114 &114768758045346314
 MonoBehaviour:
   m_ObjectHideFlags: 1

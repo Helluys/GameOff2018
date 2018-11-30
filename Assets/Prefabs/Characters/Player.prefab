@@ -424,7 +424,7 @@ MonoBehaviour:
     stamina: 100
   movement:
     rollCost: 25
-    staminaRefillSpeed: 10
+    staminaRefillSpeed: 7
   items:
     itemAmount: 2
   combat:
