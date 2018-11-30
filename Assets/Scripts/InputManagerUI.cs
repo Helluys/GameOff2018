@@ -52,6 +52,7 @@ public class InputManagerUI : MonoBehaviour {
         button.button.GetComponentInChildren<Text>().text = "";
         Image image = button.button.GetComponent<Image>();
         DimImage(0.8f, ref image);
+        Debug.Log("7");
         SoundController.Instance.PlaySound(SoundName.UIButton4);
        
     }

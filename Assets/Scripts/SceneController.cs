@@ -24,6 +24,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
     [SerializeField] private LoadingIcon loadingIcon;
     [SerializeField] private Text loadingText;
     [SerializeField] private GameObject skipTuto;
+    [SerializeField] private GameObject backToMenu;
     [SerializeField] private CanvasGroup loadingCanvas;
 
     private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4,SceneName.Tutorial };
@@ -55,12 +56,20 @@ public class SceneController : SingletonBehaviour<SceneController> {
 
     private void OnLevelWasLoaded(int level)
     {
-        if ((SceneName)level == SceneName.Tutorial)
-            skipTuto.SetActive(true);
-        else
-            skipTuto.SetActive(false);
+        SceneName scene = (SceneName)level;
+        switch (scene)
+        {
+            case SceneName.Tutorial:
+                skipTuto.SetActive(true);
+                backToMenu.SetActive(false);
+                break;
+            default:
+                skipTuto.SetActive(false);
+                backToMenu.SetActive(true);
+                break;
+        }
 
-        if ((SceneName)level == SceneName.Menu && storedItems != null)
+        if (scene == SceneName.Menu && storedItems != null)
             storedItems.Clear();
     }
 

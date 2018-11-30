@@ -89,8 +89,12 @@ public class MenuController : MonoBehaviour {
     public void BackToMainView()
     {
         if (!InputManager.Instance.isWaitingForInput)
+        {
             GoToPos(1, 2);
-        SoundController.Instance.PlaySound(SoundName.UIButton4);
+            SoundController.Instance.PlaySound(SoundName.UIButton4);
+        }
+        else
+            SoundController.Instance.PlaySound(SoundName.UIButton3);
     }
 
     private void LerpUpdate(float val)

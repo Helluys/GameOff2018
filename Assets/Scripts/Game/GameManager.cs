@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartNextLevel() {
+        SoundController.Instance.PlaySound(SoundName.UIButton4);
         SceneController.Instance.storedItems = ItemManager.Instance.RetrieveSelectedItems();
         SceneController.Instance.LoadScene(nextLevel);
     }
