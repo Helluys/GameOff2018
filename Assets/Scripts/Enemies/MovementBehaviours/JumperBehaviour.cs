@@ -149,4 +149,10 @@ public class JumperBehaviour : EnemyBehaviour {
         if (eventName.Equals("Jump"))
             state = State.JUMPING;
     }
+
+    private void OnDestroy () {
+        if (aoeTarget != null) {
+            Destroy(aoeTarget);
+        }
+    }
 }
