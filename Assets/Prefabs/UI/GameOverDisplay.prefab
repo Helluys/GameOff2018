@@ -372,7 +372,7 @@ MonoBehaviour:
   killCountText: {fileID: 114514803999677942}
   killCountTextPrefix: 'Enemies shut down: '
   maxSequenceText: {fileID: 114195572710043578}
-  maxSequenceTextPrefix: 'Enemies shut down: '
+  maxSequenceTextPrefix: 'Longest sequence: '
   canvasGroup: {fileID: 225245164198664456}
 --- !u!114 &114610965817726686
 MonoBehaviour:
