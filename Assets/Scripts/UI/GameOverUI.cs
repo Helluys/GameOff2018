@@ -27,11 +27,11 @@ public class GameOverUI : MonoBehaviour {
     private IEnumerator EDisplayScreen () {
         float elapsedTime = 0;
         while (elapsedTime < appearTime) {
-            canvasGroup.alpha = Mathf.Lerp(0, 0.8f, elapsedTime / appearTime);
+            canvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / appearTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        canvasGroup.alpha = 0.8f;
+        canvasGroup.alpha = 1;
     }
 
     public void BackToMenu () {
