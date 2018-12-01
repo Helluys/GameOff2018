@@ -48,6 +48,9 @@ public class Player : MonoBehaviour {
     }
 
     public void Damage (float amount) {
+        if (!alive)
+            return;
+
         if (alive && amount > instanceStatistics.health && OnDeath != null) {
             OnDeath(this);
         }
