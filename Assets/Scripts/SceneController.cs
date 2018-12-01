@@ -47,7 +47,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
 
     public void LoadScene(SceneName scene)
     {
-        if (isLoading || currentScene == scene)
+        if (isLoading /*|| currentScene == scene*/)
             return;
 
         currentScene = scene;
@@ -88,6 +88,11 @@ public class SceneController : SingletonBehaviour<SceneController> {
 
         SoundController.Instance.PlaySound(SoundName.UIButton3);
         LoadScene(SceneName.Menu);
+    }
+
+    public void ReloadScene()
+    {
+        LoadScene((SceneName)SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator EShowLoadingScreen(bool on)

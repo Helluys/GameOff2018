@@ -56,9 +56,14 @@ public class Player : MonoBehaviour {
         }
 
         instanceStatistics.health = Mathf.Max(instanceStatistics.health - amount, 0f);
-        hud.UpdateHealtBar(instanceStatistics.health / sharedStatistics.maxHealth);
+        UpdateHealthBar();
         hud.HitEffect();
         StartCoroutine(EBlindToDamage());
+    }
+
+    public void UpdateHealthBar()
+    {
+        hud.UpdateHealtBar(instanceStatistics.health / sharedStatistics.maxHealth);
     }
 
     private IEnumerator EBlindToDamage()
@@ -81,6 +86,7 @@ public class Player : MonoBehaviour {
 
     public void Heal (float amount) {
         instanceStatistics.health = Mathf.Min(instanceStatistics.health + amount, sharedStatistics.maxHealth);
+        UpdateHealthBar();
     }
 
     public void StaminaRegen (float amount) {
