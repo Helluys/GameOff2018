@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BenTest3.unity
     guid: 7430cae1d9ab5b8478eb493eed206ae5
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 3a95be3cd4095d14b920f54ccc8ad396
   m_configObjects: {}
