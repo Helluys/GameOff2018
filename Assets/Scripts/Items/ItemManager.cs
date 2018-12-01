@@ -116,8 +116,9 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
             if (items[i].type == ItemType.Undefined)
                 continue;
 
-            ItemUICard card = Instantiate(itemCard, cardHolders[i].rect.position, Quaternion.identity);
+            ItemUICard card = Instantiate(itemCard, cardHolders[i].rect.position,Quaternion.identity);
             card.transform.parent = cardHolders[i].transform.parent;
+            card.gameObject.GetComponent<RectTransform>().localScale = Vector3.one;
             card.SetUp(items[i],cardHolders);
             cardHolders[i].SetCard(card, Vector3.zero);
             card.isDragable = false;
@@ -126,8 +127,9 @@ public class ItemManager : SingletonBehaviour<ItemManager> {
 
         for (int i = 0; i < cardStands.Length; i++)
         {
-            ItemUICard card = Instantiate(itemCard, cardStands[i].position, Quaternion.identity);
+            ItemUICard card = Instantiate(itemCard, cardStands[i].position,Quaternion.identity);
             card.transform.parent = cardStands[i].transform.parent;
+            card.gameObject.GetComponent<RectTransform>().localScale = Vector3.one;
             card.SetUp(GetRandomItem(),cardHolders);
             cards.Add(card);
         }
