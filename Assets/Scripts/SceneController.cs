@@ -28,7 +28,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
     [SerializeField] private GameObject backToMenu;
     [SerializeField] private CanvasGroup loadingCanvas;
 
-    private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4,SceneName.Tutorial,SceneName.End };
+    private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4,SceneName.Tutorial };
     private bool isLoading = false;
 
     private SceneName currentScene = SceneName.Menu;

@@ -3,13 +3,17 @@ using UnityEngine;
 
 
 public class SequenceManager : MonoBehaviour {
+
     public Sequence sequence;
     public SequenceDisplay display;
     public SequencePlayer player;
 
+    public int maxSequence { get; private set; }
+
     private Coroutine gamePhaseCoroutine;
 
     private void Start () {
+        maxSequence = 0;
         sequence = new Sequence(4);
         player.OnKeyPress += OnKeyPress;
         player.OnValidKeyPress += OnValidKey;
@@ -35,6 +39,7 @@ public class SequenceManager : MonoBehaviour {
     }
 
     private void OnSuccess () {
+        maxSequence = Mathf.Max(maxSequence, sequence.GetList().Count);
         display.SuccessAnimation();
         StartCoroutine(EGamePhase());
         SoundController.Instance.PlaySound(SoundName.sequenceSuccess);

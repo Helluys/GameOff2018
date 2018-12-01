@@ -10,6 +10,8 @@ public class LevelCompleteDisplay : MonoBehaviour {
     [SerializeField] private string timerTextPrefix = "Time: ";
     [SerializeField] private Text killCountText;
     [SerializeField] private string killCountTextPrefix = "Enemies shut down: ";
+    [SerializeField] private Text maxSequenceText;
+    [SerializeField] private string maxSequenceTextPrefix = "Longest sequence: ";
     [SerializeField] private CanvasGroup canvasGroup;
 
     private void Awake()
@@ -23,8 +25,9 @@ public class LevelCompleteDisplay : MonoBehaviour {
     }
 
     private void Enable () {
-        timerText.text = timerTextPrefix + GameManager.instance.timer.ToString("0.00");
+        timerText.text = timerTextPrefix + GameManager.instance.extraTime.ToString("0.00");
         killCountText.text = killCountTextPrefix + GameManager.instance.killCount;
+        maxSequenceText.text = maxSequenceTextPrefix + GameManager.instance.GetPlayer().sequenceManager.maxSequence;
         container.SetActive(true);
         ItemManager.Instance.InitCardDisplay();
         StartCoroutine(EDisplayScreen());

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     private List<Spawner> spawners = new List<Spawner>();
 
     public float timer { get;  set; }
+    public float extraTime { get; private set; }
     public int killCount { get; private set; }
 
     private void Start () {
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour {
             player.GetComponent<SequenceManager>().Invoke("StartGamePhase", 2f);
 
         timer = survivalTime;
+        extraTime = 0;
     }
 
     private void Update () {
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour {
             exitPortal.active = true;
             SoundController.Instance.Say(portalOpened);
         }
+
+        if (timer == 0 && !tutorial)
+            extraTime += Time.deltaTime;
     }
 
     public Player GetPlayer () {
@@ -59,6 +64,11 @@ public class GameManager : MonoBehaviour {
 
     public bool AllowMonsterCreation (int entityIndex) {
         return entityCount[entityIndex] < maxEntityCount[entityIndex];
+    }
+
+    public void Nani(int entityIndex)
+    {
+        Debug.Log(entityCount[entityIndex] + "  " + maxEntityCount[entityIndex]);
     }
 
     public void AddEnemy (int entityIndex) {
