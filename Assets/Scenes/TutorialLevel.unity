@@ -2225,17 +2225,17 @@ Prefab:
     - target: {fileID: 114076654031829750, guid: e66859ed427c46f42afeaf0ac10ec5ec,
         type: 2}
       propertyPath: mediumColor.r
-      value: 0.46226418
+      value: 0.2264151
       objectReference: {fileID: 0}
     - target: {fileID: 114076654031829750, guid: e66859ed427c46f42afeaf0ac10ec5ec,
         type: 2}
       propertyPath: mediumColor.g
-      value: 0.46226418
+      value: 0.2264151
       objectReference: {fileID: 0}
     - target: {fileID: 114076654031829750, guid: e66859ed427c46f42afeaf0ac10ec5ec,
         type: 2}
       propertyPath: mediumColor.b
-      value: 0.46226418
+      value: 0.2264151
       objectReference: {fileID: 0}
     - target: {fileID: 114076654031829750, guid: e66859ed427c46f42afeaf0ac10ec5ec,
         type: 2}

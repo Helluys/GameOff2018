@@ -54,7 +54,7 @@ public class HUDManager : MonoBehaviour {
     public void UpdateCoolDownBar(float value)
     {
         coolDownBar.fillAmount = value;
-        if (value < 0.25)
+        if (value < 0.33)
             coolDownBar.color = Color.grey;
         else
             coolDownBar.color = coolDownOriginalColor;

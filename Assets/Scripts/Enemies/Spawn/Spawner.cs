@@ -31,9 +31,6 @@ public class Spawner : MonoBehaviour {
             entityIndex = spawnSequence[currentSequenceIndex].entityIndex;
             if (GameManager.instance.AllowMonsterCreation(entityIndex))
             {
-                if (entityIndex != 0)
-                    GameManager.instance.Nani(entityIndex);
-
                 GameObject go = Instantiate(spawnableObjects[entityIndex], spawnTransform.position, spawnTransform.rotation);
                 GameManager.instance.AddEnemy(entityIndex);
                 int index = entityIndex;

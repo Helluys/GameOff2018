@@ -302,7 +302,7 @@ Prefab:
         type: 2}
       propertyPath: spawnSequence
       value: 
-      objectReference: {fileID: 11400000, guid: 7f1121c9ce8e31641a045442b38ef385,
+      objectReference: {fileID: 11400000, guid: 498720cf0dea34b4991219b5d5cc7dbb,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87b959967994d9141b91b24b6b8d0a1f, type: 2}
@@ -1088,7 +1088,7 @@ Prefab:
     - target: {fileID: 114793635462519820, guid: 87b959967994d9141b91b24b6b8d0a1f,
         type: 2}
       propertyPath: spawnableObjects.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4267676188016976, guid: 87b959967994d9141b91b24b6b8d0a1f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1138,13 +1138,12 @@ Prefab:
         type: 2}
       propertyPath: spawnableObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 1543862979806494, guid: 8e5e46b3309408440927fd84b1e4092e,
-        type: 2}
+      objectReference: {fileID: 100014, guid: 839ec2e8cbb3d194183ff1aa7cfff27c, type: 3}
     - target: {fileID: 114793635462519820, guid: 87b959967994d9141b91b24b6b8d0a1f,
         type: 2}
       propertyPath: spawnSequence
       value: 
-      objectReference: {fileID: 11400000, guid: 7f1121c9ce8e31641a045442b38ef385,
+      objectReference: {fileID: 11400000, guid: 498720cf0dea34b4991219b5d5cc7dbb,
         type: 2}
     - target: {fileID: 114793635462519820, guid: 87b959967994d9141b91b24b6b8d0a1f,
         type: 2}
@@ -1748,7 +1747,7 @@ Prefab:
         type: 2}
       propertyPath: spawnSequence
       value: 
-      objectReference: {fileID: 11400000, guid: 7f1121c9ce8e31641a045442b38ef385,
+      objectReference: {fileID: 11400000, guid: 498720cf0dea34b4991219b5d5cc7dbb,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87b959967994d9141b91b24b6b8d0a1f, type: 2}

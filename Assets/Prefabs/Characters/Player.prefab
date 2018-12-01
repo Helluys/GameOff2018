@@ -246,7 +246,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865281731080606}
   m_LocalRotation: {x: -0, y: 0.38268277, z: -0, w: 0.92387986}
-  m_LocalPosition: {x: -34.5, y: 1, z: 6.7}
+  m_LocalPosition: {x: 538.5643, y: 144.22845, z: -1074.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4208080728826690}
@@ -423,7 +423,7 @@ MonoBehaviour:
     health: 100
     stamina: 100
   movement:
-    rollCost: 25
+    rollCost: 33
     staminaRefillSpeed: 7
   items:
     itemAmount: 2
