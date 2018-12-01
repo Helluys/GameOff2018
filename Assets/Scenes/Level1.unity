@@ -1138,7 +1138,8 @@ Prefab:
         type: 2}
       propertyPath: spawnableObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 100014, guid: 839ec2e8cbb3d194183ff1aa7cfff27c, type: 3}
+      objectReference: {fileID: 1543862979806494, guid: 8e5e46b3309408440927fd84b1e4092e,
+        type: 2}
     - target: {fileID: 114793635462519820, guid: 87b959967994d9141b91b24b6b8d0a1f,
         type: 2}
       propertyPath: spawnSequence

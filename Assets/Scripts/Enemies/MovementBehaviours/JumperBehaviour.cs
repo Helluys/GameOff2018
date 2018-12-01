@@ -45,6 +45,7 @@ public class JumperBehaviour : EnemyBehaviour {
 
         enemy.animationManager.OnAnimationEvent += AnimationManager_OnAnimationEvent;
         enemy.animationManager.OnEnter += AnimationManager_OnEnter;
+        enemy.OnDeath += Enemy_OnDeath;
     }
 
     public override IEnumerator Run () {
@@ -78,6 +79,7 @@ public class JumperBehaviour : EnemyBehaviour {
     }
 
     public bool FindLandingSpot () {
+        NavMeshHit navMeshHit = new NavMeshHit();
         if (NavMesh.CalculatePath(enemy.transform.position, player.transform.position, areaMask, path)) {
             // Go through path backwards to find landing spot at desired distance (find point closest to player as possible)
             for (int i = path.corners.Length - 1; i >= 0; i--) {
@@ -104,6 +106,10 @@ public class JumperBehaviour : EnemyBehaviour {
                     return true;
                 }
             }
+        } else if (NavMesh.FindClosestEdge (enemy.transform.position, out navMeshHit, areaMask)) {
+            jumpStartPosition = navMeshHit.position;
+
+            return true;
         }
 
         return false;
@@ -150,9 +156,10 @@ public class JumperBehaviour : EnemyBehaviour {
             state = State.JUMPING;
     }
 
-    private void OnDestroy () {
+    private void Enemy_OnDeath (Enemy enemy) {
         if (aoeTarget != null) {
             Destroy(aoeTarget);
+            aoeTarget = null;
         }
     }
 }
