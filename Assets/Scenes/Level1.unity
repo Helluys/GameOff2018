@@ -58,7 +58,7 @@ LightmapSettings:
     serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 10
-    m_AtlasSize: 128
+    m_AtlasSize: 256
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -1417,6 +1417,11 @@ Prefab:
     - target: {fileID: 1662248171603866, guid: 0f477c7f6a3048142bce21ffa332b773, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224899465366199456, guid: 0f477c7f6a3048142bce21ffa332b773,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f477c7f6a3048142bce21ffa332b773, type: 2}
