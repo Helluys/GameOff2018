@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: T-Shirt_BASE_480
+  m_Name: T-Shirt
   m_Shader: {fileID: 4800000, guid: 2c33f03a255aa0540b0d39332752d4b0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

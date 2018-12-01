@@ -42,10 +42,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   maximumMonsterCount: 30
+  maxEntityCount: 0a0000000a0000000a000000
   survivalTime: 5
-  levelLoaderPrefab: {fileID: 1516255827284840, guid: 7c2f0af0a87acfd4881999ae960f7e65,
-    type: 2}
-  nextLevel: SampleScene
+  nextLevel: 3
+  tutorial: 0
+  portalOpened: {fileID: 8300000, guid: 67e010bed8622754a9b4d28539388c60, type: 3}
 --- !u!114 &114048167071466064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,6 +81,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   itemCard: {fileID: 114861344580433574, guid: 7677b78913e883040bf92e3e9f6323cc, type: 2}
+  pickUpItem: {fileID: 0}
   itemManagementPanel: {fileID: 0}
   itemInfo: {fileID: 0}
   InspectorDictionnary:
@@ -110,6 +112,7 @@ MonoBehaviour:
   weakColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   mediumColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   strongColor: {r: 0, g: 0, b: 0, a: 1}
+  spawnPeriod: 30
 --- !u!224 &224150590740538312
 RectTransform:
   m_ObjectHideFlags: 1
