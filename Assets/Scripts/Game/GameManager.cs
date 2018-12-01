@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 
     private List<Spawner> spawners = new List<Spawner>();
 
-    public float timer { get; private set; }
+    public float timer { get;  set; }
     public int killCount { get; private set; }
 
     private void Start () {
@@ -35,14 +35,18 @@ public class GameManager : MonoBehaviour {
 
         if(!tutorial)
             player.GetComponent<SequenceManager>().Invoke("StartGamePhase", 2f);
+
+        timer = survivalTime;
     }
 
     private void Update () {
-        if (!levelEnded) {
-            timer += Time.deltaTime;
+
+        if (!levelEnded && timer > 0) {
+            timer -= Time.deltaTime;
+            timer = Mathf.Max(0, timer);
         }
 
-        if (timer > survivalTime && !exitPortal.active && !tutorial) {
+        if (timer == 0 && !exitPortal.active && !tutorial) {
             exitPortal.active = true;
         }
     }

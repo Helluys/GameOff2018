@@ -138,6 +138,7 @@ public class TutorialManager : SingletonBehaviour<TutorialManager> {
         dialogUI.OnDisplayFinished -= DialogUI_OnDisplayFinished;
 
         // Portal : Part 2 (activate)
+        GameManager.instance.timer = 3.0f;
         yield return new WaitForSeconds(3f);
         dialogUI.OnDisplayFinished += DialogUI_OnDisplayFinished;
         GameManager.instance.exitPortal.OnEnter += ExitPortal_OnEnter;
