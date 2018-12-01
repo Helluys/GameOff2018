@@ -82,6 +82,18 @@ public class SoundController : SingletonBehaviour<SoundController> {
             case SceneName.Level2:
                 PlayMusicFromPlaylist(2);
                 break;
+
+            case SceneName.Level3:
+                PlayMusicFromPlaylist(3);
+                break;
+
+            case SceneName.Level4:
+                PlayMusicFromPlaylist(1);
+                break;
+
+            case SceneName.End:
+                PlayMusicFromPlaylist(0);
+                break;
         }
         musicSource.loop = true;
     }

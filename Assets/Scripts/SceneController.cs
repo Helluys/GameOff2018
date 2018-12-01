@@ -11,7 +11,8 @@ public enum SceneName
     Level1 = 2,
     Level2 = 3,
     Level3 = 4,
-    Level4 = 5
+    Level4 = 5,
+    End = 6
 }
 
 public class SceneController : SingletonBehaviour<SceneController> {
@@ -27,7 +28,7 @@ public class SceneController : SingletonBehaviour<SceneController> {
     [SerializeField] private GameObject backToMenu;
     [SerializeField] private CanvasGroup loadingCanvas;
 
-    private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4,SceneName.Tutorial };
+    private List<SceneName> levelScene = new List<SceneName>() { SceneName.Level1, SceneName.Level2, SceneName.Level3, SceneName.Level4,SceneName.Tutorial,SceneName.End };
     private bool isLoading = false;
 
     private SceneName currentScene = SceneName.Menu;
