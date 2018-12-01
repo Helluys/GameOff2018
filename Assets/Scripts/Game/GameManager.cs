@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private float survivalTime = 30f;
     [SerializeField] private SceneName nextLevel = SceneName.Level2;
     [SerializeField] private bool tutorial = false;
+    [SerializeField] private AudioClip portalOpened;
 
     public ExitPortal exitPortal { get; private set;}
     public bool levelEnded { get; private set; }
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour {
 
         if (timer == 0 && !exitPortal.active && !tutorial) {
             exitPortal.active = true;
+            SoundController.Instance.Say(portalOpened);
         }
     }
 
