@@ -3680,23 +3680,23 @@ MonoBehaviour:
   - type: -1
     key: 0
   - type: 0
-    key: 122
+    key: 119
   - type: 1
     key: 115
   - type: 2
-    key: 113
+    key: 97
   - type: 3
     key: 100
   - type: 4
-    key: 111
+    key: 105
   - type: 5
-    key: 107
+    key: 106
   - type: 6
-    key: 109
-  - type: 7
     key: 108
+  - type: 7
+    key: 107
   - type: 8
-    key: 97
+    key: 113
   - type: 9
     key: 101
   - type: 10
