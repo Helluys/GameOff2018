@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: T-Shirt
+  m_Name: T-Shirt_BASE_480
   m_Shader: {fileID: 4800000, guid: 2c33f03a255aa0540b0d39332752d4b0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -73,6 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.65815747, g: 0.65815747, b: 0.65815747, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SeeThroughColor: {r: 0, g: 1, b: 0.013665199, a: 1}
